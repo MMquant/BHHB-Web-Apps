@@ -1,6 +1,6 @@
 # Bughunter's handbook - Web Apps
 
-This repository contains source code for online version of _Bughunter's handbook - Web Apps_
+This repository contains source code for [_Bughunter's handbook - Web Apps_](https://mmquant.github.io/BHHB-Web-Apps/)
 
 ## Synopsis
 
