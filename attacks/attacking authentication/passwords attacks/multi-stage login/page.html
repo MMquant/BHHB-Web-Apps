@@ -1,0 +1,26 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Multi-stage login</title>
+</head><body><b>Defects in multi-stage login</b><br/>
+<ul><li>Perform valid login and record all inputs to the web app</li>
+<li>Identify all inputs in all login stages and discover if any inputs are resubmitted (in parameter, cookie, hidden field, ...)</li>
+<li>Repeat login more times</li>
+<li style="list-style-type: none"><ul><li>Login steps in different sequence</li>
+<li>Proceed directly to any given stage and continue from there</li>
+<li>Skip each stage and proceed with next</li>
+</ul>
+</li>
+<li>Change resubmitted inputs at different stages to see if login will be still successful - if yes, inputs may be validated just in first stage and can be changed arbitrarily in subsequent stages</li>
+<li>Try to switch users in different stages (1st stage: provide user1:password, 2nd stage user2:pin)</li>
+<li>Inspect data which are given back in response, it may contain login information which can be modified</li>
+</ul>
+<br/>
+<b>Security questions<br/>
+</b><ul><li>Examine all pre-generated questions. Are answers predictable?</li>
+<li>Self-generated questions are always insecure.</li>
+<li>If there is &quot;question&quot; verification at some stage inspect if question is returned back to server via hidden form</li>
+<li>Even if questions are changing we can login many times and wait for proper question every time</li>
+<li>Can users enumerated with &quot;questions&quot; functionality?</li>
+</ul>
+</body></html>

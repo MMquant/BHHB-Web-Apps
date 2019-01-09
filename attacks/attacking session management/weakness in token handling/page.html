@@ -1,0 +1,62 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Weakness in Token handling</title>
+</head><body><b>Session tokens transmission over HTTP<br/>
+</b><ul><li>Login to web app (get session token) and with this session walk through all of the app functionality, search for HTTPS to HTTP transitions and new cookies reception. Use Burp proxy history.</li>
+<li>Are all Set-Cookie directives tagged as Secure?</li>
+<li>Does app accept login over HTTP if URL modified?</li>
+<li>If login over HTTP - Is new session token issued after login phase?</li>
+<li>If app uses HTTPS everywhere. Is server's port 80 opened? Can be any pages there accessed with authenticated session?</li>
+</ul>
+<br/>
+<b>Session tokens transmitted via GET requests<br/>
+</b><ul><li>Even if authentication uses POST request, test if same parameters can be used in GET request</li>
+</ul>
+<b><br/>
+</b><b>Sesion tokens in Logs</b><br/>
+<ul><li>Identify logging or monitoring functionality where session tokens can be viewed(Discover content)</li>
+<li>Identify instances where session tokens are transmitted through GET requests</li>
+<li style="list-style-type: none"><ul><li>Inject target with off-site links to your server and watch log on your webserver if it contains Referer header with session token</li>
+</ul>
+</li>
+</ul>
+<br/>
+<b>Vulnerable mappings of tokens to sessions</b><br/>
+<ul><li>Test if is possible to login with same username from 2 different computers. If yes, attacker can login without being detected.</li>
+<li>Login and logout few times and check if new session token is generated every time.</li>
+</ul>
+<br/>
+<b>Session caching enabled<br/>
+</b><ul><li>Check if in all authenticated requests is <tt>Cache-Control: max-age=0 </tt>so that session token is not cached on HTTP proxy</li>
+</ul>
+<b><br/>
+</b><b>Vulnerable session termination</b><br/>
+<ul><li>Examine session token expiration time and settings (What Expires= times are used on persistent cookies, and are they</li>
+<li style="list-style-type: none">reasonable?)</li>
+<li>Test logout functionality if it really invalidates session on the webserver and not just in the browser</li>
+<li>Logout function should be on all authenticated pages and as visible as possible</li>
+<li>Test if expiration of cookie has effect on cookie expiration on the server.</li>
+</ul>
+<br/>
+<b>Client Exposure to Token Hijacking</b><br/>
+<ul><li>Identify cross-site scripting vulns and determine if they can be used against site users</li>
+<li>Identify format of issued tokens and try to modify it and login with it.</li>
+<li>Examine if token created for unathenticated user may be later used to retrieve user's sensitive data</li>
+</ul>
+<br/>
+<b>Session Fixation<br/>
+</b><ul><li>If site issues tokens to unathenticated users and doesn't issue new session token after login phase then it's vulnerable to session fixation</li>
+<li>If session token is issued after the login, try to login again with this token and different user and check if token didn't changed and now is used with new user</li>
+<li>Try if arbitrary token string can be passed to web app</li>
+<li>Attacker can forge login request and let user to login with that request which contains attacker known session token</li>
+</ul>
+<b><br/>
+</b><b>Cookie Domain/Path Restrictions</b><br/>
+<ul><li>Search sensitive cookies for <i>domain </i>and<i>path</i>attributes and for setting it to parent domain or root path. If found then cookies can be submitted to parent domain and all subdomains (bad!) (in case of <tt>path=/</tt>cookie is sent to all subdirectories)</li>
+<li>Check if there is trailing <tt>/</tt>in <tt>path</tt>directive</li>
+<li>Cookie without domain attribute is resent only to domain it was issued from</li>
+<li>Cookie with domain attribute is resent in requests to domain and all subdomains</li>
+<li>Create list of sensitive cookies with their domains and subdomains access</li>
+</ul>
+</body></html>

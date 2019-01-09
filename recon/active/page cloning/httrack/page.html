@@ -1,0 +1,44 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>HTTrack</title>
+</head><body><b><span style="font-size: 14pt">HTTrack</span><br/>
+</b><tt>https://www.httrack.com/html/fcguide.html</tt><b><br/>
+</b><b><br/>
+advanced website cloner<br/>
+<br/>
+<br/>
+<span style="font-size: 12pt">Switches</span><br/>
+<br/>
+</b>-O			output folder<br/>
+-c4			number of multiple connections<br/>
+-%c10		maximum number of connections per second<br/>
+-A2000		maximum transfer rate in bytes/seconds<br/>
+-m2000,5000	maximum file length for a non-html file, for html file (50000000 = 50mb)<br/>
+-M10000 	maximum mirror size which can be downloaded (<tt>1000000000 = 10Gb</tt>)<br/>
+-r25			mirror depth<br/>
+-%e1		external links depth<br/>
+-H2			host is abandonned if: 0=never, 1=timeout, 2=slow, 3=timeout or slow<br/>
+-i			continue an interrupted mirror using the cache<b><br/>
+</b>-P   		proxy use (-P proxy:port or -P user:pass@proxy:port)<br/>
+-GN  		pause transfer if N bytes reached, and wait until lock file is deleted (may be used with cron)<br/>
+-RN  		number of retries, in case of timeout or non-fatal errors (*R1)<b><br/>
+</b>-n   		get non-html files near an html file<br/>
+-t   		test all URLs (even forbidden ones)<br/>
+-F   		user-agent field sent in HTTP headers (-F &quot;user-agent name&quot;)<b><br/>
+</b><b><br/>
+<br/>
+<span style="font-size: 12pt">Examples</span><br/>
+<br/>
+Before mirroring check target site MIME types and create mappings in .httrackrc or add --assume switch<br/>
+</b><tt><br/>
+</tt><tt>--assume asp=text/html,php3=text/html,cgi=image/gif,zip=application/x-zip,mpg=application/x-mp3</tt><b><br/>
+</b><b><br/>
+</b><b>Mirror given site, mirror all subdomains, output to given directory</b><tt><br/>
+</tt><tt><br/>
+httrack &quot;http://www.hackthissite.org/&quot; &quot;+*.hackthissite.org/*&quot; -O &quot;/tmp/www.hackthissite.org&quot;<br/>
+<br/>
+</tt><b>Mirror given site and skip specific locations</b><tt><br/>
+</tt><tt><br/>
+httrack www.hackthissite.org -O /root/Desktop/httrack -c4 -%c10 -A20000000 -m50000000,1000000 -M1000000000 -r25 -R3 -H2 -n -t -www.hackthissite.org/forums/* -www.hackthissite.org/user/*<br/>
+</tt></body></html>

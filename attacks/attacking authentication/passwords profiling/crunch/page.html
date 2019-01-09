@@ -1,0 +1,34 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>crunch</title>
+</head><body><b><span style="font-size: 14pt">crunch</span><br/>
+</b><tt>https://sourceforge.net/projects/crunch-wordlist/<br/>
+<br/>
+</tt><b>wordlist generator<br/>
+<br/>
+<br/>
+</b><b><span style="font-size: 14pt">Examples</span></b><tt><br/>
+</tt><tt><br/>
+</tt><b>Use of Charsets<br/>
+</b><br/>
+<tt>crunch 4 4 -f /usr/share/crunch/charset.lst mixalpha -o wordlist.txt</tt><b><br/>
+</b><b><br/>
+Generate 6 chars long passwords from ABCDEF123 and store to file<br/>
+</b><br/>
+crunch 6 6 ABCDEF123 -o wordlist.txt<br/>
+<br/>
+<b>Generate custom passwords(see tag specifications in man page)<br/>
+</b><br/>
+,	Upper-ase Alpha<br/>
+@	Lower-case alpha<br/>
+^	Special char<br/>
+%	Number<b><br/>
+</b><tt># crunch 8 8 -t ,@@^^%%%<br/>
+<br/>
+</tt><span style="font-size: 12pt"><b><br/>
+Notes<br/>
+</b></span><b><span style="font-size: 10pt"><br/>
+</span>Charsets<br/>
+</b><tt>/usr/share/crunch/charset.lst</tt><br/>
+</body></html>

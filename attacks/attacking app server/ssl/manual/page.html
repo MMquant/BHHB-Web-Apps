@@ -1,0 +1,23 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Manual</title>
+</head><body><b>Every service wrapped into SSL must be tested<br/>
+<br/>
+</b><b>Check</b><br/>
+<ul><li>sensitive information transmitted over HTTP (Credentials in URL, POST body, Basic auth headers)</li>
+<li><tt>Secure </tt>flag for Session Cookies</li>
+<li>Webserver response headers should contain <tt>Strict-Transport-Security </tt>header. Otherwise SSL communication can be stripped.</li>
+<li>presence of HTTP and HTTPS both, which can be used to intercept traffic</li>
+<li>presence of mixed HTTPS and HTTP content in the same page, which can be used to leak information</li>
+</ul>
+<br/>
+<b>Testing SSL certificate validity – client and server</b><br/>
+<br/>
+1.upgrade the browser (list of CAs)<b><br/>
+</b>2.check<br/>
+<ul><li>expired certificates</li>
+<li>certificates issued by untrusted CAs</li>
+<li>certificates which do not match name wise with the site to which they should refer</li>
+</ul>
+</body></html>

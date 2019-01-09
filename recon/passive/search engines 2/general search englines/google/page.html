@@ -1,0 +1,93 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>google</title>
+</head><body><b><span style="font-size: 14pt">GOOGLE BASICS</span><br/>
+</b><br/>
+Look for result number which determines web presence of the target.<tt><br/>
+</tt><b><br/>
+Exlude domain from search<br/>
+</b><tt>-site:&lt;domain&gt;<br/>
+</tt><b><br/>
+Search for specific file type<br/>
+</b><tt>site:&lt;domain&gt; filetype:&lt;exe,ppt,pdf etc.&gt; &lt;string to search&gt;</tt><br/>
+<tt><br/>
+</tt><b>Search for specific extension in URL</b><tt><br/>
+</tt><tt>site:&lt;domain&gt; ext:php inurl:index</tt><br/>
+<b><br/>
+Search for specific title html tag<br/>
+</b><tt>intitle:&quot;title to search&quot;<br/>
+<br/>
+</tt><b>Search in url<br/>
+</b><tt>inurl:&lt;string or path specific for some device&gt;<br/>
+<br/>
+</tt><b>Returns all the pages on other websites and applications that contain a link to the target<br/>
+</b><tt>link:&lt;domain&gt;<br/>
+<br/>
+<br/>
+</tt><b><span style="font-size: 14pt">GOOGLE HACKING DB</span><span style="font-size: 11pt"><br/>
+</span></b><span style="font-size: 9pt"><br/>
+</span><tt><span style="font-size: 10pt">https://www.exploit-db.com/google-hacking-database/</span></tt><b><br/>
+</b><b><br/>
+Search and print out robots.txt<br/>
+</b><tt>site:&lt;target site&gt; intitle:&quot;index.of&quot; robots.txt</tt><b><br/>
+</b><b><br/>
+Search for credentials<br/>
+</b><tt>site:&lt;target site&gt; username|userid|password|passcode|pass|pwd|credentials<br/>
+</tt><br/>
+<b>Exposed frontpage credentials<br/>
+</b><tt>&quot;# -FrontPage-&quot; filetype:pwd inurl:(service | authors | administrators | users)&quot;<br/>
+<br/>
+</tt><b>FROM http://www.securityidiots.com</b><tt><br/>
+</tt><tt>intitle:&quot;index of /&quot; Parent Directory site:yoursitehere.com<br/>
+<br/>
+</tt><b>You can search for admin directories</b><tt><br/>
+</tt><tt>intitle:&quot;Index of /admin&quot; site:yoursitehere.com<br/>
+<br/>
+</tt><b>You can search for password directories</b><tt><br/>
+</tt><tt>intitle:&quot;Index of /password&quot; site:yoursitehere.com<br/>
+<br/>
+</tt><b>You can search for mail directories</b><tt><br/>
+</tt><tt>intitle:&quot;Index of /mail&quot; site:yoursitehere.com<br/>
+<br/>
+</tt><b>You can search for files like passwd</b><tt><br/>
+</tt><tt>intitle:&quot;Index of /&quot; passwd site:yoursitehere.com<br/>
+<br/>
+</tt><b>You can search for password.txt files</b><tt><br/>
+</tt><tt>intitle:&quot;Index of /&quot; password.txt site:yoursitehere.com<br/>
+<br/>
+</tt><b>You can search for htaccess file</b><tt><br/>
+</tt><tt>intitle:&quot;Index of /&quot; .htaccess site:yoursitehere.com<br/>
+<br/>
+</tt><b>You can also search for diffrent extensions.</b><tt><br/>
+</tt><tt>intitle:&quot;index of ftp&quot; .mdb site:yoursitehere.com<br/>
+<br/>
+</tt><b>You can also try and look for admin pages or the login functionalities</b><tt><br/>
+</tt><tt>Intitle: &quot;login&quot; &quot;admin&quot; site:yoursitehere.com<br/>
+<br/>
+</tt><b>Using InURL we can search for diffrent functionalities within the website.<br/>
+</b><b>Search for Admin Login Functionality on target domain</b><tt><br/>
+</tt><tt>inurl:admin site:yoursitehere.com<br/>
+<br/>
+</tt><b>Search for Login Functionality on target domain</b><tt><br/>
+</tt><tt>inurl:login site:yoursitehere.com<br/>
+site:yoursitehere.com login<br/>
+<br/>
+</tt><b>Using FileType we can search for diffrent files within the website.<br/>
+</b><b>Searching for text files containing passwd in URL on target domain</b><tt><br/>
+</tt><tt>inurl:passwd filetype:txt site:yoursitehere.com<br/>
+<br/>
+</tt><b>Searching for db files containing admin in URL on target domain</b><tt><br/>
+</tt><tt>inurl:admin filetype:db site:yoursitehere.com<br/>
+<br/>
+</tt><b>Searching for logs on target domain</b><tt><br/>
+</tt><tt>filetype:log site:yoursitehere.com<br/>
+<br/>
+</tt><b>Searching for Excel and csv files on target domain</b><tt><br/>
+</tt><tt>filetype:xls csv site:yoursitehere.com<br/>
+<br/>
+</tt><b>Search for other sites containing links for your target website</b><tt><br/>
+</tt><tt>link:yoursite.com -site:yoursite.com<br/>
+<br/>
+</tt><b>You can also use Google Translater as a proxy to access the website</b><tt><br/>
+</tt><tt>http://translate.google.com/translate?hl=en&amp;sl=ar&amp;tl=en&amp;u=http://www.yoursitehere.com/urlhere</tt></body></html>

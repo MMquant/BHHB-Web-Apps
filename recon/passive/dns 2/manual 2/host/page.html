@@ -1,0 +1,32 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>host</title>
+</head><body><b><span style="font-size: 14pt">host</span><br/>
+</b><tt>https://linux.die.net/man/1/host</tt><b><br/>
+</b><b><br/>
+DNS lookup utility<br/>
+<br/>
+<br/>
+<span style="font-size: 12pt">Examples</span><br/>
+<br/>
+Name servers<br/>
+</b><br/>
+<tt>host -t ns &lt;domain&gt;<br/>
+<br/>
+</tt><b>Mail servers<br/>
+</b><br/>
+<tt>host -t mx &lt;domain&gt;<br/>
+<br/>
+</tt><b>Brute force DNS forward lookup<br/>
+</b><br/>
+<tt>for ip in $(cat list.txt);do host $ip.&lt;domain.com&gt; | grep &quot;has address&quot; | cut -d&quot; &quot; -f1,4;done<br/>
+<br/>
+</tt><b>Brute force DNS reverse lookup (use IP range derived from DNS forward lookup)<br/>
+</b><br/>
+<tt>for ip in $(seq 76 91);do host 38.100.193.$ip;done |grep -v &quot;not found&quot;<br/>
+<br/>
+</tt><b>Zone transfers (list all internal and external subdomain if DNS badly configured)<br/>
+</b><br/>
+<tt>host -l &lt;domain&gt; &lt;dns server address&gt;<br/>
+</tt></body></html>

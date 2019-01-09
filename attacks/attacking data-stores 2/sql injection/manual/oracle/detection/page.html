@@ -1,0 +1,35 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Detection</title>
+</head><body><b>Sample PL/SQL gateway URLs (xyz is DAD(Database Access Descriptor))</b><br/>
+<tt><br/>
+http:/www.example.com/pls/xyz<br/>
+http:/www.example.com/xyz/owa<br/>
+http:/www.example.com/xyz/plsql<br/>
+http:/www.server.com/pls/xyz/webuser.pkg.proc<br/>
+<br/>
+</tt><b>Default DADs<br/>
+</b><br/>
+SIMPLEDAD<br/>
+HTMLDB<br/>
+ORASSO<br/>
+SSODAD<br/>
+PORTAL<br/>
+PORTAL2<br/>
+PORTAL30<br/>
+PORTAL30_SSO<br/>
+TEST<br/>
+DAD<br/>
+APP<br/>
+ONLINE<br/>
+DB<br/>
+OWA<br/>
+<br/>
+<b>Detection if PL/SQL is running</b><br/>
+<br/>
+Server response headers<br/>
+NULL test<ul><li style="list-style-type: none"><tt>http:/www.example.com/pls/dad/null </tt>(should return 200)</li>
+<li style="list-style-type: none"><tt>http:/www.example.com/pls/dad/nosuchproc </tt>(should return 404)</li>
+</ul>
+</body></html>

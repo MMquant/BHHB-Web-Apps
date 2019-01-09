@@ -1,0 +1,102 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Design Flaws</title>
+</head><body><b>DEFAULT PASSWORDS<br/>
+</b><tt>https://cirt.net/passwords</tt><b><br/>
+</b><b><br/>
+Username enumeration<br/>
+</b><ul><li>brute force if login gives verbose error messages</li>
+<li>user registration function. If user found app will not allow registration</li>
+<li>password change and forgotten password functions (if it returns different error messages)</li>
+<li>examine subtle differences in login responses for existing and non-existent user, use Burp Comparer</li>
+<li>examine web app reponse times</li>
+<li>Informative parameters in server's response</li>
+<li>User accounts can be associated to directories. There can be different server responses when accessing such directories (403 vs. 404)</li>
+</ul>
+<b><br/>
+Passwords policy<br/>
+</b><ul><li>Review site for password policy</li>
+<li>If not publicly specified, try to guess via registration</li>
+<li>Try to change passwords within your account</li>
+</ul>
+<br/>
+<b>Brute force with Burp list + cewl (john mutated) list<br/>
+Examine failed attempts error messages<br/>
+</b><br/>
+<b>Vulnerable transmission of credentials<br/>
+</b><ul><li>Check login forms which are loaded without SSL</li>
+<li>Check for unencrypted credentials transmission in both requests and responses - GET, POST, Cookies</li>
+<li>Check for encrypted or obfuscated credentials and find out if they can be decrypted or deobfuscated</li>
+</ul>
+<br/>
+<b>Password change functionality</b><br/>
+<ul><li>Discover password change functionality by enumerating logged user interface or by burp Discover content</li>
+<li>Try invalid inputs and discover possibility of brute-forcing user enumeration</li>
+<li>If change password script doesn't have &quot;username&quot; input try to add it and use same parameter name as in login form</li>
+</ul>
+<br/>
+<b>Forgotten password functionality<br/>
+</b><ul><li>Discover password remind functionality by enumerating logged user interface or by burp Discover content</li>
+<li>Check for insecure challenges/hints. Enumerate them with user list and choose weakest ones.</li>
+<li>Brute force challenges/hints</li>
+<li>Check if recovery URL string can be send to different email (hidden fields, additional email parameter)</li>
+<li>Check for recovery URL strings predictability. Can user reset another user's password?</li>
+</ul>
+<br/>
+<b>Remember me functionality<br/>
+</b><ul><li>Login with &quot;remember me&quot; and check if cookie is created</li>
+<li>Examine this cookie - can be brute-forced? Predicted? Decoded? Reverse-engineered?</li>
+<li>Examine if there are &quot;remember me&quot; variables (or other user identifiers) in other local stores</li>
+<li style="list-style-type: none"><ul><li>IE UserData</li>
+<li>SilverLight isolated storage</li>
+<li>Flash local shared object</li>
+</ul>
+</li>
+<li>Attempt to modify cookie or other data for impersonatin other user</li>
+</ul>
+<br/>
+<b>Impersonation functionality<br/>
+</b><ul><li>Discover impersonation function (if not referenced directly, use Discover content)</li>
+<li>Manipulate parameters to function such that you impersonate user. Search for paramterers where you use username</li>
+<li>If more than 1 valid password found for user then second one can be universal impersonation password for admin user</li>
+</ul>
+<br/>
+<b>Incomplete validation of credentials<br/>
+</b><ul><li>Test if validation checks just first N characters</li>
+<li>Test if validation doesn't check &quot;caseness&quot; (change one letter case)</li>
+<li>Test if validation removes special characters</li>
+</ul>
+<br/>
+<b>Nonunique usernames</b><br/>
+<ul><li>Try to register 2 same usernames with different passwords</li>
+<li>Does application block 2nd registration? If yes we can have usernames enumeration vulnerability.</li>
+<li>If registration succeeds then try 2 same usernames and 2 same passwords. If second registration fails then we can enumerate passwords for given user.</li>
+</ul>
+<br/>
+<b>Insecure distribution of credentials</b><br/>
+<ul><li>Does app distribute new credentials via email?</li>
+<li>Can activation URL be predicted? Register few new accounts and check few activation URLs.</li>
+<li>Can same activation URL be used few times? Can activation URL unlock account?</li>
+</ul>
+<br/>
+<b>Alternative weaker login channels<br/>
+</b><ul><li>Identify any of the following</li>
+<li style="list-style-type: none"><ul><li>mobile websites</li>
+<li>alternative websites hosted on different IPs</li>
+<li>partner websites</li>
+<li>development websites</li>
+</ul>
+</li>
+<li>Check following functionalities within alternative channels</li>
+<li style="list-style-type: none"><ul><li>Login</li>
+<li>Logout</li>
+<li>Register</li>
+<li>Password reset</li>
+<li>Password change</li>
+</ul>
+</li>
+</ul>
+<br/>
+<br/>
+</body></html>

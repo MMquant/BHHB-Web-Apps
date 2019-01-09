@@ -1,0 +1,24 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Combo lists</title>
+</head><body><b><span style="font-size: 12pt">Combo lists sources</span><br/>
+</b><tt><br/>
+https://sentry.mba/forumdisplay.php?fid=137<br/>
+https://sinister.ly/Forum-Hacking-Tools<br/>
+</tt><tt>https://combo-list.com/</tt><br/>
+<br/>
+<b><span style="font-size: 12pt">Search for pattern in combo lists</span><br/>
+<br/>
+</b><b>Output filename and line with match</b><tt><br/>
+</tt><tt><br/>
+grep -rnw /usr/share/wordlists/combos -e &lt;pattern&gt;<br/>
+<br/>
+</tt><b>Output filename</b><tt><br/>
+</tt><tt><br/>
+grep -rnwl /usr/share/wordlists/combos -e &lt;pattern&gt;<br/>
+<br/>
+</tt><b>Read multiple inputs from file</b><tt><br/>
+</tt><tt><br/>
+for email in $(cat emails.txt); do grep -rnw /usr/share/wordlists/combos -e $email; done<br/>
+</tt></body></html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>DNSweeper</title>
+</head><body><b><span style="font-size: 14pt">DNSweeper</span></b><br/>
+<tt>https://github.com/MMquant/DNSweeper</tt><br/>
+<br/>
+<b>Asynchronous public DNS auditing tool </b><br/>
+<br/>
+<br/>
+<b><span style="font-size: 12pt">Switches for enumerate command</span><br/>
+<br/>
+</b>-f					Path to file with (scraped) subdomains<br/>
+OR<br/>
+-d					Domain<br/>
+-p					Path to file with bruteforce payload<br/>
+-r					Reverse lookup regex matching pattern<br/>
+--use-cache  			Use cached resolvers<br/>
+--bruteforce-recursive	Enable recursive bruteforce and use custom payload file<br/>
+--exclude			File with subdomains which not to enumerate<br/>
+-v					Verbosity -vv -vvv<b><br/>
+</b><b><br/>
+<br/>
+</b><b><span style="font-size: 12pt">Examples</span></b><br/>
+<br/>
+<tt>python3.7 DNSweeper.py enumerate -d test-domain.com -p subdomains_all_unique_filtered.txt -r &quot;test-domain\.com$&quot; --bruteforce-recursive subdomains-10000.txt_ascii --exclude subdomains.txt</tt><br/>
+<br/>
+<b><br/>
+</b><b><span style="font-size: 12pt">Notes</span></b><br/>
+<br/>
+<b>Update public resolvers</b><br/>
+<tt><br/>
+</tt><tt>python3.7 DNSweeper.py update_resolvers</tt><br/>
+</body></html>

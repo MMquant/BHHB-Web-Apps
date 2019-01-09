@@ -1,0 +1,23 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>SOAP injection</title>
+</head><body><span style="font-size: 12pt"><b>DETECTION</b><br/>
+</span><ul><li>Inject <tt>&lt;/foo&gt; </tt>to all parameters one by one and watch for app behaviour change. If there is change then parameters can be parsed into SOAP object</li>
+<li>If <tt>&lt;/foo&gt; </tt>caused different app behaviour, inject <tt>&lt;foo&gt;&lt;/foo&gt; </tt>and watch if behaviour is normal again</li>
+<li>If application returns some of requested parameter try to inject</li>
+</ul>
+<ul><li style="list-style-type: none"><ul><tt><li>test&lt;/foo&gt;</li>
+</tt><li><tt>test&lt;foo&gt;&lt;/foo&gt;</tt></li>
+<li>If any of injection returns each other or just test then our input is parsed with XML parsel</li>
+</ul>
+</li>
+</ul>
+<ul><li>If there are more parameters try to inject XML comment markup and watch or errors</li>
+</ul>
+<ul><li style="list-style-type: none"><ul><tt><li>?param1=&lt;!--value1&amp;param2=value2!--&gt;</li>
+</tt><li><tt>?param1=!--&gt;value1&amp;param2=value2&lt;!--</tt></li>
+</ul>
+</li>
+</ul>
+</body></html>

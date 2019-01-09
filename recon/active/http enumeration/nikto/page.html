@@ -1,0 +1,54 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Nikto</title>
+</head><body><b><span style="font-size: 14pt">Nikto</span><br/>
+</b><tt>https://github.com/sullo/nikto</tt><b><br/>
+</b><b><br/>
+Web server scanner<br/>
+<br/>
+<br/>
+<span style="font-size: 12pt">Examples</span><br/>
+<br/>
+Basic default scan<br/>
+</b><tt>nikto -h </tt>&lt;domain or IP&gt;<br/>
+<br/>
+<b>Use proxy (setup /etc/nikto.conf first)<br/>
+</b><tt>nikto -useproxy -h </tt>&lt;domain or IP&gt;<br/>
+<br/>
+<b>Fine tune scan<br/>
+</b>0 - File Upload<br/>
+1 - Interesting File / Seen in logs<br/>
+2 - Misconfiguration / Default File<br/>
+3 - Information Disclosure<br/>
+4 - Injection (XSS/Script/HTML)<br/>
+5 - Remote File Retrieval - Inside Web Root<br/>
+6 - Denial of Service<br/>
+7 - Remote File Retrieval - Server Wide<br/>
+8 - Command Execution / Remote Shell<br/>
+9 - SQL Injection<br/>
+a - Authentication Bypass<br/>
+b - Software Identification<br/>
+c - Remote Source Inclusion<br/>
+x - Reverse Tuning Options (i.e., include all except specified)<br/>
+<tt><br/>
+</tt><tt>nikto -Tuning 0 1 2 3 4 -useproxy -h &lt;domain or IP&gt;</tt><br/>
+<br/>
+<b>Detection evasion</b><br/>
+1 - Random URI encoding (non-UTF8)<br/>
+2 - Directory self-reference (/./)<br/>
+3 - Premature URL ending<br/>
+4 - Prepend long random string<br/>
+5 - Fake parameter<br/>
+6 - TAB as request spacer<br/>
+7 - Change the case of the URL<br/>
+8 - Use Windows directory separator (\)<br/>
+<br/>
+<tt>nikto -evasion 0 1 2 -Tuning 0 1 2 3 4 -useproxy -h &lt;domain or IP&gt;</tt><br/>
+<br/>
+<b><br/>
+</b><b><span style="font-size: 12pt">Notes</span></b><br/>
+<br/>
+<b>Configuration file (proxy setup)<br/>
+</b><tt>/etc/nikto.conf<br/>
+</tt></body></html>

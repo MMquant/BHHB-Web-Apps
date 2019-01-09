@@ -1,0 +1,40 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>photon</title>
+</head><body><b><span style="font-size: 14pt">photon</span></b><br/>
+<tt>https://github.com/s0md3v/Photon</tt><br/>
+<br/>
+<b>Incredibly fast crawler designed for OSINT</b><br/>
+<br/>
+<br/>
+<b><span style="font-size: 12pt">Switches</span></b><br/>
+<br/>
+-u       	root url<br/>
+-l       	levels to crawl (default 2)<br/>
+-t       	number of threads (default 2)<br/>
+-d       	delay between requests in seconds (default 0)<br/>
+-c       	cookie<br/>
+-r       	regex pattern<br/>
+-s       	additional seed urls<br/>
+-e       	export formatted result<br/>
+-o       	specify output directory<br/>
+-v       	verbose output<br/>
+--keys     	extract secret keys<br/>
+--exclude    	exclude urls by regex<br/>
+--stdout    	print a variable to stdout<br/>
+--timeout    	http requests timeout in seconds	 (default 5)<br/>
+--ninja     	ninja mode<br/>
+--update    	update photon<br/>
+--dns      	enumerate subdomains &amp; dns data<br/>
+--only-urls   	only extract urls<br/>
+--wayback    Use URLs from archive.org as seeds<br/>
+--user-agent  specify user-agent(s)<br/>
+<br/>
+<br/>
+<b><span style="font-size: 12pt">Examples</span></b><br/>
+<br/>
+<b>Crawl a single website</b><br/>
+<br/>
+<tt>python photon.py -u http://67.195.205.33:80 -v<br/>
+</tt></body></html>

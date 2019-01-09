@@ -1,0 +1,52 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Burp</title>
+</head><body><b><span style="font-size: 12pt">GENERAL STEPS</span><br/>
+<br/>
+</b><b>1. SPIDERING</b><br/>
+<ul><li>Map manually every link, form, functions (with javascript and cookies enabled/disabled)</li>
+<li>Explore manually generated site map and visit all non-visited paths</li>
+</ul>
+<br/>
+<b>2. DISCOVER HIDDEN CONTENT<br/>
+</b><ul><li>Use Intruder and <b>Discover content </b>(will automate ALL of hidden content discovery methods)</li>
+<li>Brute force dirs <tt>http://targetdomain.com/&lt;dir&gt;/</tt>(set position such: GET /§§/ HTTP/1.1)</li>
+<li>Brute force deeper paths ie. <tt>http://targetdomain.com/auth/&lt;file&gt;</tt>(set position such: GET /auth/§§ HTTP/1.1)</li>
+<li>Infer naming schemas from site map</li>
+<li>Check all HTML files for information disclosure in comments (Engagement tools &gt; Find Comments - sort by comment)</li>
+<li>Compare cache snapshots (see Recon &gt; Passive &gt; Cache Search)</li>
+</ul>
+<br/>
+<b>3. BRUTE FORCE OTHER RELEVANT PREDICTABLE PATHS BASED ON USED WEB TECHNOLOGIES<br/>
+<br/>
+4. BRUTE FORCE DIRECTORIES WHICH RETURNED ACCESS DENIED OR UNAUTHORIZED<br/>
+<br/>
+5. GREP ACCESS DENIED OR UNAUTHORIZED DIRS WITH waybackurls OUTPUT AND FORCE BROWSE<br/>
+<br/>
+6. DISCOVER FUNCTIONAL PATHS<br/>
+</b><ul><li>Identify pages which are served by passing function name as parameter to request (ie. /admin.jsp?action=editUser)</li>
+<li>Infer function names</li>
+</ul>
+<br/>
+<b>7. DISCOVER HIDDEN PARAMETERS<br/>
+</b><br/>
+<br/>
+<b>8. DISCOVER DIFFERENT VERSION OF APP FOR DIFFERENT USER-AGENTS<br/>
+</b><ul><li>Send app root to intruder and attack user-agent with user-agents burp list</li>
+</ul>
+<br/>
+<b>9. DISCOVER OUT-OF-BAND CHANNELS<br/>
+</b><ul><li>Inspect the source code for</li>
+<li style="list-style-type: none"><ul><li>API channels</li>
+<li>WebSocket channels</li>
+</ul>
+</li>
+</ul>
+<b><br/>
+</b><b>10. DISCOVER COMMON LOGIN PAGES</b><br/>
+<br/>
+<b>11. DISCOVER COMMON PASSWORD FILES</b><br/>
+<br/>
+<b>12. DISCOVER EXISTING BACKDOORS</b><br/>
+</body></html>

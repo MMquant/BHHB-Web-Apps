@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node>
+<version>6</version>
+<dict>
+  <key>expanded</key><false/>
+  <key>duplicate_of</key><string>5894eff2-11f2-4410-9d9c-4d67e067e541</string>
+  <key>nodeid</key><string>4598c181-1269-436d-82b4-f646aaf0071d</string>
+  <key>modified_time</key><integer>1542019169</integer>
+  <key>content_type</key><string>text/xhtml+xml</string>
+  <key>created_time</key><integer>1542019169</integer>
+  <key>info_sort_dir</key><integer>1</integer>
+  <key>title</key><string>Joomla</string>
+  <key>version</key><integer>6</integer>
+  <key>order</key><integer>3</integer>
+  <key>info_sort</key><string>order</string>
+</dict>
+</node>

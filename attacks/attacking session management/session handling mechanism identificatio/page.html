@@ -1,0 +1,30 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Session handling mechanism identification</title>
+</head><body><b>Identify session management parameters</b><br/>
+<ul><li>Session can be managed by cookies, hidden form fields, URL parameters</li>
+<li>Create cookies list (Content Discovery -&gt; Search &quot;Set-cookie&quot;)</li>
+<li style="list-style-type: none"><ul><li>Page which sets cookie</li>
+<li>cookie name</li>
+<li>cookie directives</li>
+<li>cookie purpose</li>
+</ul>
+</li>
+<li>Observe which items are passed to browser after authentication</li>
+<li>If not obvious, login as valid user and remove selected parameters one-by-one and check which request returns non-authenticated page</li>
+<li>Inspect if any cookies get modified by any pages. What events modify cookie?</li>
+<li>Which pages needs this cookie to be working properly</li>
+</ul>
+<br/>
+<b>Check for HTTP stateless session management</b><br/>
+<ul><li>Check request headers for credentials</li>
+<li>How to identify stateless session management</li>
+<li style="list-style-type: none"><ul><li>Token-like data items issued to the client are fairly long (100 or more bytes)</li>
+<li>The application issues a new token-like item in response to every request</li>
+<li>The data in the item appears to be encrypted (and therefore has no discernible structure) or signed (and therefore has a meaningful structure accompanied by a few bytes of meaningless binary data)</li>
+<li>The application may reject attempts to submit the same item with more than one request</li>
+</ul>
+</li>
+</ul>
+</body></html>

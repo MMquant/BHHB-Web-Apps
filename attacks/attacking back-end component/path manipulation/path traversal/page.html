@@ -1,0 +1,124 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Path Traversal</title>
+</head><body><b><span style="font-size: 12pt">DETECTION</span><br/>
+<br/>
+</b><b>Test</b><br/>
+<br/>
+GET parameters<br/>
+POST parameters<br/>
+cookies<br/>
+Forms (test Upload forms)<br/>
+Hidden fields<br/>
+<br/>
+<b>Common parameter names</b><br/>
+<tt><br/>
+file=<br/>
+location=<br/>
+locale=<br/>
+path=<br/>
+display=<br/>
+load=<br/>
+read=<br/>
+</tt><tt>retrieve=</tt><br/>
+<br/>
+<b>Automated testing</b><br/>
+<br/>
+Test with Burp Intruder, payload Fuzzing-path traversal and choose proper file<b><br/>
+</b><b><br/>
+</b><b>Black Box</b><br/>
+<br/>
+Identify any instance where a request parameter appears to contain the name of a file or directory, such as include=main.inc or template=/en/ sidebar.<br/>
+Any application functions whose implementation is likely to involve retrieval of data from a server filesystem.<br/>
+Does application have cookies for dynamic generation of pages?(templates, etc.)<br/>
+<br/>
+Input<br/>
+<tt>file=foo/file1.txt<br/>
+and<br/>
+file=foo/bar/../file1.txt<br/>
+<br/>
+</tt>if same results returned then we can have Path Traversal vuln<br/>
+if different results then there can be input filter<br/>
+<br/>
+Testing file read access<br/>
+Linux:<br/>
+<tt>../../../../../../../../../../../../etc/passwd</tt><br/>
+Windows:<br/>
+<tt>../../../../../../../../../../../../windows/win.ini</tt><br/>
+<br/>
+Testing file read access<br/>
+Windows:<br/>
+Writable by anyone:<br/>
+<tt>../../../../../../../../../../../../writetest.txt</tt><br/>
+Non-writable by anyone:<br/>
+<tt>../../../../../../../../../../../../windows/system32/config/sam</tt><br/>
+Linux:<br/>
+Writable by anyone:<br/>
+<tt>../../../../../../../../../../../../tmp/writetest.txt</tt><br/>
+Non-writable by anyone:<br/>
+<tt>../../../../../../../../../../../../tmp</tt><br/>
+<br/>
+<b>White Box</b><br/>
+<br/>
+Start file monitor tool<br/>
+<ul><li>Windows: FileMon tool from SysInternals</li>
+<li>Linux: Ltrace, Strace</li>
+<li>Solaris: truss</li>
+</ul>
+<br/>
+Test all webapp parameters (GET, POST, cookies) one at time with one exact test string<br/>
+Set a filter in file system monitoring tool ad search for test string<br/>
+If search positive, then test all of these findings for Path Traversal vulnerability<br/>
+<br/>
+<b>IDS Bypass</b><br/>
+<br/>
+Use both / and \ versions of paths<br/>
+URL encode input<br/>
+16-bit Unicode encode input<br/>
+Double URL encode<br/>
+Overlong UTF-8 encode<br/>
+Non recursive .. removal can by bypassed by<br/>
+<tt>....//<br/>
+....\/<br/>
+..../\<br/>
+....\\<br/>
+</tt>File suffix bypass: <tt>../../../../../boot.ini%00.jpg<br/>
+</tt>Directory prefix bypass:<tt>filestore/../../../../../../../etc/passwd<br/>
+</tt><tt><br/>
+</tt>Following suffixes can be added to Windows path without altering functionality<br/>
+<tt>file.txt...<br/>
+file.txt&lt;spaces&gt;<br/>
+file.txt&quot;&quot;&quot;&quot;<br/>
+file.txt&lt;&lt;&lt;&gt;&gt;&gt;&lt;<br/>
+./././file.txt<br/>
+nonexistant/../file.txt<br/>
+</tt><br/>
+<span style="font-size: 12pt"><b>EXPLOITATION<br/>
+</b></span><span style="font-size: 10pt"><br/>
+<b>Potential loot</b><br/>
+<br/>
+<tt>https://www.gracefulsecurity.com/path-traversal-cheat-sheet-linux/</tt><br/>
+<br/>
+<b>Read access</b><br/>
+<br/>
+Search for password files<br/>
+Server and application configuration files<br/>
+Include files with db credentials<br/>
+Data sources such as MySQL and XML files<br/>
+Web app function source code<br/>
+</span>Application log files (session tokens, usernames, passwords)<br/>
+<br/>
+<b>Write access</b><br/>
+<br/>
+Create scripts in users' startup dirs<br/>
+Modify files such in.ftpd which executes when user connects<br/>
+Write scripts to executable directory and run them from browser<br/>
+<br/>
+<b>Attack PHP session file</b><br/>
+<br/>
+If path traversal vulnerability found you can read PHP session files at<br/>
+<tt>/var/lib/php5/sess_9ceed0645151b31a494f4e52dabd0ed7</tt><br/>
+We can inject this session file when registering new user by <tt>&lt;?php passthru(id);?&gt;</tt><br/>
+Then we can LFI the session file we have RCE<br/>
+</body></html>

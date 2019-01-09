@@ -1,0 +1,62 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Wapity</title>
+</head><body><b><span style="font-size: 16pt">Wapity</span><span style="font-size: 12pt"><br/>
+</span></b><span style="font-size: 12pt"><span style="font-size: 10pt"><tt>http://wapiti.sourceforge.net/</tt></span><b><br/>
+</b><b><br/>
+</b></span><b>web application security scanner</b><br/>
+<br/>
+<br/>
+<span style="font-size: 12pt"><b>Switches</b></span><br/>
+<br/>
+<b>TARGET SPECIFICATION</b><br/>
+-u URL<br/>
+--scope 				{page,folder,domain,url}<br/>
+-s, --start URL			Multiple URLs separated by comma or file with one URL per line<br/>
+-x, --exclude URL		ie. exclude logout so that auth cookie will not be destroyed<br/>
+-r, --remove PARAMETER	Remove given parameter from request<br/>
+--skip PARAMETER		Skip given parameter from testing <br/>
+-d, --depth DEPTH<br/>
+-S, --scan-force FORCE	Limit requests {paranoid, sneaky, polite, normal, aggressive, insane}<br/>
+<br/>
+<b>ATTACK SPECIFICATION</b><br/>
+--list-modules<br/>
+-m MODULES_LIST 	ie. -m &quot;xss:get,exec:post&quot; to use just GET or POST<br/>
+-l LEVEL 				Use 2 to inject payload even to URL string - for example when fuzzing cgi-bin/<br/>
+<br/>
+<b>PROXY AND AUTHENTICATION OPTIONS</b><br/>
+-p, --proxy PROXY_URL	(http or socks, ie. socks://127.0.0.1:9050/)<br/>
+-c, --cookie COOKIE_FILE<br/>
+<br/>
+<b>SESSION OPTIONS</b><br/>
+--flush-attacks		Forget everything about discovered vulnerabilities<br/>
+--flush-session		Forget everything about the target for the given scope<br/>
+<br/>
+<b>HTTP AND NETWORK OPTIONS</b><br/>
+-t, --timemout SECONDS<br/>
+-H, --header HEADER<br/>
+-A, --user-agent AGENT<br/>
+<br/>
+<b>OUTPUT OPTIONS</b><br/>
+--color				Colored output<br/>
+-v, --verbose LEVEL	{0,1 default,2}<br/>
+<br/>
+<span style="font-size: 12pt"><b><br/>
+</b><b>Modules</b><br/>
+</span><br/>
+backup (Search for copies and scripts)<br/>
+blindsql (SQL injection vulnerabilities detected with time-based methodology)<br/>
+buster (DirBuster like module)<br/>
+crlf (CR-LF injection in HTTP headers)<br/>
+delay (Not an attack module, prints the 10 slowest to load webpages of the target)<br/>
+exec (Code execution or command injection)<br/>
+file (Path traversal, file inclusion and XXE)<br/>
+htaccess (Misconfigured htaccess restrictions)<br/>
+nikto (Look for known vulnerabilities by testing URL existence and checking responses)<br/>
+permanentxss (Rescan the whole target after the xss module execution looking for previously tainted payloads)<br/>
+shellshock (Test Shellshock attack, see https://en.wikipedia.org/wiki/Shellshock_%28software_bug%29 )<br/>
+sql (Error-based SQL injection detection)<br/>
+ssrf (Server Side Request Forgery)<br/>
+xss (XSS injection module)<br/>
+</body></html>

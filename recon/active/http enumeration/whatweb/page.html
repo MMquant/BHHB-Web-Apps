@@ -1,0 +1,35 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>whatweb</title>
+</head><body><b><span style="font-size: 14pt">whatweb</span><br/>
+</b><tt>https://github.com/urbanadventurer/WhatWeb</tt><b><br/>
+</b><b><br/>
+</b><b>Web application fingerprinting tool</b><br/>
+<tt><br/>
+</tt><b><br/>
+</b><b><span style="font-size: 12pt">Switches</span></b><tt><br/>
+</tt><tt><br/>
+</tt><tt>-a=LEVEL</tt><br/>
+1. Stealthy    			Makes one HTTP request per target and also follows redirects.<br/>
+3. Aggressive   			If a level 1 plugin is matched, additional requests will be made.<br/>
+4. Heavy     			Makes a lot of HTTP requests per target. URLs from all plugins are attempted.<br/>
+<br/>
+<tt>-U=AGENT</tt>		User-agent<br/>
+<tt>--follow-redirect=WHEN</tt>	never, http-only, meta-only, same-site, same-domain, always (default)<br/>
+<tt>-c=COOKIES</tt>		name=value; name2=value2<br/>
+<tt>--proxy</tt>			&lt;hostname[:port]&gt;<br/>
+<tt>-v</tt>			verbose<br/>
+<tt>-t</tt>			threads<br/>
+<tt>--wait=SECONDS</tt>		Wait SECONDS between connections<br/>
+<br/>
+<b>plugins</b><br/>
+-l						List plugins<br/>
+--info-plugins &lt;SEARCH&gt;	Detailed info about plugin<br/>
+<br/>
+<br/>
+<b><span style="font-size: 12pt">Examples</span></b><br/>
+<br/>
+<tt>whatweb -a 3 www.wired.com<br/>
+whatweb -a 3 https://67.195.205.33:80<br/>
+</tt></body></html>

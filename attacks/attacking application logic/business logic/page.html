@@ -1,0 +1,27 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Business logic</title>
+</head><body><b>Logic data validation<br/>
+</b><br/>
+Test if malicious data can be injected into application so that app will consider them as validated/secure.<br/>
+For example in multistage process examine if some parameters are passed in more than in one process. If so,<br/>
+try to tamper parameters in later stage.<br/>
+Application/system must ensure that only “logically valid” data is accepted at all input and hand off points of the applica- tion or system and data is not simply trusted once it has entered the system.<b><br/>
+</b><b><br/>
+</b><b>Test Ability to forge requests</b><br/>
+<br/>
+Test if pages which shouldn't be reached given specific time or circumstances can be reached.<br/>
+<br/>
+<b>Test for Process Timing</b><br/>
+<br/>
+Test if any data or application behaviour can be deduced by request timing measure<br/>
+<br/>
+<b>Test Number of Times a Function Can be Used Limits</b><br/>
+<br/>
+Verify that the application does not allow users to exercise its functions more times than required by the business logic workflow.<br/>
+<br/>
+<b>Testing for the Circumvention of Work Flows</b><br/>
+<br/>
+Test for skipping, repeating or mixing stages in multistep process<br/>
+</body></html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Cached Web Content</title>
+</head><body><b>Testing for Browser cache weakness<br/>
+</b><ul><li>Clean cookies and cache in browser</li>
+<li>Login in and get some sensitive data</li>
+<li>Review files generated in browser cache (use search fro specific string)</li>
+<li>Inspect server responses where are sensitive data. Such responses must instruct browser to not cache these responses via headers</li>
+</ul>
+<ul><li style="list-style-type: none"><ul><tt><li style="list-style-type: none">Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0</li>
+<li style="list-style-type: none">Pragma: no-cache</li>
+</tt><li style="list-style-type: none"><tt>Expires: 0</tt></li>
+</ul>
+</li>
+</ul>
+<ul><li>Inspect &lt;meta&gt; tag for these headers</li>
+<li>If browser store sensitive data in cache they can be found</li>
+<li style="list-style-type: none"><ul><li>Mozilla Firefox:</li>
+<li style="list-style-type: none"><ul><li>Unix/Linux: <tt>~/.mozilla/firefox/&lt;profile-id&gt;/Cache/</tt></li>
+<li>Windows: <tt>C:\Documents and Settings\&lt;user_name&gt;\Local Settings\Application Data\Mozilla\Firefox\Profiles\&lt;profile-id&gt;\Cache</tt></li>
+</ul>
+</li>
+<li>Internet Explorer:</li>
+<li style="list-style-type: none"><ul><li><tt>C:\Documents and Settings\&lt;user_name&gt;\Local Settings\ Temporary Internet Files\Content.IE5</tt></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</body></html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Manual</title>
+</head><body><span style="font-size: 12pt"><b>HTTP parameters pollution</b><br/>
+</span><span style="font-size: 10pt"><br/>
+</span><b>Where to search<br/>
+</b><br/>
+Look for places where application creates 3rd party sites URLs with parameters and then redirects to them.<br/>
+Check if HPP in these cases can be used as open redirect.<br/>
+<br/>
+HPP can be used to bypass (not only) ID parameters. Ad second parameter and change the value. Only first (or last) parameter<br/>
+can be validated.<b><br/>
+</b><b><br/>
+Simple auth bypass<br/>
+</b><br/>
+If server is PHP &lt; 6 powered and <tt>register_globals</tt>directive enabled then try to add additional parameters<br/>
+<tt>authenticated=1<br/>
+</tt><tt>auth=1</tt><br/>
+...<br/>
+which can override internal server variable.<b><br/>
+</b><b><br/>
+</b><b>Attacks Against URL Translation (Server-side HPP)</b><br/>
+<ul><li>Find parameters which causes changes in response if modified or omitted</li>
+<li>Append following strings to parameters in URL and check if all requests are processed normally</li>
+</ul>
+<ul><li style="list-style-type: none"><ul><li><tt>%26foo%3dbar </tt>- URL-encoded &amp;foo=bar</li>
+<li><tt>%3bfoo%3dbar -</tt>URL-encoded ;foo=bar</li>
+<li><tt>%2526foo%253dbar -</tt>Double URL-encoded &amp;foo=bar</li>
+<li><tt>%253bfoo%253dbar -</tt>Double URL-encoded ;foo=bar</li>
+</ul>
+</li>
+</ul>
+<ul><li>Attempt to inject a known parameter at various points in the request to see if it can override or modify an existing parameter</li>
+</ul>
+<ul><li style="list-style-type: none"><ul><li><tt>FromAccount=18281008%26Amount%3d4444&amp;Amount=1430&amp;ToAccount=08447656</tt></li>
+</ul>
+</li>
+</ul>
+<ul><li>If this causes the new value to override the existing one, determine whether you can bypass any front-end validation by injecting a value that is read by a back-end server.</li>
+<li>Replace the injected known parameter with additional parameter names as described for application mapping and content discovery</li>
+<li>Test the application’s tolerance of multiple submissions of the same parameter within a request. Submit redundant values before and after other parameters, and at different locations within the request (within the query string, cookies, and the message body</li>
+</ul>
+<br/>
+<b>Behavior by Application Server</b><br/>
+<br/>
+Given the URL and querystring: <tt>http:/example.com/?color=red&amp;color=blue</tt><br/>
+<br/>
+<img src="image.png"/><br/>
+<br/>
+<b>Test for server-side HPP</b><br/>
+<br/>
+[1] Submit an HTTP request containing the standard parameter name and value, and record the HTTP response. E.g. page?par1=val1<br/>
+[2] Replace the parameter value with a tampered value, submit and record the HTTP response. E.g. page?par1=HPP_TEST1<br/>
+[3] Send a new request combining step (1) and (2). Again, save the HTTP response. E.g. page?par1=val1&amp;par1=HPP_TEST1<br/>
+[4] Compare the responses obtained during all previous steps. If the response from (3) is different from (1) and the response from (3) is also different from (2), there is an impedance mismatch that may be eventually abused to trigger HPP vulnerabilities.<br/>
+</body></html>

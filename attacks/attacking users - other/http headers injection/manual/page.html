@@ -1,0 +1,38 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Manual</title>
+</head><body><b><span style="font-size: 14pt">DETECTION</span><br/>
+</b><br/>
+Find reflections in HTTP headers<br/>
+Common vulnerabilities in <tt>Set-cookie </tt>and <tt>Location </tt>headers<br/>
+Verify that application accepts carriage-return (<tt>%0d</tt>) and line-feed (<tt>%0a</tt>)<br/>
+<br/>
+<b>FILTER BYPASS<br/>
+</b><tt><br/>
+foo%00%0d%0abar<br/>
+foo%250d%250abar<br/>
+foo%%0d0d%%0a0abar<br/>
+<br/>
+</tt>If we have header injection we can set different encodings ie. UTF-7<br/>
+For ASP <tt>Location</tt>header all characters after <tt>?</tt>are not urlencoded<tt><br/>
+</tt><tt><br/>
+</tt><span style="font-size: 14pt"><b>EXPLOITATION</b><br/>
+<br/>
+</span><span style="font-size: 10pt">We can set arbitrary cookies via set-cookie<br/>
+</span><span style="font-size: 10pt">We can set different page </span>Content-Type<span style="font-size: 10pt">and deliver advanced XSS and bypass victim's XSS filters<br/>
+</span><br/>
+<b>HTTP Splitting<br/>
+</b><br/>
+This attack injects malicious Response into original HTTP request.<br/>
+Web app can return both responses and if there is caching proxy, the malicious response can be cached and subsequently requested by other webapp users.<br/>
+<br/>
+Example injection with Payload in bold<br/>
+<br/>
+<tt>AAA%0d%0aContent-Length:%20 0%0d%0a%0d%0aTTP/1.1%20200%20OK%0d%0aContent-Type:%20text/html%0d%0aContent-Length:%2035%0d%0a%0d%0a<b>&lt;html&gt;Sorry,%20System%20Down&lt;/ html&gt;</b></tt><br/>
+<br/>
+<b>Additional steps which must be done in this attack</b><br/>
+<br/>
+Add valid <tt>Last-Modified </tt>header<br/>
+Destroy previously cached versions of the target pagers by adding <tt>Pragma: no-cache </tt>in previous request<br/>
+</body></html>

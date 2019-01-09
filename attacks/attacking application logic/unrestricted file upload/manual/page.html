@@ -1,0 +1,50 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Manual</title>
+</head><body><b><span style="font-size: 12pt">Exploitation vectors</span></b><br/>
+<br/>
+Upload unexpected file format to achieve RCE or webshells (swf, html, php, php3, aspx, ...)<br/>
+Execute XSS via allowed type of file<br/>
+XSS or DOS the target via injecting payload to metadata of allowed file type<br/>
+Store malware on sites via file polyglots<br/>
+<br/>
+<span style="font-size: 12pt"><b>PHP functions used to RCE<br/>
+</b></span><br/>
+system 		Executes a command and returns its output<br/>
+shell_exec 	Executes a command and displays the output immediately<br/>
+passthru 		Executes a command and displays the raw output<br/>
+backtick operator (``) Executes contents inside the backtick as a shell command<br/>
+popen 		Executes a command and returns a pointer<br/>
+exec 		Executes a command and returns the last line of the output<br/>
+pcntl_exec 	Executes a command or a program<br/>
+proc_open 	Similar to popen()<br/>
+<br/>
+<span style="font-size: 12pt"><b>Bypassing upload protections</b></span><br/>
+<br/>
+<b>Basic bypass</b><br/>
+<br/>
+.phP, .pHp, .Php, .PHP, .jpg.php, <br/>
+Change MIME type in Content-Disposition in POST body<br/>
+<br/>
+<b>Apache .htaccess trick (SetHandler method)</b><br/>
+<br/>
+Upload <tt>.htaccess</tt>with content as follows<br/>
+<tt><br/>
+&lt;FilesMatch &quot;_php.gif&quot;&gt;<br/>
+SetHandler application/x-httpd-php<br/>
+&lt;/FilesMatch&gt;<br/>
+<br/>
+</tt>Now it's possible to upload <tt>phpinfo_php.gif </tt>and let it be executed as <tt>php</tt>file<br/>
+<br/>
+<b>Apache .htaccess trick (AddType method)</b><br/>
+<br/>
+Upload <tt>.htaccess </tt>with content as follows<br/>
+<tt>AddType application/x-httpd-php.lol</tt><br/>
+Now it's possible to upload <tt>phpinfo_php.lol </tt>and let it be executed as <tt>php</tt>file<br/>
+<br/>
+<b>Bypassing image content verification</b><br/>
+<br/>
+Add php code to binary jpg<br/>
+Uploaded file must have .php suffix<br/>
+</body></html>

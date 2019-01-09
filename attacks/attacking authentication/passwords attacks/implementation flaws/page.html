@@ -1,0 +1,37 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Implementation Flaws</title>
+</head><body><b>Fail-open login mechanism</b><br/>
+<ul><li>Perform valid login and record all inputs to the web app</li>
+<li>Login again and modify inputs</li>
+<li style="list-style-type: none"><ul><li>a. Submit an empty string as the value.</li>
+<li>b. Remove the name/value pair altogether.</li>
+<li>c. Submit very long and very short values.</li>
+<li>d. Submit strings instead of numbers and vice versa.</li>
+<li>e. Submit the same item multiple times, with the same and different values.</li>
+</ul>
+</li>
+<li>Review responses with comparer</li>
+<li>Combine inputs which changed response and web app behaviour</li>
+<li>If there is multistep login note all input params and cross-request them in different stages</li>
+</ul>
+<br/>
+<b>Insecure Storage of Credentials<br/>
+</b><ul><li>Is password in server responses?</li>
+<li>If we can retrieve passwords</li>
+<li style="list-style-type: none"><ul><li>check for non-unique hashes (common passwords or non-salted passwords)</li>
+<li>query online rainbow tables for unsalted hashes</li>
+</ul>
+</li>
+</ul>
+<br/>
+<b>Weak lock-out mechanism<br/>
+</b><ul><li>Try incorrectly login 3x. Can you log in with correct credentials on 4th trial?</li>
+<li>Try incorrectly login 4x. Can you log in with correct credentials on 5th trial? ...</li>
+<li>Determine how many incorrect inputs needed to lockout.</li>
+<li>Attempt to login 5 min later, 10 min later ...</li>
+<li>Determine when is account unlocked</li>
+<li>Test unlock mechanism (unlock URL, security questions)</li>
+</ul>
+</body></html>

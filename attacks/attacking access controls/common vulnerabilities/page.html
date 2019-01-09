@@ -1,0 +1,43 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Common vulnerabilities</title>
+</head><body><ul><li>Search for unprotected functionality with Discover Content or search sensitive URLs in scripts and comments in HTML</li>
+<li>Inspect multistage functions and if final stage can be tampered and possibly horizontal escalation gained</li>
+</ul>
+<br/>
+<b>General questions<br/>
+</b><ul><li>Do application functions give individual users access to a particular subset of data that belongs to them?</li>
+<li>Are there different roles of users?</li>
+<li>Are there any identifiers that signal a parameter used to track access level?</li>
+</ul>
+<br/>
+<b>Testing with Different User Accounts ( Different roles )</b><br/>
+<ul><li>Use Burp autorize plugin</li>
+<li>If possible enumerate funcionality for high privileged user and test it with low privileged user.</li>
+<li>Test horizontal privilege escalation by trying to access document belonging to another user (use two users)</li>
+<li>Use burp site maps comparison and pay attention to (sensitive, administrative) functions which should return different responses but return exactly same for both compared users (TODO)</li>
+</ul>
+<br/>
+<b>Testing Multistage Processes<br/>
+</b><ul><li>Test if any phase of multistage process of high-privileged user can be modified/accessed by low-priv user</li>
+<li>If possible use high-privileged account to step through multistep process</li>
+<li>Log in to account in browser (or don't login at all)</li>
+<li>In proxy history find requests associated with multistep process, right-click and request each of them in browser in current session</li>
+<li>Determine if low-privileged account was able to perform some actions in multistep process</li>
+</ul>
+<br/>
+<b>Testing with Limited Access</b><br/>
+<ul><li>Detect pages which could display different functionality for low-priv and high-priv user such as My Home Page or Control panel</li>
+<li>Test these pages for administrative functionality. Add &quot;admin=true&quot; to all GET requests and same payload to POST bodies.</li>
+<li style="list-style-type: none"><ul><li><tt>/usr/share/wordlists/fuzzdb/attack/business-logic/CommonDebugParamNames.txt</tt></li>
+</ul>
+</li>
+<li>Inspect sensitive functions if they authenticate user with <tt>Referer</tt>header. Delete Referer header and check function behaviour.</li>
+<li>Search for Identifier-based functions and if possible test if by changing identifier you can access other user documents</li>
+<li style="list-style-type: none"><ul><li><tt>https://wahh-app.com/<b>ViewDocument.php?docid=1280149120</b></tt></li>
+</ul>
+</li>
+<li>If possible to generate few identifiers quickly - inspect how they are created (use token methods)</li>
+</ul>
+</body></html>

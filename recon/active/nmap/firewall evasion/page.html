@@ -1,0 +1,57 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Firewall evasion</title>
+</head><body><b><span style="font-size: 16pt">Firewall evasion, stealth scans</span><span style="font-size: 12pt"><br/>
+</span><br/>
+<span style="font-size: 14pt">Evasion</span><br/>
+<br/>
+ACK scan. Used just to identify online hosts.<br/>
+</b><tt><br/>
+</tt><tt>nmap -sA 10.11.1.1/24</tt><b><br/>
+</b><b><br/>
+</b><b>Fragment packets(supports just -sT scan, not -sV nor -O)</b><br/>
+<tt><br/>
+nmap -f -sT 10.11.1.133<br/>
+</tt><tt>nmap --mtu &lt;8,16,24,32&gt; 10.11.1.133</tt><br/>
+<br/>
+<b>Source port scan<br/>
+</b>try common ports: 20,21,22,53,67,110,80,88,443,139,445,161,3389<br/>
+<tt><br/>
+</tt><tt>nmap --source-port &lt;port&gt; 10.11.1.133</tt><br/>
+<br/>
+<b>Custom packet length</b><br/>
+<tt><br/>
+</tt><tt>nmap --data-length 25 10.11.1.133</tt><br/>
+<br/>
+<b>Sending badsums packets<br/>
+</b><tt><br/>
+nmap --badsum 10.11.1.133<br/>
+<br/>
+</tt><b><span style="font-size: 14pt">Stealth</span><span style="font-size: 10pt"><br/>
+</span><span style="font-size: 10pt"><br/>
+</span>Decoy addresses<br/>
+</b>Decoy IPs must be online<b><br/>
+</b><tt><br/>
+nmap -D RND:10 10.11.1.133<br/>
+nmap -D decoy1,decoy2... 10.11.1.133<br/>
+</tt><br/>
+<b>Zombie scan (stealth/evasion)<br/>
+</b><br/>
+find zombies(find incremental IPID responses)<br/>
+<tt>use auxiliary/scanner/ip/ipidseq<br/>
+</tt><tt>nmap -sI &lt;zombie&gt; 10.11.1.133</tt><br/>
+<br/>
+<b>MAC address spoofing (stealth/evasion)<br/>
+</b><br/>
+Specify MAC address from a Vendor<br/>
+--<tt>spoof-mac Dell/Apple/3Com</tt><br/>
+<br/>
+Generate a random MAC address<br/>
+--spoof-mac 0<br/>
+<br/>
+Specify your own MAC address-<br/>
+<tt>--spoof-mac 00:01:02:25:56:AE</tt><br/>
+<tt><br/>
+nmap -sT -Pn --spoof-mac 0 10.11.1.133<br/>
+</tt></body></html>

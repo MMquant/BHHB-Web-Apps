@@ -1,0 +1,65 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Automatic</title>
+</head><body><b><span style="font-size: 12pt">Tools</span></b><br/>
+<br/>
+<b>SSLAudit</b><br/>
+<tt><br/>
+</tt><tt>https://www.ssllabs.com/ssltest</tt><br/>
+<br/>
+<b>socat (relaying)</b><br/>
+<br/>
+To connect to <tt>destined.application.lan:443 </tt>via HTTP proxy 10.13.37.100:3128<br/>
+<tt>socat TCP-LISTEN:9999,reuseaddr,fork PROXY:10.13.37.100:destined.application.lan:443,proxy-port=3128<br/>
+</tt><tt>openssl s_client -connect localhost:9999</tt><br/>
+<b><br/>
+ForceSSL<br/>
+<br/>
+</b>Forces HTTP connection for multiple URLs<br/>
+<tt>https://github.com/arvinddoraiswamy/mywebappscripts/tree/master/ForceSSL</tt><b><br/>
+</b><b><br/>
+</b><b><span style="font-size: 12pt">Testing for Weak SSL/TLS Ciphers/Protocols/Keys vulnerabilities</span></b><br/>
+<b><br/>
+</b><b>nmap</b><br/>
+<br/>
+Discover services wrapped by SSL<tt><br/>
+</tt><tt>nmap -sV --reason -PN -n --top-ports 100 www.example. com</tt><br/>
+<br/>
+Checking for Certificate information, Weak Ciphers and SSLv2<br/>
+<tt>nmap --script ssl-cert,ssl-enum-ciphers -p 443,465,993,995 www.example.com</tt><br/>
+<br/>
+Check for POODLE, HEARTBLEED vulnerability<br/>
+<tt>nmap -sV --version-light --script ssl-poodle,ssl-heartbleed -p 443 &lt;host&gt;</tt><br/>
+<b><br/>
+openssl<br/>
+</b><br/>
+Checking for Client-initiated Renegotiation and Secure Renegotiation<br/>
+<tt>openssl s_client -connect www2.example.com:443<br/>
+</tt>HEAD / HTTP/1.1<br/>
+R<b><br/>
+</b>&lt;CRLF&gt;<br/>
+<br/>
+If we get valid servers response then client renegotiation is enabled<br/>
+<br/>
+<b>TestSSLServer.jar<br/>
+</b><br/>
+Testing supported Cipher Suites, BEAST and CRIME attacks<br/>
+<tt>java -jar TestSSLServer.jar www3.example.com 443</tt><br/>
+<br/>
+<b>sslyze</b><br/>
+<br/>
+python -m sslyze --regular www.yahoo.com:443 www.google.com &quot;[2607:f8b0:400a:807::2004]:443&quot;<b><br/>
+</b><br/>
+<b>SSLScan</b><br/>
+<tt><br/>
+</tt>If the NULL cipher is selected, the SSL/TLS handshake will complete and the browser will display the secure padlock, but the HTTP data will be transmitted in cleartext<tt><br/>
+</tt><tt><br/>
+sslscan www.seznam.cz<br/>
+sslscan -show-ciphers www.example.com:443<br/>
+sslscan --show-certificate --no-ciphersuites www.amazon.com:443 <br/>
+<br/>
+</tt><b>tlssled</b><br/>
+<br/>
+tlssled www.seznam.cz 443<br/>
+</body></html>

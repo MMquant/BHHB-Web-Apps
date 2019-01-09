@@ -1,0 +1,27 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>General</title>
+</head><body><b><span style="font-size: 14pt">Server Side Template Injection (SSTI)</span><br/>
+<span style="font-size: 14pt">Client Side Template Injection (CSTI)</span><br/>
+</b><br/>
+<b><span style="font-size: 14pt">Description</span><br/>
+<br/>
+</b>If backend server utilizes any templating engine then it can be vulnerable to template injection.<br/>
+Injection may occur directly in browser if web app uses a client-side templating engine.<br/>
+<br/>
+<b>Server-side templating engines<br/>
+</b><br/>
+Jinja2<br/>
+Rails ERB<br/>
+Liquid Engine<b><br/>
+</b><b><br/>
+</b><b>Client-side templating engines</b><br/>
+<br/>
+AngularJS<br/>
+<br/>
+<span style="font-size: 14pt"><b>Detection</b><br/>
+</span><span style="font-size: 10pt"><br/>
+Check specific template syntax and test simple injections such <tt>{{1+1}}</tt><br/>
+Test for RCE or JavaScript execution.<br/>
+</span></body></html>

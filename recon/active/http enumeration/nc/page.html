@@ -1,0 +1,32 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>nc</title>
+</head><body><b><span style="font-size: 14pt">Netcat</span><br/>
+</b><tt>https://en.wikipedia.org/wiki/Netcat</tt><b><br/>
+</b><b><br/>
+TCP/UDP networking tool<br/>
+<br/>
+<br/>
+<span style="font-size: 12pt">Examples</span><br/>
+<br/>
+Fingerprinting webserver<br/>
+<tt><br/>
+</tt></b><tt>nc &lt;IP&gt; &lt;port&gt;<br/>
+HEAD / HTTP/1.1<br/>
+</tt><tt>&lt;CRLF&gt;</tt><b><br/>
+</b><b><br/>
+Discover active HTTP servers<br/>
+<br/>
+</b><tt>nc &lt;IP&gt; &lt;port&gt;<br/>
+GET / HTTP/1.1<br/>
+Host: www.victim.com<br/>
+</tt><tt>&lt;CRLF&gt;</tt><b><br/>
+</b><b><br/>
+Discover accepted HTTP methods<br/>
+</b><tt><br/>
+nc &lt;IP&gt; &lt;port&gt;<br/>
+OPTIONS / HTTP/1.1<br/>
+Host: www.victim.com<br/>
+&lt;CRLF&gt;<br/>
+</tt></body></html>

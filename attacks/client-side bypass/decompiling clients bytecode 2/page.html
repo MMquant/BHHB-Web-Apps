@@ -1,0 +1,50 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Decompiling clients bytecode</title>
+</head><body><b>GET BYTECODE</b><br/>
+1. Download browser extension bytecode (check HTML and scripts for location)<br/>
+2. Unpack bytecode by just renaming extension to .zip<br/>
+<ul><li>.jar - Java package</li>
+<li>.xap - Silverlight package</li>
+<li>.swf - Flash (don't need extraction)</li>
+<li>.class - Java bytecode</li>
+<li>.dll - Silverlight bytecode</li>
+</ul>
+<br/>
+3. Decompile<br/>
+<ul><li>www.varaneckas.com/jad - Java</li>
+<li>https://github.com/java-decompiler/jd-gui</li>
+<li>http://www.nowrap.de/flasm - Flash</li>
+<li>http://www.nowrap.de/flare - Flash</li>
+<li>www.hp.com/go/swfscan - Flash</li>
+<li>www.red-gate.com/products/dotnet-development/reflector/ - Silverlight</li>
+</ul>
+<b><br/>
+</b><b>REVIEW AND MODIFY SOURCE CODE</b><br/>
+<br/>
+4. General code review<ul><li>Does code contains public methods callable from outside script?</li>
+<li>Can these methods be used to malicious purposes?</li>
+<li>Intercept response and add javascript which can call these public methods.</li>
+</ul>
+5. Review input validation and output obfuscation and encryption<br/>
+6. Hidden functionality which can be unlocked by modifying code<br/>
+7. References to server-side functionality<br/>
+8. Modify source code if there are no public methods which can be exploited from outside script<br/>
+<br/>
+<b>RECOMPILE AND PACK<br/>
+<br/>
+</b>9. Recompile with<br/>
+<ul><li>javac - Java</li>
+<li>flasm - Flash</li>
+<li>Visual Studio - Silverlight</li>
+</ul>
+<br/>
+10. Pack back to .zip and rename extension properly<br/>
+<br/>
+<b>LOAD EXTENSION TO BROWSER<br/>
+</b><ul><li>find extension file cached by browser on disk and replace</li>
+<li>using intercepting proxy change url from wich extension is loaded</li>
+<li>Request original URL, intercept response with original bytecode, change original bytecode with malicious (Burp: Paste from file)</li>
+</ul>
+</body></html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>HTTP errors</title>
+</head><body><b>Enumerating HTTP error responses<br/>
+</b><br/>
+<tt>nc &lt;IP&gt; 80<br/>
+GET /junk HTTP/1.1<br/>
+host: &lt;host target&gt;<br/>
+</tt><tt>&lt;CRLF&gt;&lt;CRLF&gt;</tt><br/>
+<br/>
+<tt>nc &lt;IP&gt; 80<br/>
+GET / HTTP/1.1<br/>
+</tt><tt>&lt;CRLF&gt;&lt;CRLF&gt;</tt><br/>
+<br/>
+<tt>nc &lt;IP&gt; 80<br/>
+PUT /index.html HTTP/1.1<br/>
+Host: &lt;host target&gt;<br/>
+</tt><tt>&lt;CRLF&gt;&lt;CRLF&gt;</tt><br/>
+<br/>
+<tt>nc &lt;IP&gt; 80<br/>
+</tt><tt>GET / HTTP/1.1</tt><br/>
+- Wait X seconds – (Depending on the target server, 21 seconds for Apache by default)<br/>
+<br/>
+<tt>nc &lt;IP&gt; 80<br/>
+RENAME /index.htm HTTP/1.1<br/>
+Host: &lt;host target&gt;<br/>
+</tt><tt>&lt;CRLF&gt;&lt;CRLF&gt;</tt><br/>
+</body></html>

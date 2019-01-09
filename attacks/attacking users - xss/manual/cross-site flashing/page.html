@@ -1,0 +1,42 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Cross-site flashing</title>
+</head><body><b>Links<br/>
+</b><tt><br/>
+</tt><tt>https://www.owasp.org/index.php/Category:OWASP_Flash_Security_Project</tt><b><br/>
+</b><b><br/>
+Decompilers<br/>
+</b><tt><br/>
+</tt><tt>https://cure53.de/flashbang </tt>(Extracts flashVars online!!! no need to decompile swf.)<br/>
+flare<br/>
+SWFScan<br/>
+Sothink SWF Decompiler<br/>
+<b><br/>
+</b><b>Decompile flash script</b><br/>
+<tt><br/>
+</tt><tt>flare hello.swf</tt><br/>
+<br/>
+<b>Inputs to swf</b><tt><br/>
+</tt><ul><li><tt>Flashvars</tt>in HTML</li>
+<li>directly from URL <tt>http:/www.example.org/somefilename.swf?var1=val1&amp;var2=val2</tt></li>
+<li>In ActionScript 3.0</li>
+</ul>
+<ul><tt><li style="list-style-type: none">var paramObj:Object = LoaderInfo(this.root.loaderInfo).parameters;</li>
+<li style="list-style-type: none">var var1:String = String(paramObj[&quot;var1&quot;]);</li>
+</tt><li style="list-style-type: none"><tt>var var2:String = String(paramObj[&quot;var2&quot;]);</tt></li>
+</ul>
+<br/>
+<b>Unsafe Methods since version r47</b><br/>
+<tt><br/>
+loadVariables()<br/>
+loadMovie()<br/>
+getURL()<br/>
+NavigateToURL()<br/>
+loadMovie()<br/>
+loadMovieNum() FScrollPane.loadScrollContent() LoadVars.load<br/>
+LoadVars.send<br/>
+XML.load ( ‘url’ )<br/>
+LoadVars.load ( ‘url’ ) Sound.loadSound( ‘url’ , isStreaming ); NetStream.play( ‘url’ );<br/>
+</tt><tt>flash.external.ExternalInterface.call(_root.callback) htmlText</tt><br/>
+</body></html>

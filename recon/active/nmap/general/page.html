@@ -1,0 +1,40 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>General</title>
+</head><body><b><span style="font-size: 12pt">Switches</span><span style="font-size: 14pt"><br/>
+</span><br/>
+</b><tt>-sS			</tt>SYN scan<tt><br/>
+</tt><tt>-sT			</tt>Full TCP 3-hand shake scan<tt><br/>
+</tt><tt>-p			</tt>ports<tt><br/>
+</tt><tt>--top-ports &lt;how many&gt;	</tt>scans top &lt;how many&gt; ports<tt><br/>
+</tt><tt>-oG &lt;file&gt;		</tt>output to greppaable file<tt><br/>
+</tt><tt>-sn			</tt>ping sweep<tt><br/>
+</tt><tt>-v			</tt>verbose<br/>
+-O						operating system fingerprinting<br/>
+-sV						service enumeration/banner grabbing<br/>
+<tt>-A</tt>			More aggressive scan, more information about host, more traffic generated<br/>
+-iL						input filename with hosts to scan<br/>
+-p-						scan all ports 1-65535			<b><br/>
+</b><b><br/>
+<br/>
+<span style="font-size: 12pt">Scripts</span><span style="font-size: 14pt"><br/>
+</span><br/>
+</b><tt>--script smb-os-discovery.nse		SMB service OS discovery<br/>
+</tt><tt>--script-help smb-os-discovery.nse	prints script help</tt><b><br/>
+</b><b><br/>
+NSE scripts path<br/>
+<br/>
+</b><tt>/usr/share/nmap/scripts</tt><b><br/>
+</b><b><br/>
+<br/>
+<span style="font-size: 12pt">Optimization</span><span style="font-size: 10pt"><br/>
+</span><span style="font-size: 10pt"><br/>
+</span><span style="font-size: 10pt">Optimizing nmap scan, check host which are up, grepable output</span><br/>
+</b><br/>
+<tt>nmap -sn &lt;xxx.xxx.xxx.xxx-xxx&gt; -oG pingSweepNmap.txt<br/>
+</tt><br/>
+<span style="font-size: 10pt"><b>Optimized UDP scan<br/>
+</b><tt><br/>
+</tt><tt>nmap -sUV -T4 -F -v --version-intensity 0 scanme.nmap.org</tt><b><br/>
+</b></span></body></html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>DOM clobbering</title>
+</head><body>Inspect page JavaScript and detect important functions.<br/>
+Try to override functions names by for example<br/>
+<br/>
+<tt>&lt;img src=&quot;http://www.example.com/image.jpg&quot; name=&quot;getElementById&quot;&gt;<br/>
+</tt><tt>&lt;img src=&quot;http://www.example.com/image.jpg&quot; name=&quot;removeEventListener&quot;&gt;</tt><br/>
+<br/>
+Try this injection on sites which allows some HTML input (blogs, forums atc.)<br/>
+</body></html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Manual</title>
+</head><body><b>General</b><br/>
+<br/>
+Search for insertions points which are REFLECTED and VIEWED by other users.<br/>
+Can I control input to <tt>src</tt>attribute?<br/>
+If yes I can inject payload such<br/>
+<tt>../admin/newUser.php?username=daf2&amp;password=0wned&amp;role=admin#<b><br/>
+</b></tt>If admin views my malicious input <tt>newUser.php </tt>is automatically executed and new user added.<br/>
+<br/>
+<br/>
+Possible sinks<br/>
+<ul><li>hash inputs</li>
+<li>Frame			<tt>iframe - src</tt></li>
+<li>Link			<tt>a - href</tt></li>
+<li>AJAX Request 	<tt>xhr.open(method, [url], true); - URL href</tt></li>
+<li>CSS			<tt>link</tt></li>
+<li>Image			<tt>img</tt></li>
+<li>Object			<tt>object - src</tt></li>
+<li>Script			<tt>script - data, src</tt></li>
+</ul>
+</body></html>

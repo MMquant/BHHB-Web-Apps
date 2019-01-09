@@ -1,0 +1,27 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Manual</title>
+</head><body><span style="font-size: 14pt"><b>CORS Headers</b><br/>
+</span><span style="font-size: 10pt"><br/>
+All non-GET and non-POST methods must be precommunicated by pre-flight OPTION request with proper headers<br/>
+<br/>
+</span><b><tt>Origin &amp; Access-Control-Allow-Origin</tt></b><br/>
+<tt><br/>
+</tt><tt>Origin</tt>is request header<br/>
+<tt>Access-Control-Allow-Origin </tt>is response header and contains domains which are able to read this response<br/>
+<br/>
+<tt><b>Access-Control-Request-Method &amp; Access-Control-Allow-Method</b><br/>
+<br/>
+</tt><tt>Access-Control-Request-Method </tt>is request header in preflight OPTIONS request<br/>
+<tt>Access-Control-Allow-Method </tt>is response header which controls which methods is client allowed to request<br/>
+<br/>
+<b><tt>Access-Control-Allow-Credentials</tt></b><br/>
+<br/>
+This header as part of a preflight request indicates that the final request can include user credentials<br/>
+<br/>
+<br/>
+<b>Check</b><br/>
+<ul><li><tt>Access-Control-Allow-Origin </tt>shouldn't be set to '*'</li>
+</ul>
+</body></html>

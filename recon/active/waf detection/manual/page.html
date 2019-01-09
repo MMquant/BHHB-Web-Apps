@@ -1,0 +1,20 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Manual</title>
+</head><body><b>Detection</b><br/>
+<ul><li>Submit arbitrary parameter name with clear malicious payload and check if request is blocked</li>
+<li>Find reflections and test all ASCII characters if any is not returned or is modified</li>
+</ul>
+<br/>
+<b>WAF bypass<br/>
+</b><ul><li>Use benign strings for payloads</li>
+<li>Try to resubmit malicious parameter in various inputs</li>
+<li style="list-style-type: none"><ul><li>GET request URL param</li>
+<li>POST request body param,</li>
+<li>POST request URL param</li>
+</ul>
+</li>
+<li>On ASP.NET resubmit malicious param as cookie name=value</li>
+</ul>
+</body></html>

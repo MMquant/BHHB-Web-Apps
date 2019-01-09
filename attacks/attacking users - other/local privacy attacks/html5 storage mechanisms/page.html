@@ -1,0 +1,29 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>HTML5 Storage Mechanisms</title>
+</head><body><b>Session storage<br/>
+</b><br/>
+Session storage stores data only till tab/window is closed<br/>
+<br/>
+Print all variables in session storage<br/>
+<tt>for(var i=0; i&lt;sessionStorage.length; i++) {<ul><li style="list-style-type: none">console.log(sessionStorage.key(i), &quot; = &quot;, sessionStorage.getItem(sessionStorage.key(i)));</li>
+</ul>
+</tt><tt>}</tt><b><br/>
+</b><b><br/>
+Local storage<br/>
+</b><br/>
+Local storage is persistent storage<br/>
+Browser has one storage for one domain (multiple apps on same domain can share same storage)<br/>
+Accessed via javascript <tt>setItem() </tt>and <tt>getItem()</tt><b><br/>
+</b><b><br/>
+</b>Print all variables in local storage<br/>
+<tt>for(var i=0; i&lt;localStorage.length; i++) {<ul><li style="list-style-type: none">console.log(localStorage.key(i), &quot; = &quot;, localStorage.getItem(localStorage.key(i)));</li>
+</ul>
+</tt><tt>}</tt><b><br/>
+</b><b><br/>
+Database storage<br/>
+<br/>
+<br/>
+ALL STORAGES CAN BE INSPECTED VIA Developer tools &gt; STORAGE TAB<br/>
+</b></body></html>

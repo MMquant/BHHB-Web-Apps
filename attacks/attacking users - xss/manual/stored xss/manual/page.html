@@ -1,0 +1,77 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Manual</title>
+</head><body><b><span style="font-size: 12pt">DETECTION</span></b><span style="font-size: 10pt"><br/>
+</span><span style="font-size: 10pt"><br/>
+Same as with reflected XSS but:<br/>
+</span><ul><li><span style="font-size: 10pt">User-controlled input may be reflected in different part of the app</span></li>
+<li><span style="font-size: 10pt">Check places where Admin access needed and where non-Admin users are able to input. (ie. Log file check via URL)</span></li>
+<span style="font-size: 10pt"><li>Multistage process may be involved to successfully store an XSS exploit</li>
+<li>Examine out-of-band channels if they can be used for stored XSS delivery (mainly API access! API input don't have to be filtered)</li>
+</span></ul>
+<br/>
+<b><br/>
+Common places for stored user input<br/>
+</b><ul><li>User/Profiles page: first name, last name, nickname, avatar, picture, address, etc.</li>
+<li>Shopping cart</li>
+<li>File Manager</li>
+<li>Application settings/preferences</li>
+<li>Forum/Message board</li>
+<li>Blog</li>
+<li>Log</li>
+</ul>
+<b><br/>
+Markdown stored XSS<br/>
+</b><br/>
+If we have online markdown editor we can introduce XSS by creating a md URL<b><br/>
+</b><tt>[Hi](javascript:alert(1);)</tt><b><br/>
+</b><b><br/>
+</b><b>Testing for XSS in Web Mail Applications</b><br/>
+<br/>
+We need to create account within tested mail app and then receive many emails with XSS content.<br/>
+<br/>
+For example:<br/>
+mail.txt<br/>
+<br/>
+<tt>MIME-Version: 1.0<br/>
+From: test@example.org<br/>
+Content-Type: text/html; charset=us-ascii<br/>
+Content-Transfer-Encoding: 7bit<br/>
+Subject: XSS test<br/>
+&lt;html&gt;<br/>
+&lt;body&gt;<br/>
+&lt;img src=``onerror=alert(1)&gt;<br/>
+&lt;/body&gt;<br/>
+&lt;/html&gt;<br/>
+</tt><tt>.</tt><br/>
+<br/>
+We can send with unix sendmail command<br/>
+<tt>sendmail -t test@example.org &lt; email.txt</tt><br/>
+<br/>
+Sending XSS payload in attachment (jpg, pdf, ...)<br/>
+<br/>
+<b>Testing for XSS in Uploaded Files</b><br/>
+<ul><li>Try to upload simple HTML XSS payload and then open it in browser by download functionality</li>
+<li>If blocked try to use various file extensions .jpg, .txt, ...</li>
+<li>Try both <tt>Content-Types: text/html, text/plain </tt>when uploading</li>
+<tt><li style="list-style-type: none"/>
+<li style="list-style-type: none">POST /fileupload.aspx HTTP/1.1</li>
+<li style="list-style-type: none">...</li>
+<li style="list-style-type: none">Content-Disposition: form-data; name=”uploadfile1”; filename=”C:\Documents and Settings\test\Desktop\test.gif”</li>
+<li style="list-style-type: none">Content-Type: text/html</li>
+</tt></ul>
+<ul><li style="list-style-type: none"><tt>&lt;script&gt;alert(document.cookie)&lt;/script&gt;</tt></li>
+</ul>
+<br/>
+<span style="font-size: 12pt"><b>Hybrid files</b></span><br/>
+<b><br/>
+</b><b>XSS in Files Loaded Via Ajax</b><br/>
+Following link retrieves file &quot;profile&quot; <br/>
+<tt>http://wahh-app.com/#profile</tt><br/>
+<br/>
+If we can upload image then we can construct URL<br/>
+<tt>http://wahh-app.com/#profiles/images/15234917624.jpg</tt><br/>
+<br/>
+which contains attacker's image with HTML XSS payload appended to end of the jpg binary data.<br/>
+</body></html>

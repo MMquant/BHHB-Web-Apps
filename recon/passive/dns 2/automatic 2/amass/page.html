@@ -1,0 +1,29 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>amass</title>
+</head><body><b><span style="font-size: 14pt">Amass</span></b><br/>
+<tt>https://github.com/OWASP/Amass</tt><br/>
+<br/>
+<b>DNS Enumeration and Network Mapping</b><br/>
+<br/>
+<br/>
+<b><span style="font-size: 12pt">Switches</span><br/>
+<br/>
+</b>-active		Attempt zone transfers and certificate name grabs<br/>
+-d			Domain<br/>
+-o			Path to the text output file<br/>
+-rf			Path to a file providing preferred DNS resolvers<b><br/>
+</b><b><br/>
+<br/>
+</b><b><span style="font-size: 12pt">Examples</span></b><br/>
+<br/>
+<tt>service snapd start<br/>
+</tt><tt>amass -active -d example.com -o dns_amass_subdomains.txt -rf </tt>trusted_resolvers.txt<br/>
+<br/>
+<br/>
+<b><span style="font-size: 12pt">Notes</span></b><br/>
+<br/>
+<b>Update all programs installed by snap</b><br/>
+<tt>snap refresh<br/>
+</tt></body></html>

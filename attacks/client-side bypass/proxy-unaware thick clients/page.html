@@ -1,0 +1,28 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Proxy-unaware thick clients</title>
+</head><body><b><span style="font-size: 12pt">Manual burp invisible proxy setup</span><br/>
+</b><ul><li>Modify your operating system hosts file to resolve the hostnames used by the application to your loopback address</li>
+<tt><li style="list-style-type: none"/>
+</tt><li style="list-style-type: none"><tt>127.0.0.1 www.wahh-app.com</tt></li>
+<li style="list-style-type: none"/>
+<li>For each destination port used by the application (typically 80 and 443), configure a Burp Proxy listener on this port of your loopback interface, and set the listener to support invisible proxying. The invisible proxying feature means that the listener will accept the non-proxy-style requests sent by the thick client, which have been redirected to your loopback address.</li>
+</ul>
+<ul><li>For each hostname you have redirected using your hosts file, configure Burp to resolve the hostname to its original IP address. These settings can be found under Options &gt; Connections &gt; Hostname Resolution. They let you specify custom mappings of domain names to IP addresses to override your computer’s own DNS resolution. This causes the outgo- ing requests from Burp to be directed to the correct destination server. (Without this step, the requests would be redirected to your own com- puter in an infinite loop.)</li>
+</ul>
+<ul><li>When operating in invisible mode, Burp Proxy identifies the destination host to which each request should be forwarded using the Host header that appears in requests. If the thick client you are testing does not include a Host header in requests, Burp cannot forward requests cor- rectly. If you are dealing with only one destination host, you can work around this problem by configuring the invisible proxy listener to redirect all its requests to the required destination host. If you are dealing with multiple destination hosts, you probably need to run multiple instances of Burp on multiple machines and use your hosts file to redirect traffic for each destination host to a different intercepting machine.</li>
+</ul>
+<b><br/>
+<br/>
+<span style="font-size: 12pt">Tools</span><br/>
+<br/>
+</b><b>echomirage, windows only</b><br/>
+<br/>
+Can hook to a process and sniff traffic associated with it.<br/>
+<tt>https://resources.infosecinstitute.com/echo-mirage-walkthrough/<br/>
+</tt><tt>https://sourceforge.net/projects/echomirage.oldbutgold.p/</tt><br/>
+<br/>
+This relay can proxy and modify non-HTTP protocols in Burp!<br/>
+<tt>https://github.com/jrmdev/mitm_relay<br/>
+</tt></body></html>

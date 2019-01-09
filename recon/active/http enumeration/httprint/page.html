@@ -1,0 +1,36 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>httprint</title>
+</head><body><b><span style="font-size: 14pt">httprint</span><br/>
+</b><tt>http://www.net-square.com/httprint.html</tt><b><br/>
+</b><b><br/>
+web server fingerprinting tool<br/>
+<br/>
+<br/>
+<span style="font-size: 12pt">Switches</span><br/>
+<br/>
+</b>-h	host<br/>
+-i	input file with hosts<br/>
+-s	file with signatures<br/>
+-P0	no ping<br/>
+-nr	threads (default 8)<b><br/>
+</b><b><br/>
+<br/>
+<span style="font-size: 12pt">Examples</span><br/>
+<br/>
+</b><b>Download fresh signatures before use</b><br/>
+<tt><br/>
+curl -o /root/Programs/httprint_301/linux/signatures.txt http://net-square.com/signature.txt<br/>
+<br/>
+</tt><b>Fingerprint target webserver</b><br/>
+<tt><br/>
+httprint -h https://www.cez.cz/ -s /root/Programs/httprint_301/linux/signatures.txt<br/>
+<br/>
+</tt><b>Or use directly with IP<br/>
+</b><tt><br/>
+</tt><tt>host www.cez.cz</tt><b><br/>
+</b><tt>89.111.76.144<br/>
+<br/>
+httprint -P0 -h 89.111.76.144 -s /root/Programs/httprint_301/linux/signatures.txt<br/>
+</tt></body></html>

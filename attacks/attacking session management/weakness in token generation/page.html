@@ -1,0 +1,41 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Weakness in Token generation</title>
+</head><body><b>Meaningful tokens<br/>
+</b><ul><li>Make list of places where tokens are used and for each token test</li>
+</ul>
+<ul><li style="list-style-type: none"><ul><li>Is whole token used? Inspect static and dynamic parts of token. Use Intruder Char Frobber.</li>
+<li>Register several users with similar names/emails/input data and compare issued tokens</li>
+<li>Analyze these tokens for any correlation with username, email or other submitted data</li>
+<li>Look for sequences in tokens. (ie. timestamp)</li>
+<li>Can tokens be reverse-engineered? If yes use Intruder and page which needs valid token.</li>
+<li>Common session token strings</li>
+<li style="list-style-type: none"><ul><li>[hex or base64 or md5 or sha256] 192.168.100.1:owaspuser:password:15:58</li>
+<li>[hex or base64 or md5 or sha256] owaspuser:192.168.100.1: a7656fafe94dae72b1e1487670148412</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<br/>
+<b>Predictable tokens</b><br/>
+<ul><li>Search for concealed sequences. Use Sequencer and Decoder</li>
+<li>Search for time dependency. Use sequencer and Decoder</li>
+</ul>
+<br/>
+<b>Encrypted tokens</b><br/>
+<ul><li>Identify if block cypher used for tokens encryption</li>
+<li style="list-style-type: none"><ul><li>Register new users every time adding 1 character. If token suddenly jumps in length by 4 or 8 bytes then it's block encrypted.</li>
+<li>Continue registering new users every time adding 1 character and confirm next token length jump</li>
+</ul>
+</li>
+<li>Check for ECB encrypted tokens (8byte blocks, identical plaintext block encrypted to identical ECB blocks)</li>
+<li style="list-style-type: none"><ul><li>If possible generate large numbers of URLs with various parameters and corresponding tokens</li>
+<li>Find 4 bytes or 8 bytes string duplicates and try to tamper requests</li>
+</ul>
+</li>
+<li>Search for decryption functionality which could be used even for token encryption</li>
+<li>Test for CBC with Intruder and bit-flipping payload. Monitor user which you are logged in as. Test tokens with all users you created when identifying block cyphered token.</li>
+</ul>
+</body></html>

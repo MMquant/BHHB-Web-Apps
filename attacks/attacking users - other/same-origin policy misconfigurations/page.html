@@ -1,0 +1,33 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Same-origin policy misconfigurations</title>
+</head><body><b><span style="font-size: 14pt">FLASH</span><br/>
+<br/>
+</b><b>check</b><br/>
+<tt>/crossdomain.xml</tt><br/>
+<tt><br/>
+</tt><b>any other site can perform two-way interaction</b><tt><br/>
+</tt><tt>&lt;allow-access-from domain=&quot;*&quot; /&gt;</tt><br/>
+<br/>
+<br/>
+<span style="font-size: 14pt"><b>SILVERLIGHT</b><br/>
+<br/>
+</span><b>check</b><br/>
+<tt>/clientaccesspolicy.xml</tt><br/>
+<br/>
+<span style="font-size: 14pt"><b>JAVA</b><br/>
+</span><span style="font-size: 10pt"><br/>
+</span>Java same-origin policy is that other domains that share the IP address of the originating domain are considered to be same-origin under some circumstances.<br/>
+<br/>
+<span style="font-size: 14pt"><b>HTML5 and XMLHTTPRequest</b><br/>
+<br/>
+</span>In response to the OPTIONS request, the server may use headers like the following to specify the types of cross-domain requests that are allowed:<br/>
+<br/>
+<tt>Access-Control-Allow-Origin: http://wahh-app.com<br/>
+Access-Control-Allow-Methods: POST, GET, OPTIONS<br/>
+Access-Control-Allow-Headers: X-PINGOTHER<br/>
+</tt><tt>Access-Control-Max-Age: 1728000</tt><br/>
+<br/>
+try adding an Origin header specifying a different domain, and examine any Access-Control headers that are returned<br/>
+</body></html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>subfinder</title>
+</head><body><b><span style="font-size: 14pt">subfinder</span><br/>
+</b><tt>https://github.com/subfinder/subfinder<br/>
+<br/>
+</tt><b>SubFinder is a subdomain discovery tool</b><tt><br/>
+</tt><b><br/>
+</b><br/>
+<b><span style="font-size: 12pt">Switches</span></b><br/>
+<br/>
+-d			Domain<br/>
+-b			Bruteforce mode<br/>
+-w			Bruteforce wordlist<br/>
+-t			Threads<br/>
+-dL			List of input domains<br/>
+-o			Output file<br/>
+-recursive	Use recursion to find subdomains<br/>
+-rL			Text file containing list of resolvers to use<br/>
+--no-passive	Don't perform passive enumeration<br/>
+--silent		Show only subdomains found<br/>
+-v			Verbose<br/>
+<br/>
+<br/>
+<b><span style="font-size: 12pt">Examples</span></b><br/>
+<br/>
+<tt>subfinder -d flickr.com -o dns_subfinder_subdomains.txt -rL trusted_resolvers.txt<br/>
+<br/>
+</tt><b><br/>
+<span style="font-size: 12pt">Notes</span><br/>
+<br/>
+</b>subfinder uses following sites<b><br/>
+</b><ul><li>Virustotal</li>
+<li>Passivetotal</li>
+<li>SecurityTrails</li>
+<li>Censys</li>
+<li>Riddler</li>
+<li>Shodan</li>
+</ul>
+<tt><br/>
+</tt>plus passive enumeration techniques<tt><br/>
+</tt><tt><br/>
+</tt><b>Upgrade subfinder before use</b><br/>
+<tt><br/>
+</tt><tt>go get -u github.com/subfinder/subfinder</tt><br/>
+</body></html>

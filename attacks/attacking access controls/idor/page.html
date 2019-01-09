@@ -1,0 +1,45 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>IDOR</title>
+</head><body><b><span style="font-size: 14pt">Insecure Direct Object Reference, IDOR</span></b><br/>
+<br/>
+<b><span style="font-size: 12pt">DETECTION</span></b><br/>
+<ul><li>Substitute UIDs, user hashes, emails</li>
+<li>Check for static files with authenticated account and then try to access them with low-priv or no-priv account</li>
+<li>Check for static files by Discover Content and by inferring from other documents names</li>
+<li>Create two users and cross-validate access to private resources</li>
+<li>Look for leakid IDs</li>
+<li>Examples:</li>
+</ul>
+<tt><ul><li style="list-style-type: none"><ul><li>http:/foo.bar/somepage?invoice=12345</li>
+<li>http:/foo.bar/changepassword?user=someuser</li>
+<li>http:/foo.bar/showImage?img=img00011</li>
+<li>http:/foo.bar/accessPage?menuitem=12</li>
+</ul>
+</li>
+</ul>
+</tt><ul><li>Identify any and all UID and</li>
+<li style="list-style-type: none"><ul><li>increment</li>
+<li>decrement</li>
+<li>negative values</li>
+</ul>
+</li>
+</ul>
+<br/>
+<b>Common functions, views, files</b><br/>
+<br/>
+Add / Upload file Email change<br/>
+Delete File<br/>
+Password change<br/>
+Transfer Money / Currency<br/>
+Profile edit<br/>
+<br/>
+Images<br/>
+Receipts<br/>
+Private documents<br/>
+<br/>
+Shipping info<br/>
+Purchase orders<br/>
+Sending &amp; Deleting messages<br/>
+</body></html>

